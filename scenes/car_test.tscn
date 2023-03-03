@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://dagghassaijsd"]
+
+[ext_resource type="PackedScene" uid="uid://ba6xyqiidsic4" path="res://scenes/picocar.tscn" id="1_jpuht"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 10, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.336415, 0.709899, -0.618763, -0.450194, 0.698352, 0.556444, 0.827134, 0.0913677, 0.554529, 0, 15.1739, 14.8684)
+
+[node name="picocar" parent="." instance=ExtResource("1_jpuht")]
+colour = Color(0.25098, 0.733333, 0.878431, 1)

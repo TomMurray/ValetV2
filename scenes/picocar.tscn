@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://ba6xyqiidsic4"]
+
+[ext_resource type="PackedScene" uid="uid://b3557nwoyqnxe" path="res://assets/models/picocar.glb" id="1_5i6mq"]
+[ext_resource type="Script" path="res://scripts/picocar.gd" id="2_lkg2x"]
+
+[node name="picocar" instance=ExtResource("1_5i6mq")]
+script = ExtResource("2_lkg2x")
