@@ -23,7 +23,7 @@ enum Wheel {
 }
 
 const MAX_STEER : float = deg_to_rad(40.0)
-const STEER_SPEED : float = 5.0
+const STEER_DEG_PER_SEC : float = deg_to_rad(120.0)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -40,19 +40,15 @@ func _physics_process(delta):
 		var steer = Input.get_axis("steer_left", "steer_right");
 		var accel = Input.get_axis("brake_reverse", "accelerate");
 		
-		# Take front wheels
+		
+		var back_wheels = wheels.slice(0, 2)
 		var front_wheels = wheels.slice(2, 4)
 		
+		# Left wheel of each set has canonical rotation
+		var curr_steer_angle = front_wheels[0].rotation.y
+		curr_steer_angle = clamp(curr_steer_angle - steer * STEER_DEG_PER_SEC * delta, -MAX_STEER, MAX_STEER)
 		for wheel in front_wheels:
-			# TODO: Fix car scene so that the car is facing forwards
-			# rather than backwards...
-			# Take the difference, rotate wheel smoothly
-			var target_rotation_y = -steer * MAX_STEER
-			var diff = target_rotation_y - wheel.rotation.y
-			var rotate_amount = diff * delta * STEER_SPEED
-			if abs(diff) < 0.1:
-				rotate_amount = diff
-			wheel.rotation.y += rotate_amount
+			wheel.rotation.y = curr_steer_angle
 	
 	pass
 
