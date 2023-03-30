@@ -31,7 +31,11 @@ enum Wheel {
 const MAX_STEER : float = deg_to_rad(40.0)
 const STEER_PER_SEC : float = deg_to_rad(120.0)
 
-const ACCEL_PER_SEC : float = 2
+const MAX_SPEED_PER_SEC : float = 10
+const ACCEL_PER_SEC : float = 20
+const FRICTION_PER_SEC : float = 0.6
+
+var z_velocity : float = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -104,7 +108,10 @@ func _physics_process(delta):
 		# Move the front/back wheels of the "bicycle" by the desired
 		# amount in the direction they are facing. Note this is done
 		# relative to the transform of the car node itself.
-		var v = accel * ACCEL_PER_SEC * delta
+		z_velocity = min(MAX_SPEED_PER_SEC, z_velocity + accel * ACCEL_PER_SEC * delta)
+		z_velocity *= pow(FRICTION_PER_SEC, delta)
+		var v = z_velocity * delta
+		
 		back_midpoint.y += v
 		# Must be a more succinct way of doing this, but using sin/cos
 		# for now
