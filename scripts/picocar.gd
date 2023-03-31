@@ -52,8 +52,8 @@ func _physics_process(delta):
 	
 	# Apply correct visual rotation to the front wheels
 	if not Engine.is_editor_hint():
-		var steer = Input.get_axis("steer_left", "steer_right");
-		var accel = Input.get_axis("brake_reverse", "accelerate");
+		var steer = Input.get_axis("steer_left", "steer_right")
+		var accel = Input.get_axis("brake_reverse", "accelerate")
 		
 		
 		var back_wheels = wheels.slice(0, 2)
@@ -104,6 +104,11 @@ func _physics_process(delta):
 		back_midpoint = Vector2(back_midpoint.x, back_midpoint.z)
 		front_midpoint = Vector2(front_midpoint.x, front_midpoint.z)
 		var old_pos_rel = (front_midpoint + back_midpoint)/2
+		
+		# TODO: Special behaviour for accelerate/brake/reverse. If the car
+		# is currently moving forwards, pressing backwards will brake
+		# until the car stops. There should be a delay once the car has
+		# come to a complete stop before the car starts reversing.
 		
 		# Move the front/back wheels of the "bicycle" by the desired
 		# amount in the direction they are facing. Note this is done
