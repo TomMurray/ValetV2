@@ -28,12 +28,12 @@ enum Wheel {
 	FRONT_R
 }
 
-const MAX_STEER : float = deg_to_rad(40.0)
-const STEER_PER_SEC : float = deg_to_rad(120.0)
+@export var max_steer_angle : float = 40.0
+@export var steer_per_sec : float = 120.0
 
-const MAX_SPEED_PER_SEC : float = 10
-const ACCEL_PER_SEC : float = 20
-const FRICTION_PER_SEC : float = 0.6
+@export var max_speed_per_sec : float = 10
+@export var accel_per_sec : float = 20
+@export var friction_per_sec : float = 0.6
 
 var z_velocity : float = 0
 
@@ -61,7 +61,8 @@ func _physics_process(delta):
 		
 		# Left wheel of each set has canonical rotation
 		var curr_steer_angle = front_wheels[0].rotation.y
-		curr_steer_angle = clamp(curr_steer_angle - steer * STEER_PER_SEC * delta, -MAX_STEER, MAX_STEER)
+		var max_steer_rads = deg_to_rad(max_steer_angle)
+		curr_steer_angle = clamp(curr_steer_angle - steer * deg_to_rad(steer_per_sec) * delta, -max_steer_rads, max_steer_rads)
 		
 		# Set visual rotation of front wheels
 		for wheel in front_wheels:
@@ -113,8 +114,8 @@ func _physics_process(delta):
 		# Move the front/back wheels of the "bicycle" by the desired
 		# amount in the direction they are facing. Note this is done
 		# relative to the transform of the car node itself.
-		z_velocity = min(MAX_SPEED_PER_SEC, z_velocity + accel * ACCEL_PER_SEC * delta)
-		z_velocity *= pow(FRICTION_PER_SEC, delta)
+		z_velocity = min(max_speed_per_sec, z_velocity + accel * accel_per_sec * delta)
+		z_velocity *= pow(friction_per_sec, delta)
 		var v = z_velocity * delta
 		
 		back_midpoint.y += v

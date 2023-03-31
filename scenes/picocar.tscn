@@ -8,6 +8,11 @@ size = Vector3(1, 1.194, 2.356)
 
 [node name="picocar" instance=ExtResource("1_5i6mq")]
 script = ExtResource("2_lkg2x")
+max_steer_angle = null
+steer_per_sec = null
+max_speed_per_sec = null
+accel_per_sec = null
+friction_per_sec = null
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.670243, 0)
