@@ -16,8 +16,3 @@ transform = Transform3D(0.336415, 0.709899, -0.618763, -0.450194, 0.698352, 0.55
 
 [node name="picocar" parent="." instance=ExtResource("1_jpuht")]
 colour = Color(0.803922, 0.65098, 0.172549, 1)
-max_steer_angle = 40.0
-steer_per_sec = 120.0
-max_speed_per_sec = 10.0
-accel_per_sec = 20.0
-friction_per_sec = 0.6
