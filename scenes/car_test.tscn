@@ -1,6 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://dagghassaijsd"]
+[gd_scene load_steps=5 format=3 uid="uid://dagghassaijsd"]
 
 [ext_resource type="PackedScene" uid="uid://ba6xyqiidsic4" path="res://scenes/picocar.tscn" id="1_jpuht"]
+[ext_resource type="PackedScene" uid="uid://dlcl4g8eeahy7" path="res://scenes/traffic_cone.tscn" id="2_7ix00"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xs6ya"]
+size = Vector3(100, 1, 100)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_xwcf5"]
+size = Vector2(100, 100)
 
 [node name="Node3D" type="Node3D"]
 
@@ -9,6 +16,28 @@ transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.7422
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.336415, 0.709899, -0.618763, -0.450194, 0.698352, 0.556444, 0.827134, 0.0913677, 0.554529, 0, 15.1739, 14.8684)
+shadow_enabled = true
 
 [node name="picocar" parent="." instance=ExtResource("1_jpuht")]
-colour = Color(0.803922, 0.65098, 0.172549, 1)
+colour = Color(0.466667, 0.733333, 0.639216, 1)
+
+[node name="traffic_cone" parent="." instance=ExtResource("2_7ix00")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.141196, 0, 3.63116)
+
+[node name="traffic_cone2" parent="." instance=ExtResource("2_7ix00")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.585491, 0, 3.63116)
+
+[node name="traffic_cone3" parent="." instance=ExtResource("2_7ix00")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.21132, 0, 3.63116)
+
+[node name="traffic_cone4" parent="." instance=ExtResource("2_7ix00")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.12212, 0, 3.63116)
+
+[node name="ground" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_xs6ya")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ground"]
+mesh = SubResource("PlaneMesh_xwcf5")
