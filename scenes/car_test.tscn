@@ -7,9 +7,6 @@
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.74228e-08, 1, 4.37114e-08, 0, 10, 0)
 
-[node name="Camera3D2" type="Camera3D" parent="."]
-transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.74228e-08, 1, 4.37114e-08, 0, 10, 0)
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.336415, 0.709899, -0.618763, -0.450194, 0.698352, 0.556444, 0.827134, 0.0913677, 0.554529, 0, 15.1739, 14.8684)
 
