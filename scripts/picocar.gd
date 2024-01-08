@@ -1,5 +1,6 @@
 @tool
 extends CharacterBody3D
+class_name PicoCar
 
 @export var colour := Color.WHITE:
 	set(value):
