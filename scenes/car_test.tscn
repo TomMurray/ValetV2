@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://ba6xyqiidsic4" path="res://scenes/picocar.tscn" id="1_jpuht"]
 [ext_resource type="PackedScene" uid="uid://dlcl4g8eeahy7" path="res://scenes/traffic_cone.tscn" id="2_7ix00"]
-[ext_resource type="Script" path="res://scenes/follow.gd" id="2_c0ry7"]
+[ext_resource type="Script" path="res://scripts/follow.gd" id="2_c0ry7"]
 [ext_resource type="Script" path="res://scripts/lookat_camera.gd" id="2_rff2v"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xs6ya"]
@@ -25,7 +25,7 @@ script = ExtResource("2_c0ry7")
 target = NodePath("../picocar")
 
 [node name="Camera3D" type="Camera3D" parent="follow_camera" node_paths=PackedStringArray("target")]
-transform = Transform3D(-1, 6.99378e-08, -5.24542e-08, 0, 0.600006, 0.799996, 8.74228e-08, 0.799996, -0.600006, 0, 4.94629, -3.70978)
+transform = Transform3D(-1, 6.99378e-08, -5.24542e-08, 0, 0.600006, 0.799995, 8.74228e-08, 0.799995, -0.600006, 0, 4.94629, -3.70978)
 script = ExtResource("2_rff2v")
 target = NodePath("../../picocar")
 
