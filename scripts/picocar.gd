@@ -11,22 +11,20 @@ extends CharacterBody3D
 		var new_mtl := body.get_active_material(0).duplicate() as BaseMaterial3D
 		new_mtl.albedo_color = colour
 		body.set_surface_override_material(0, new_mtl)
+		
+@export var wheel_front_right : Node3D
+@export var wheel_front_left : Node3D
+@export var wheel_back_right : Node3D
+@export var wheel_back_left : Node3D
 
 # Array of wheel nodes accessible by flattened 2-d index
 # [y, x] e.g. front-right = (1, 1) flattened index = 3
 @onready var wheels : Array[Node3D] = [
-	$wheel_bl as Node3D,
-	$wheel_br as Node3D,
-	$wheel_fl as Node3D,
-	$wheel_fr as Node3D
+	wheel_back_left,
+	wheel_back_right,
+	wheel_front_left,
+	wheel_front_right
 ]
-
-enum Wheel {
-	BACK_L,
-	BACK_R,
-	FRONT_L,
-	FRONT_R
-}
 
 @export var max_steer_angle : float = 40.0
 @export var steer_per_sec : float = 120.0
@@ -45,11 +43,6 @@ func get_node3d_midpoint(a : Array[Node3D]):
 	return a.map(func(x : Node3D): return x.transform.origin).reduce(func(a, b): return a + b) / a.size()
 
 func _physics_process(delta):
-	# We need to consider the forces on each wheel (acceleration on front
-	# wheels, in the direction they're going, friction preventing tyres
-	# from sliding against the ground) and integrate these to give the motion
-	# of the car as a whole.
-	
 	# Apply correct visual rotation to the front wheels
 	if not Engine.is_editor_hint():
 		var steer = Input.get_axis("steer_left", "steer_right")

@@ -6,8 +6,12 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_fcil1"]
 size = Vector3(1, 1.194, 2.356)
 
-[node name="picocar" instance=ExtResource("1_5i6mq")]
+[node name="picocar" node_paths=PackedStringArray("wheel_front_right", "wheel_front_left", "wheel_back_right", "wheel_back_left") instance=ExtResource("1_5i6mq")]
 script = ExtResource("2_lkg2x")
+wheel_front_right = NodePath("wheel_fr")
+wheel_front_left = NodePath("wheel_fl")
+wheel_back_right = NodePath("wheel_br")
+wheel_back_left = NodePath("wheel_bl")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.670243, 0)
