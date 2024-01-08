@@ -20,8 +20,9 @@ shadow_enabled = true
 [node name="picocar" parent="." instance=ExtResource("1_jpuht")]
 colour = Color(0.466667, 0.733333, 0.639216, 1)
 
-[node name="follow_camera" type="Node3D" parent="."]
+[node name="follow_camera" type="Node3D" parent="." node_paths=PackedStringArray("target")]
 script = ExtResource("2_c0ry7")
+target = NodePath("../picocar")
 
 [node name="Camera3D" type="Camera3D" parent="follow_camera" node_paths=PackedStringArray("target")]
 transform = Transform3D(-1, 6.99378e-08, -5.24542e-08, 0, 0.600006, 0.799996, 8.74228e-08, 0.799996, -0.600006, 0, 4.94629, -3.70978)
