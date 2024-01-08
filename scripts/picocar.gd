@@ -26,6 +26,8 @@ extends CharacterBody3D
 	wheel_front_right
 ]
 
+@onready var wheel_radius : float = wheels[0].scale.y
+
 @export var max_steer_angle : float = 40.0
 @export var steer_per_sec : float = 120.0
 
@@ -56,10 +58,6 @@ func _physics_process(delta):
 		var curr_steer_angle = front_wheels[0].rotation.y
 		var max_steer_rads = deg_to_rad(max_steer_angle)
 		curr_steer_angle = clamp(curr_steer_angle - steer * deg_to_rad(steer_per_sec) * delta, -max_steer_rads, max_steer_rads)
-		
-		# Set visual rotation of front wheels
-		for wheel in front_wheels:
-			wheel.rotation.y = curr_steer_angle
 			
 		# Calculate updated rotation of car as a whole. This is based
 		# on a simple 2-wheel "bicycle" physics model as elaborated nicely
@@ -99,6 +97,13 @@ func _physics_process(delta):
 		front_midpoint = Vector2(front_midpoint.x, front_midpoint.z)
 		var old_pos_rel = (front_midpoint + back_midpoint)/2
 		
+		# Calculate current velocity in the direction the car is facing.
+		# 'basis' is not facing in the direction of 'velocity' when
+		# turning the car unless going straight ahead, so we're simplifying
+		# just to get a signed velocity so we know whether we're reversing or
+		# travelling forwards.
+		var forward_velocity = sign(velocity.dot(basis.z)) * velocity.length()
+		
 		# TODO: Special behaviour for accelerate/brake/reverse. If the car
 		# is currently moving forwards, pressing backwards will brake
 		# until the car stops. There should be a delay once the car has
@@ -133,14 +138,28 @@ func _physics_process(delta):
 		var new_pos_rel = (front_midpoint + back_midpoint) / 2
 		var pos_delta = new_pos_rel - old_pos_rel
 		
+		# Set visual rotation of all wheels.
+		# If a wheel rotates by an angle (in radians) 'a' the distance it
+		# travels is d = a * r, so to find 'a' by which to rotate the wheel
+		# from d simply use a = d/r.
+		var visual_rotation = (forward_velocity * delta) / wheel_radius
+		for wheel in wheels:
+			# We should first rotate around x axis, then for front wheels
+			# rotate around y axis
+			wheel.rotation.x += visual_rotation
+		
+		# Set visual steer of front wheels.
+		for wheel in front_wheels:
+			wheel.rotation.y = curr_steer_angle
+		
 		# Velocity is independent of delta, but our calculated delta is
-		# already multiplied by our delta, so undo this.
+		# already multiplied by delta, hence the division to undo this.
 		# We multiply the movement delta by the basis rotation to move in
-		# the direction the car is facing.
+		# the direction the wheels are facing.
 		#
 		# Note use of get_rotation_quaternion because basis of the car also
 		# encodes scale, and we want to apply rotation independent of scale.
-		velocity = basis.get_rotation_quaternion() * Vector3(pos_delta.x, 0, pos_delta.y) * (1/delta)
+		velocity = (basis.get_rotation_quaternion() * Vector3(pos_delta.x, 0, pos_delta.y)) / delta
 		
 		move_and_slide()
 	
