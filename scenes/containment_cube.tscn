@@ -1,0 +1,59 @@
+[gd_scene load_steps=6 format=3 uid="uid://cfityf1msljum"]
+
+[ext_resource type="Script" path="res://scripts/area3d_fully_contained.gd" id="1_4jf43"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4dwa3"]
+margin = 0.0
+size = Vector3(1, 0.2, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tioaj"]
+size = Vector3(0.2, 1.4, 1.4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ybe20"]
+size = Vector3(1, 1.4, 0.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_c70hs"]
+
+[node name="containment_cube" type="Node3D"]
+script = ExtResource("1_4jf43")
+
+[node name="ExclusionArea" type="Area3D" parent="."]
+collision_mask = 2
+input_ray_pickable = false
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ExclusionArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6, 0)
+shape = SubResource("BoxShape3D_4dwa3")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="ExclusionArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6, 0, 0)
+shape = SubResource("BoxShape3D_tioaj")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="ExclusionArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, 0, 0)
+shape = SubResource("BoxShape3D_tioaj")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="ExclusionArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.6)
+shape = SubResource("BoxShape3D_ybe20")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="ExclusionArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.6)
+shape = SubResource("BoxShape3D_ybe20")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="ExclusionArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+shape = SubResource("BoxShape3D_4dwa3")
+
+[node name="InclusionArea" type="Area3D" parent="."]
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InclusionArea"]
+shape = SubResource("BoxShape3D_c70hs")
+
+[connection signal="body_entered" from="ExclusionArea" to="." method="_on_exclusion_area_body_entered"]
+[connection signal="body_exited" from="ExclusionArea" to="." method="_on_exclusion_area_body_exited"]
+[connection signal="body_entered" from="InclusionArea" to="." method="_on_inclusion_area_body_entered"]
+[connection signal="body_exited" from="InclusionArea" to="." method="_on_inclusion_area_body_exited"]
