@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dlcl4g8eeahy7" path="res://scenes/traffic_cone.tscn" id="2_7ix00"]
 [ext_resource type="Script" path="res://scripts/follow.gd" id="2_c0ry7"]
 [ext_resource type="Script" path="res://scripts/lookat_camera.gd" id="2_rff2v"]
-[ext_resource type="PackedScene" uid="uid://btsndqkxonpfh" path="res://scenes/objective_area.tscn" id="5_ta1mn"]
+[ext_resource type="PackedScene" uid="uid://btsndqkxonpfh" path="res://scenes/parking_area.tscn" id="5_ta1mn"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xs6ya"]
 size = Vector3(100, 1, 100)
@@ -20,7 +20,7 @@ size = Vector2(100, 100)
 [sub_resource type="GDScript" id="GDScript_gs6a6"]
 script/source = "extends RichTextLabel
 
-func _on_objective_area_objective_reached():
+func _on_parking_area_parked():
 	show()
 "
 
@@ -285,7 +285,7 @@ transform = Transform3D(-0.999134, 3.62998e-05, 0.0415967, 1.66276e-11, 1, -0.00
 [node name="traffic_cone55" parent="traffic_cones" instance=ExtResource("2_7ix00")]
 transform = Transform3D(-0.999134, 0, 0.0415966, 0, 1, 0, -0.0415966, 0, -0.999134, 5.6883, 0.0206865, 9.03422)
 
-[node name="objective_area" parent="." instance=ExtResource("5_ta1mn")]
+[node name="parking_area" parent="." instance=ExtResource("5_ta1mn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 2.121, 4.172, 1.01, 0.72)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -319,4 +319,4 @@ scroll_active = false
 autowrap_mode = 0
 script = SubResource("GDScript_gs6a6")
 
-[connection signal="objective_reached" from="objective_area" to="CanvasLayer/CenterContainer/RichTextLabel" method="_on_objective_area_objective_reached"]
+[connection signal="parked" from="parking_area" to="CanvasLayer/CenterContainer/RichTextLabel" method="_on_parking_area_parked"]

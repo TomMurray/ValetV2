@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cfityf1msljum"]
 
-[ext_resource type="Script" path="res://scripts/area3d_fully_contained.gd" id="1_4jf43"]
+[ext_resource type="Script" path="res://scripts/area3d_fully_contained.gd" id="1_21ybi"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4dwa3"]
 margin = 0.0
@@ -14,8 +14,8 @@ size = Vector3(1, 1.4, 0.2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_c70hs"]
 
-[node name="containment_cube" type="Node3D"]
-script = ExtResource("1_4jf43")
+[node name="parked_trigger" type="Node3D"]
+script = ExtResource("1_21ybi")
 
 [node name="ExclusionArea" type="Area3D" parent="."]
 collision_mask = 2

@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://scripts/objective_area.gd" id="1_5o0qc"]
 [ext_resource type="PackedScene" uid="uid://cjwcesada6xmm" path="res://scenes/xyz_cube_fade_up.tscn" id="1_mjnkl"]
-[ext_resource type="PackedScene" uid="uid://cfityf1msljum" path="res://scenes/containment_cube.tscn" id="3_j11vx"]
+[ext_resource type="PackedScene" uid="uid://cfityf1msljum" path="res://scenes/parked_trigger.tscn" id="3_j11vx"]
 
-[node name="objective_area" type="Node3D"]
+[node name="parking_area" type="Node3D"]
 script = ExtResource("1_5o0qc")
 
 [node name="xyz_cube" parent="." instance=ExtResource("1_mjnkl")]
