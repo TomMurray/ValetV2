@@ -1,0 +1,17 @@
+[gd_scene load_steps=5 format=3 uid="uid://cjwcesada6xmm"]
+
+[ext_resource type="PackedScene" uid="uid://7ohwwrlgiaww" path="res://assets/models/xyz_cube.glb" id="1_h70ll"]
+[ext_resource type="Script" path="res://scripts/xyz_cube_fade_up.gd" id="2_3dqc0"]
+[ext_resource type="Shader" path="res://shaders/xyz_cube_fade_up.gdshader" id="2_axmrf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o1qna"]
+render_priority = 0
+shader = ExtResource("2_axmrf")
+shader_parameter/base_colour = Vector4(0, 1, 0, 0.611765)
+
+[node name="xyz_cube" instance=ExtResource("1_h70ll")]
+script = ExtResource("2_3dqc0")
+
+[node name="Cube" parent="." index="0"]
+unique_name_in_owner = true
+surface_material_override/0 = SubResource("ShaderMaterial_o1qna")

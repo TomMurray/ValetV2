@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dagghassaijsd"]
+[gd_scene load_steps=8 format=3 uid="uid://dagghassaijsd"]
 
 [ext_resource type="PackedScene" uid="uid://ba6xyqiidsic4" path="res://scenes/picocar.tscn" id="1_jpuht"]
 [ext_resource type="PackedScene" uid="uid://dlcl4g8eeahy7" path="res://scenes/traffic_cone.tscn" id="2_7ix00"]
 [ext_resource type="Script" path="res://scripts/follow.gd" id="2_c0ry7"]
 [ext_resource type="Script" path="res://scripts/lookat_camera.gd" id="2_rff2v"]
+[ext_resource type="PackedScene" uid="uid://btsndqkxonpfh" path="res://scenes/objective_area.tscn" id="5_ta1mn"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xs6ya"]
 size = Vector3(100, 1, 100)
@@ -270,3 +271,6 @@ transform = Transform3D(-0.999134, 3.62998e-05, 0.0415967, 1.66276e-11, 1, -0.00
 
 [node name="traffic_cone55" parent="traffic_cones" instance=ExtResource("2_7ix00")]
 transform = Transform3D(-0.999134, 0, 0.0415966, 0, 1, 0, -0.0415966, 0, -0.999134, 5.6883, 0.0206865, 9.03422)
+
+[node name="objective_area" parent="." instance=ExtResource("5_ta1mn")]
+transform = Transform3D(1, 0, 0, 0, 0.3, 0, 0, 0, 2.12109, 4.17176, 0.31, 0.720426)
