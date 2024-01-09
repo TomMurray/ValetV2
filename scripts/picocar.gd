@@ -162,7 +162,16 @@ func _physics_process(delta):
 		# encodes scale, and we want to apply rotation independent of scale.
 		velocity = (basis.get_rotation_quaternion() * Vector3(pos_delta.x, 0, pos_delta.y)) / delta
 		
-		move_and_slide()
+		# The following allows us to react to collisions without impeding the
+		# motion of the vehicle:
+		var c := move_and_collide(velocity * delta, true)
+		if c:
+			print("There was a collision")
+			for i in range(0, c.get_collision_count()):
+				var r = c.get_collider(i) as RigidBody3D
+				if r:
+					print("Collided with RigidBody: ", r)
+		position += velocity * delta
 	
 	pass
 
