@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dagghassaijsd"]
+[gd_scene load_steps=10 format=3 uid="uid://dagghassaijsd"]
 
 [ext_resource type="PackedScene" uid="uid://ba6xyqiidsic4" path="res://scenes/picocar.tscn" id="1_jpuht"]
 [ext_resource type="PackedScene" uid="uid://dlcl4g8eeahy7" path="res://scenes/traffic_cone.tscn" id="2_7ix00"]
@@ -9,8 +9,20 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_xs6ya"]
 size = Vector3(100, 1, 100)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8k7c6"]
+albedo_color = Color(0.117647, 0.117647, 0.117647, 1)
+uv1_scale = Vector3(144.485, 144.485, 144.485)
+
 [sub_resource type="PlaneMesh" id="PlaneMesh_xwcf5"]
+material = SubResource("StandardMaterial3D_8k7c6")
 size = Vector2(100, 100)
+
+[sub_resource type="GDScript" id="GDScript_gs6a6"]
+script/source = "extends RichTextLabel
+
+func _on_objective_area_objective_reached():
+	show()
+"
 
 [node name="Node3D" type="Node3D"]
 
@@ -275,3 +287,36 @@ transform = Transform3D(-0.999134, 0, 0.0415966, 0, 1, 0, -0.0415966, 0, -0.9991
 
 [node name="objective_area" parent="." instance=ExtResource("5_ta1mn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 2.121, 4.172, 1.01, 0.72)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/CenterContainer"]
+visible = false
+clip_contents = false
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 15
+theme_override_constants/shadow_offset_y = 20
+theme_override_constants/shadow_outline_size = 10
+theme_override_font_sizes/normal_font_size = 335
+bbcode_enabled = true
+text = "[rainbow sat=0.4][tornado radius=10.0 freq=30 connected=1]GENIUS[/tornado][/rainbow]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+script = SubResource("GDScript_gs6a6")
+
+[connection signal="objective_reached" from="objective_area" to="CanvasLayer/CenterContainer/RichTextLabel" method="_on_objective_area_objective_reached"]

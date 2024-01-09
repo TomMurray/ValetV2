@@ -7,7 +7,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o1qna"]
 render_priority = 0
 shader = ExtResource("2_axmrf")
-shader_parameter/base_colour = Vector4(0, 1, 0, 0.611765)
+shader_parameter/base_colour = Vector4(0.521569, 0.913725, 0.956863, 0.611765)
 
 [node name="xyz_cube" instance=ExtResource("1_h70ll")]
 script = ExtResource("2_3dqc0")

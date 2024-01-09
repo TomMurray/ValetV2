@@ -15,4 +15,3 @@ base_colour = Color(0.521569, 0.913725, 0.956863, 0.611765)
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 
 [connection signal="body_entered" from="area" to="." method="_on_area_body_entered"]
-[connection signal="body_exited" from="area" to="." method="_on_area_body_exited"]
