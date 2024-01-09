@@ -5,4 +5,4 @@
 [node name="objective_area" type="Node3D"]
 
 [node name="xyz_cube" parent="." instance=ExtResource("1_mjnkl")]
-base_colour = Color(0, 1, 0, 0.611765)
+base_colour = Color(0.521569, 0.913725, 0.956863, 0.611765)
