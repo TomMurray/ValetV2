@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://dagghassaijsd"]
+[gd_scene load_steps=37 format=3 uid="uid://dagghassaijsd"]
 
 [ext_resource type="PackedScene" uid="uid://ba6xyqiidsic4" path="res://scenes/picocar.tscn" id="1_jpuht"]
 [ext_resource type="PackedScene" uid="uid://dlcl4g8eeahy7" path="res://scenes/traffic_cone.tscn" id="2_7ix00"]
@@ -35,144 +35,112 @@ material = SubResource("StandardMaterial3D_8k7c6")
 [sub_resource type="BoxShape3D" id="BoxShape3D_qhj0r"]
 size = Vector3(0.2, 1, 13)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_6b878"]
-resource_local_to_scene = true
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bi4mt"]
 render_priority = 0
 shader = ExtResource("6_73ftp")
 shader_parameter/transform = null
 
-[sub_resource type="BoxMesh" id="BoxMesh_2r1r2"]
-resource_local_to_scene = true
-material = SubResource("ShaderMaterial_6b878")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_we2xv"]
-resource_local_to_scene = true
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l1go1"]
 render_priority = 0
 shader = ExtResource("6_73ftp")
 shader_parameter/transform = null
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_2o47k"]
-resource_local_to_scene = true
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_14y6f"]
 render_priority = 0
 shader = ExtResource("6_73ftp")
 shader_parameter/transform = null
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_sfwj7"]
-resource_local_to_scene = true
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u0kbm"]
 render_priority = 0
 shader = ExtResource("6_73ftp")
 shader_parameter/transform = null
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_8c1v7"]
-resource_local_to_scene = true
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xjpmm"]
 render_priority = 0
 shader = ExtResource("6_73ftp")
 shader_parameter/transform = null
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_4e1rw"]
-resource_local_to_scene = true
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6wr0b"]
 render_priority = 0
 shader = ExtResource("6_73ftp")
 shader_parameter/transform = null
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_c80qb"]
-resource_local_to_scene = true
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_873g0"]
 render_priority = 0
 shader = ExtResource("6_73ftp")
 shader_parameter/transform = null
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_l46yi"]
-resource_local_to_scene = true
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ron4n"]
 render_priority = 0
 shader = ExtResource("6_73ftp")
 shader_parameter/transform = null
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1cjmp"]
-resource_local_to_scene = true
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lwfsd"]
 render_priority = 0
 shader = ExtResource("6_73ftp")
 shader_parameter/transform = null
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ov7fg"]
-resource_local_to_scene = true
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qf6ju"]
 render_priority = 0
 shader = ExtResource("6_73ftp")
 shader_parameter/transform = null
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_dkv1g"]
-resource_local_to_scene = true
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vbklc"]
 render_priority = 0
 shader = ExtResource("6_73ftp")
 shader_parameter/transform = null
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_535wt"]
-resource_local_to_scene = true
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_maky3"]
 render_priority = 0
 shader = ExtResource("6_73ftp")
 shader_parameter/transform = null
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ehd7t"]
-resource_local_to_scene = true
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i5ox4"]
 render_priority = 0
 shader = ExtResource("6_73ftp")
 shader_parameter/transform = null
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_wgo35"]
-resource_local_to_scene = true
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4bdkt"]
 render_priority = 0
 shader = ExtResource("6_73ftp")
 shader_parameter/transform = null
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_54bse"]
-resource_local_to_scene = true
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ove1n"]
 render_priority = 0
 shader = ExtResource("6_73ftp")
 shader_parameter/transform = null
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_t7b05"]
-resource_local_to_scene = true
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_842e2"]
 render_priority = 0
 shader = ExtResource("6_73ftp")
 shader_parameter/transform = null
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_77mbh"]
-resource_local_to_scene = true
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_27pye"]
 render_priority = 0
 shader = ExtResource("6_73ftp")
 shader_parameter/transform = null
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_03wcs"]
-resource_local_to_scene = true
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mpn51"]
 render_priority = 0
 shader = ExtResource("6_73ftp")
 shader_parameter/transform = null
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_bil7j"]
-resource_local_to_scene = true
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0dg7r"]
 render_priority = 0
 shader = ExtResource("6_73ftp")
 shader_parameter/transform = null
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_gc3rq"]
-resource_local_to_scene = true
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a7402"]
 render_priority = 0
 shader = ExtResource("6_73ftp")
 shader_parameter/transform = null
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_t3hw5"]
-resource_local_to_scene = true
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wlehu"]
 render_priority = 0
 shader = ExtResource("6_73ftp")
 shader_parameter/transform = null
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_b0gfc"]
-resource_local_to_scene = true
-render_priority = 0
-shader = ExtResource("6_73ftp")
-shader_parameter/transform = null
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ubqdk"]
-resource_local_to_scene = true
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gi44y"]
 render_priority = 0
 shader = ExtResource("6_73ftp")
 shader_parameter/transform = null
@@ -511,136 +479,92 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 2.121, 4.172, 1.01, 0.72)
 
 [node name="road_lines" type="Node3D" parent="."]
 
-[node name="MeshInstance3D2" parent="road_lines" instance=ExtResource("6_pollb")]
-transform = Transform3D(3, 0, 0, 0, 0.01, 0, 0, 0, 0.2, -3, 0, 16)
-mesh = SubResource("BoxMesh_2r1r2")
-skeleton = NodePath("../../..")
-surface_material_override/0 = SubResource("ShaderMaterial_we2xv")
+[node name="road_line" parent="road_lines" instance=ExtResource("6_pollb")]
+transform = Transform3D(-7.86805e-07, 0, 0.2, 0, 0.005, 0, -18, 0, -8.74228e-09, -4, 0, 7)
+surface_material_override/0 = SubResource("ShaderMaterial_bi4mt")
 
-[node name="MeshInstance3D12" parent="road_lines" instance=ExtResource("6_pollb")]
-transform = Transform3D(-7.95547e-07, 0, -0.2, 0, 0.01, 0, 18.2, 0, -8.74228e-09, -4.4, 0, 7)
-mesh = SubResource("BoxMesh_2r1r2")
-skeleton = NodePath("../../..")
-surface_material_override/0 = SubResource("ShaderMaterial_2o47k")
+[node name="road_line1" parent="road_lines" instance=ExtResource("6_pollb")]
+transform = Transform3D(3, 0, 0, 0, 0.005, 0, 0, 0, 0.2, -2.6, 0, 16)
+surface_material_override/0 = SubResource("ShaderMaterial_l1go1")
 
-[node name="MeshInstance3D3" parent="road_lines" instance=ExtResource("6_pollb")]
-transform = Transform3D(3, 0, 0, 0, 0.01, 0, 0, 0, 0.2, -3, 0, 14)
-mesh = SubResource("BoxMesh_2r1r2")
-skeleton = NodePath("../../..")
-surface_material_override/0 = SubResource("ShaderMaterial_sfwj7")
+[node name="road_line2" parent="road_lines" instance=ExtResource("6_pollb")]
+transform = Transform3D(3, 0, 0, 0, 0.005, 0, 0, 0, 0.2, -2.6, 0, 14)
+surface_material_override/0 = SubResource("ShaderMaterial_14y6f")
 
-[node name="MeshInstance3D4" parent="road_lines" instance=ExtResource("6_pollb")]
-transform = Transform3D(3, 0, 0, 0, 0.01, 0, 0, 0, 0.2, -3, 0, 12)
-mesh = SubResource("BoxMesh_2r1r2")
-skeleton = NodePath("../../..")
-surface_material_override/0 = SubResource("ShaderMaterial_8c1v7")
+[node name="road_line3" parent="road_lines" instance=ExtResource("6_pollb")]
+transform = Transform3D(3, 0, 0, 0, 0.005, 0, 0, 0, 0.2, -2.6, 0, 12)
+surface_material_override/0 = SubResource("ShaderMaterial_u0kbm")
 
-[node name="MeshInstance3D5" parent="road_lines" instance=ExtResource("6_pollb")]
-transform = Transform3D(3, 0, 0, 0, 0.01, 0, 0, 0, 0.2, -3, 0, 10)
-mesh = SubResource("BoxMesh_2r1r2")
-skeleton = NodePath("../../..")
-surface_material_override/0 = SubResource("ShaderMaterial_4e1rw")
+[node name="road_line4" parent="road_lines" instance=ExtResource("6_pollb")]
+transform = Transform3D(3, 0, 0, 0, 0.005, 0, 0, 0, 0.2, -2.6, 0, 10)
+surface_material_override/0 = SubResource("ShaderMaterial_xjpmm")
 
-[node name="MeshInstance3D6" parent="road_lines" instance=ExtResource("6_pollb")]
-transform = Transform3D(3, 0, 0, 0, 0.01, 0, 0, 0, 0.2, -3, 0, 8)
-mesh = SubResource("BoxMesh_2r1r2")
-skeleton = NodePath("../../..")
-surface_material_override/0 = SubResource("ShaderMaterial_c80qb")
+[node name="road_line5" parent="road_lines" instance=ExtResource("6_pollb")]
+transform = Transform3D(3, 0, 0, 0, 0.005, 0, 0, 0, 0.2, -2.6, 0, 8)
+surface_material_override/0 = SubResource("ShaderMaterial_6wr0b")
 
-[node name="MeshInstance3D7" parent="road_lines" instance=ExtResource("6_pollb")]
-transform = Transform3D(3, 0, 0, 0, 0.01, 0, 0, 0, 0.2, -3, 0, 6)
-mesh = SubResource("BoxMesh_2r1r2")
-skeleton = NodePath("../../..")
-surface_material_override/0 = SubResource("ShaderMaterial_l46yi")
+[node name="road_line6" parent="road_lines" instance=ExtResource("6_pollb")]
+transform = Transform3D(3, 0, 0, 0, 0.005, 0, 0, 0, 0.2, -2.6, 0, 6)
+surface_material_override/0 = SubResource("ShaderMaterial_873g0")
 
-[node name="MeshInstance3D8" parent="road_lines" instance=ExtResource("6_pollb")]
-transform = Transform3D(3, 0, 0, 0, 0.01, 0, 0, 0, 0.2, -3, 0, 4)
-mesh = SubResource("BoxMesh_2r1r2")
-skeleton = NodePath("../../..")
-surface_material_override/0 = SubResource("ShaderMaterial_1cjmp")
+[node name="road_line7" parent="road_lines" instance=ExtResource("6_pollb")]
+transform = Transform3D(3, 0, 0, 0, 0.005, 0, 0, 0, 0.2, -2.6, 0, 4)
+surface_material_override/0 = SubResource("ShaderMaterial_ron4n")
 
-[node name="MeshInstance3D9" parent="road_lines" instance=ExtResource("6_pollb")]
-transform = Transform3D(3, 0, 0, 0, 0.01, 0, 0, 0, 0.2, -3, 0, 2)
-mesh = SubResource("BoxMesh_2r1r2")
-skeleton = NodePath("../../..")
-surface_material_override/0 = SubResource("ShaderMaterial_ov7fg")
+[node name="road_line8" parent="road_lines" instance=ExtResource("6_pollb")]
+transform = Transform3D(3, 0, 0, 0, 0.005, 0, 0, 0, 0.2, -2.6, 0, 2)
+surface_material_override/0 = SubResource("ShaderMaterial_lwfsd")
 
-[node name="MeshInstance3D10" parent="road_lines" instance=ExtResource("6_pollb")]
-transform = Transform3D(3, 0, 0, 0, 0.01, 0, 0, 0, 0.2, -3, 0, 0)
-mesh = SubResource("BoxMesh_2r1r2")
-skeleton = NodePath("../../..")
-surface_material_override/0 = SubResource("ShaderMaterial_dkv1g")
+[node name="road_line9" parent="road_lines" instance=ExtResource("6_pollb")]
+transform = Transform3D(3, 0, 0, 0, 0.005, 0, 0, 0, 0.2, -2.6, 0, 0)
+surface_material_override/0 = SubResource("ShaderMaterial_qf6ju")
 
-[node name="MeshInstance3D11" parent="road_lines" instance=ExtResource("6_pollb")]
-transform = Transform3D(3, 0, 0, 0, 0.01, 0, 0, 0, 0.2, -3, 0, -2)
-mesh = SubResource("BoxMesh_2r1r2")
-skeleton = NodePath("../../..")
-surface_material_override/0 = SubResource("ShaderMaterial_535wt")
+[node name="road_line10" parent="road_lines" instance=ExtResource("6_pollb")]
+transform = Transform3D(3, 0, 0, 0, 0.005, 0, 0, 0, 0.2, -2.6, 0, -2)
+surface_material_override/0 = SubResource("ShaderMaterial_vbklc")
 
-[node name="MeshInstance3D13" parent="road_lines" instance=ExtResource("6_pollb")]
-transform = Transform3D(-3, 0, 0, 0, 0.01, 0, 0, 0, 0.2, 5.74545, 0, 16)
-mesh = SubResource("BoxMesh_2r1r2")
-skeleton = NodePath("../../..")
-surface_material_override/0 = SubResource("ShaderMaterial_ehd7t")
+[node name="road_line11" parent="road_lines" instance=ExtResource("6_pollb")]
+transform = Transform3D(1.35896e-06, 0, -0.2, 0, 0.005, 0, 18, 0, 1.50996e-08, 6.54545, 0, 7)
+surface_material_override/0 = SubResource("ShaderMaterial_maky3")
 
-[node name="MeshInstance3D14" parent="road_lines" instance=ExtResource("6_pollb")]
-transform = Transform3D(-7.95547e-07, 0, 0.2, 0, 0.01, 0, 18.2, 0, 8.74228e-09, 7.14545, 0, 7)
-mesh = SubResource("BoxMesh_2r1r2")
-skeleton = NodePath("../../..")
-surface_material_override/0 = SubResource("ShaderMaterial_wgo35")
+[node name="road_line12" parent="road_lines" instance=ExtResource("6_pollb")]
+transform = Transform3D(-3, 0, -3.01992e-08, 0, 0.005, 0, 4.52987e-07, 0, -0.2, 5.14545, 0, -2)
+surface_material_override/0 = SubResource("ShaderMaterial_i5ox4")
 
-[node name="MeshInstance3D15" parent="road_lines" instance=ExtResource("6_pollb")]
-transform = Transform3D(-3, 0, 0, 0, 0.01, 0, 0, 0, 0.2, 5.74545, 0, 14)
-mesh = SubResource("BoxMesh_2r1r2")
-skeleton = NodePath("../../..")
-surface_material_override/0 = SubResource("ShaderMaterial_54bse")
+[node name="road_line13" parent="road_lines" instance=ExtResource("6_pollb")]
+transform = Transform3D(-3, 0, -3.01992e-08, 0, 0.005, 0, 4.52987e-07, 0, -0.2, 5.14545, 0, 0)
+surface_material_override/0 = SubResource("ShaderMaterial_4bdkt")
 
-[node name="MeshInstance3D16" parent="road_lines" instance=ExtResource("6_pollb")]
-transform = Transform3D(-3, 0, 0, 0, 0.01, 0, 0, 0, 0.2, 5.74545, 0, 12)
-mesh = SubResource("BoxMesh_2r1r2")
-skeleton = NodePath("../../..")
-surface_material_override/0 = SubResource("ShaderMaterial_t7b05")
+[node name="road_line14" parent="road_lines" instance=ExtResource("6_pollb")]
+transform = Transform3D(-3, 0, -3.01992e-08, 0, 0.005, 0, 4.52987e-07, 0, -0.2, 5.14545, 0, 2)
+surface_material_override/0 = SubResource("ShaderMaterial_ove1n")
 
-[node name="MeshInstance3D17" parent="road_lines" instance=ExtResource("6_pollb")]
-transform = Transform3D(-3, 0, 0, 0, 0.01, 0, 0, 0, 0.2, 5.74545, 0, 10)
-mesh = SubResource("BoxMesh_2r1r2")
-skeleton = NodePath("../../..")
-surface_material_override/0 = SubResource("ShaderMaterial_77mbh")
+[node name="road_line15" parent="road_lines" instance=ExtResource("6_pollb")]
+transform = Transform3D(-3, 0, -3.01992e-08, 0, 0.005, 0, 4.52987e-07, 0, -0.2, 5.14545, 0, 4)
+surface_material_override/0 = SubResource("ShaderMaterial_842e2")
 
-[node name="MeshInstance3D18" parent="road_lines" instance=ExtResource("6_pollb")]
-transform = Transform3D(-3, 0, 0, 0, 0.01, 0, 0, 0, 0.2, 5.74545, 0, 8)
-mesh = SubResource("BoxMesh_2r1r2")
-skeleton = NodePath("../../..")
-surface_material_override/0 = SubResource("ShaderMaterial_03wcs")
+[node name="road_line16" parent="road_lines" instance=ExtResource("6_pollb")]
+transform = Transform3D(-3, 0, -3.01992e-08, 0, 0.005, 0, 4.52987e-07, 0, -0.2, 5.14545, 0, 6)
+surface_material_override/0 = SubResource("ShaderMaterial_27pye")
 
-[node name="MeshInstance3D19" parent="road_lines" instance=ExtResource("6_pollb")]
-transform = Transform3D(-3, 0, 0, 0, 0.01, 0, 0, 0, 0.2, 5.74545, 0, 6)
-mesh = SubResource("BoxMesh_2r1r2")
-skeleton = NodePath("../../..")
-surface_material_override/0 = SubResource("ShaderMaterial_bil7j")
+[node name="road_line17" parent="road_lines" instance=ExtResource("6_pollb")]
+transform = Transform3D(-3, 0, -3.01992e-08, 0, 0.005, 0, 4.52987e-07, 0, -0.2, 5.14545, 0, 8)
+surface_material_override/0 = SubResource("ShaderMaterial_mpn51")
 
-[node name="MeshInstance3D20" parent="road_lines" instance=ExtResource("6_pollb")]
-transform = Transform3D(-3, 0, 0, 0, 0.01, 0, 0, 0, 0.2, 5.74545, 0, 4)
-mesh = SubResource("BoxMesh_2r1r2")
-skeleton = NodePath("../../..")
-surface_material_override/0 = SubResource("ShaderMaterial_gc3rq")
+[node name="road_line18" parent="road_lines" instance=ExtResource("6_pollb")]
+transform = Transform3D(-3, 0, -3.01992e-08, 0, 0.005, 0, 4.52987e-07, 0, -0.2, 5.14546, 0, 10)
+surface_material_override/0 = SubResource("ShaderMaterial_0dg7r")
 
-[node name="MeshInstance3D21" parent="road_lines" instance=ExtResource("6_pollb")]
-transform = Transform3D(-3, 0, 0, 0, 0.01, 0, 0, 0, 0.2, 5.74545, 0, 2)
-mesh = SubResource("BoxMesh_2r1r2")
-skeleton = NodePath("../../..")
-surface_material_override/0 = SubResource("ShaderMaterial_t3hw5")
+[node name="road_line19" parent="road_lines" instance=ExtResource("6_pollb")]
+transform = Transform3D(-3, 0, -3.01992e-08, 0, 0.005, 0, 4.52987e-07, 0, -0.2, 5.14546, 0, 12)
+surface_material_override/0 = SubResource("ShaderMaterial_a7402")
 
-[node name="MeshInstance3D22" parent="road_lines" instance=ExtResource("6_pollb")]
-transform = Transform3D(-3, 0, 0, 0, 0.01, 0, 0, 0, 0.2, 5.74545, 0, 0)
-mesh = SubResource("BoxMesh_2r1r2")
-skeleton = NodePath("../../..")
-surface_material_override/0 = SubResource("ShaderMaterial_b0gfc")
+[node name="road_line20" parent="road_lines" instance=ExtResource("6_pollb")]
+transform = Transform3D(-3, 0, -3.01992e-08, 0, 0.005, 0, 4.52987e-07, 0, -0.2, 5.14546, 0, 14)
+surface_material_override/0 = SubResource("ShaderMaterial_wlehu")
 
-[node name="MeshInstance3D23" parent="road_lines" instance=ExtResource("6_pollb")]
-transform = Transform3D(-3, 0, 0, 0, 0.01, 0, 0, 0, 0.2, 5.74545, 0, -2)
-mesh = SubResource("BoxMesh_2r1r2")
-skeleton = NodePath("../../..")
-surface_material_override/0 = SubResource("ShaderMaterial_ubqdk")
+[node name="road_line21" parent="road_lines" instance=ExtResource("6_pollb")]
+transform = Transform3D(-3, 0, -3.01992e-08, 0, 0.005, 0, 4.52987e-07, 0, -0.2, 5.14546, 0, 16)
+surface_material_override/0 = SubResource("ShaderMaterial_gi44y")
 
 [connection signal="parked" from="parking_area" to="CanvasLayer/CenterContainer/RichTextLabel" method="_on_parking_area_parked"]
