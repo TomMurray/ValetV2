@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://bg30bqbscr1ox"]
+
+[ext_resource type="Shader" path="res://shaders/road_paint.gdshader" id="1_1rjbg"]
+[ext_resource type="Script" path="res://scripts/road_paint_cuboid.gd" id="2_p0mps"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hbbfw"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("1_1rjbg")
+shader_parameter/transform = null
+
+[sub_resource type="BoxMesh" id="BoxMesh_40lpp"]
+resource_local_to_scene = true
+material = SubResource("ShaderMaterial_hbbfw")
+
+[node name="MeshInstance3D" type="MeshInstance3D"]
+mesh = SubResource("BoxMesh_40lpp")
+skeleton = NodePath("../..")
+script = ExtResource("2_p0mps")

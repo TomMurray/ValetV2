@@ -1,10 +1,19 @@
-[gd_scene load_steps=13 format=3 uid="uid://dagghassaijsd"]
+[gd_scene load_steps=39 format=3 uid="uid://dagghassaijsd"]
 
 [ext_resource type="PackedScene" uid="uid://ba6xyqiidsic4" path="res://scenes/picocar.tscn" id="1_jpuht"]
 [ext_resource type="PackedScene" uid="uid://dlcl4g8eeahy7" path="res://scenes/traffic_cone.tscn" id="2_7ix00"]
 [ext_resource type="Script" path="res://scripts/follow.gd" id="2_c0ry7"]
 [ext_resource type="Script" path="res://scripts/lookat_camera.gd" id="2_rff2v"]
 [ext_resource type="PackedScene" uid="uid://btsndqkxonpfh" path="res://scenes/parking_area.tscn" id="5_ta1mn"]
+[ext_resource type="Shader" path="res://shaders/road_paint.gdshader" id="6_73ftp"]
+[ext_resource type="PackedScene" uid="uid://bg30bqbscr1ox" path="res://scenes/road_paint_cube.tscn" id="6_pollb"]
+
+[sub_resource type="GDScript" id="GDScript_gs6a6"]
+script/source = "extends RichTextLabel
+
+func _on_parking_area_parked():
+	show()
+"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xs6ya"]
 size = Vector3(100, 1, 100)
@@ -26,14 +35,180 @@ material = SubResource("StandardMaterial3D_8k7c6")
 [sub_resource type="BoxShape3D" id="BoxShape3D_qhj0r"]
 size = Vector3(0.2, 1, 13)
 
-[sub_resource type="GDScript" id="GDScript_gs6a6"]
-script/source = "extends RichTextLabel
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6b878"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("6_73ftp")
+shader_parameter/transform = null
 
-func _on_parking_area_parked():
-	show()
-"
+[sub_resource type="BoxMesh" id="BoxMesh_2r1r2"]
+resource_local_to_scene = true
+material = SubResource("ShaderMaterial_6b878")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_we2xv"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("6_73ftp")
+shader_parameter/transform = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2o47k"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("6_73ftp")
+shader_parameter/transform = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sfwj7"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("6_73ftp")
+shader_parameter/transform = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8c1v7"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("6_73ftp")
+shader_parameter/transform = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4e1rw"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("6_73ftp")
+shader_parameter/transform = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c80qb"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("6_73ftp")
+shader_parameter/transform = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l46yi"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("6_73ftp")
+shader_parameter/transform = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1cjmp"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("6_73ftp")
+shader_parameter/transform = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ov7fg"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("6_73ftp")
+shader_parameter/transform = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dkv1g"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("6_73ftp")
+shader_parameter/transform = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_535wt"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("6_73ftp")
+shader_parameter/transform = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ehd7t"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("6_73ftp")
+shader_parameter/transform = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wgo35"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("6_73ftp")
+shader_parameter/transform = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_54bse"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("6_73ftp")
+shader_parameter/transform = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t7b05"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("6_73ftp")
+shader_parameter/transform = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_77mbh"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("6_73ftp")
+shader_parameter/transform = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_03wcs"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("6_73ftp")
+shader_parameter/transform = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bil7j"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("6_73ftp")
+shader_parameter/transform = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gc3rq"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("6_73ftp")
+shader_parameter/transform = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t3hw5"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("6_73ftp")
+shader_parameter/transform = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b0gfc"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("6_73ftp")
+shader_parameter/transform = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ubqdk"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("6_73ftp")
+shader_parameter/transform = null
 
 [node name="Node3D" type="Node3D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/CenterContainer"]
+visible = false
+clip_contents = false
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 15
+theme_override_constants/shadow_offset_y = 20
+theme_override_constants/shadow_outline_size = 10
+theme_override_font_sizes/normal_font_size = 335
+bbcode_enabled = true
+text = "[rainbow sat=0.4][tornado radius=10.0 freq=30 connected=1]GENIUS[/tornado][/rainbow]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+script = SubResource("GDScript_gs6a6")
 
 [node name="sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.336415, 0.709899, -0.618763, -0.450194, 0.698352, 0.556444, 0.827134, 0.0913677, 0.554529, 0, 15.1739, 14.8684)
@@ -48,7 +223,7 @@ script = ExtResource("2_c0ry7")
 target = NodePath("../picocar")
 
 [node name="Camera3D" type="Camera3D" parent="follow_camera" node_paths=PackedStringArray("target")]
-transform = Transform3D(-0.99999, 0.00363988, -0.00273074, 0, 0.600117, 0.799912, 0.00455035, 0.799904, -0.600111, 0, 4.94629, -3.70978)
+transform = Transform3D(-0.99999, 0.00363988, -0.00273074, 0, 0.600117, 0.799912, 0.00455036, 0.799904, -0.600111, 0, 4.94629, -3.70978)
 script = ExtResource("2_rff2v")
 target = NodePath("../../picocar")
 
@@ -287,7 +462,7 @@ transform = Transform3D(0.906382, 0, 0.42246, 0, 1, 0, -0.42246, 0, 0.906382, -2
 transform = Transform3D(0.696126, 0.000626503, 0.71792, 2.98078e-11, 1, -0.000872664, -0.71792, 0.000607484, 0.696126, 0.131287, 0.020687, 11.1442)
 
 [node name="traffic_cone41" parent="traffic_cones" instance=ExtResource("2_7ix00")]
-transform = Transform3D(0.696126, 0, 0.71792, 0, 1, 0, -0.71792, 0, 0.696126, -1.95709, 0.020687, 13.298)
+transform = Transform3D(0.696126, 0, 0.71792, 0, 1, 0, -0.71792, 0, 0.696126, -1.95709, 0.020687, 14.3579)
 
 [node name="traffic_cone42" parent="traffic_cones" instance=ExtResource("2_7ix00")]
 transform = Transform3D(0.204035, 0.000854307, 0.978963, 4.84577e-11, 1, -0.000872664, -0.978964, 0.000178054, 0.204035, 0.672173, 0.020687, 11.4048)
@@ -334,35 +509,138 @@ transform = Transform3D(-0.999134, 0, 0.0415966, 0, 1, 0, -0.0415966, 0, -0.9991
 [node name="parking_area" parent="." instance=ExtResource("5_ta1mn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 2.121, 4.172, 1.01, 0.72)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="road_lines" type="Node3D" parent="."]
 
-[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="MeshInstance3D2" parent="road_lines" instance=ExtResource("6_pollb")]
+transform = Transform3D(3, 0, 0, 0, 0.01, 0, 0, 0, 0.2, -3, 0, 16)
+mesh = SubResource("BoxMesh_2r1r2")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("ShaderMaterial_we2xv")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/CenterContainer"]
-visible = false
-clip_contents = false
-layout_mode = 2
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_offset_x = 15
-theme_override_constants/shadow_offset_y = 20
-theme_override_constants/shadow_outline_size = 10
-theme_override_font_sizes/normal_font_size = 335
-bbcode_enabled = true
-text = "[rainbow sat=0.4][tornado radius=10.0 freq=30 connected=1]GENIUS[/tornado][/rainbow]"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-script = SubResource("GDScript_gs6a6")
+[node name="MeshInstance3D12" parent="road_lines" instance=ExtResource("6_pollb")]
+transform = Transform3D(-7.95547e-07, 0, -0.2, 0, 0.01, 0, 18.2, 0, -8.74228e-09, -4.4, 0, 7)
+mesh = SubResource("BoxMesh_2r1r2")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("ShaderMaterial_2o47k")
+
+[node name="MeshInstance3D3" parent="road_lines" instance=ExtResource("6_pollb")]
+transform = Transform3D(3, 0, 0, 0, 0.01, 0, 0, 0, 0.2, -3, 0, 14)
+mesh = SubResource("BoxMesh_2r1r2")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("ShaderMaterial_sfwj7")
+
+[node name="MeshInstance3D4" parent="road_lines" instance=ExtResource("6_pollb")]
+transform = Transform3D(3, 0, 0, 0, 0.01, 0, 0, 0, 0.2, -3, 0, 12)
+mesh = SubResource("BoxMesh_2r1r2")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("ShaderMaterial_8c1v7")
+
+[node name="MeshInstance3D5" parent="road_lines" instance=ExtResource("6_pollb")]
+transform = Transform3D(3, 0, 0, 0, 0.01, 0, 0, 0, 0.2, -3, 0, 10)
+mesh = SubResource("BoxMesh_2r1r2")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("ShaderMaterial_4e1rw")
+
+[node name="MeshInstance3D6" parent="road_lines" instance=ExtResource("6_pollb")]
+transform = Transform3D(3, 0, 0, 0, 0.01, 0, 0, 0, 0.2, -3, 0, 8)
+mesh = SubResource("BoxMesh_2r1r2")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("ShaderMaterial_c80qb")
+
+[node name="MeshInstance3D7" parent="road_lines" instance=ExtResource("6_pollb")]
+transform = Transform3D(3, 0, 0, 0, 0.01, 0, 0, 0, 0.2, -3, 0, 6)
+mesh = SubResource("BoxMesh_2r1r2")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("ShaderMaterial_l46yi")
+
+[node name="MeshInstance3D8" parent="road_lines" instance=ExtResource("6_pollb")]
+transform = Transform3D(3, 0, 0, 0, 0.01, 0, 0, 0, 0.2, -3, 0, 4)
+mesh = SubResource("BoxMesh_2r1r2")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("ShaderMaterial_1cjmp")
+
+[node name="MeshInstance3D9" parent="road_lines" instance=ExtResource("6_pollb")]
+transform = Transform3D(3, 0, 0, 0, 0.01, 0, 0, 0, 0.2, -3, 0, 2)
+mesh = SubResource("BoxMesh_2r1r2")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("ShaderMaterial_ov7fg")
+
+[node name="MeshInstance3D10" parent="road_lines" instance=ExtResource("6_pollb")]
+transform = Transform3D(3, 0, 0, 0, 0.01, 0, 0, 0, 0.2, -3, 0, 0)
+mesh = SubResource("BoxMesh_2r1r2")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("ShaderMaterial_dkv1g")
+
+[node name="MeshInstance3D11" parent="road_lines" instance=ExtResource("6_pollb")]
+transform = Transform3D(3, 0, 0, 0, 0.01, 0, 0, 0, 0.2, -3, 0, -2)
+mesh = SubResource("BoxMesh_2r1r2")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("ShaderMaterial_535wt")
+
+[node name="MeshInstance3D13" parent="road_lines" instance=ExtResource("6_pollb")]
+transform = Transform3D(-3, 0, 0, 0, 0.01, 0, 0, 0, 0.2, 5.74545, 0, 16)
+mesh = SubResource("BoxMesh_2r1r2")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("ShaderMaterial_ehd7t")
+
+[node name="MeshInstance3D14" parent="road_lines" instance=ExtResource("6_pollb")]
+transform = Transform3D(-7.95547e-07, 0, 0.2, 0, 0.01, 0, 18.2, 0, 8.74228e-09, 7.14545, 0, 7)
+mesh = SubResource("BoxMesh_2r1r2")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("ShaderMaterial_wgo35")
+
+[node name="MeshInstance3D15" parent="road_lines" instance=ExtResource("6_pollb")]
+transform = Transform3D(-3, 0, 0, 0, 0.01, 0, 0, 0, 0.2, 5.74545, 0, 14)
+mesh = SubResource("BoxMesh_2r1r2")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("ShaderMaterial_54bse")
+
+[node name="MeshInstance3D16" parent="road_lines" instance=ExtResource("6_pollb")]
+transform = Transform3D(-3, 0, 0, 0, 0.01, 0, 0, 0, 0.2, 5.74545, 0, 12)
+mesh = SubResource("BoxMesh_2r1r2")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("ShaderMaterial_t7b05")
+
+[node name="MeshInstance3D17" parent="road_lines" instance=ExtResource("6_pollb")]
+transform = Transform3D(-3, 0, 0, 0, 0.01, 0, 0, 0, 0.2, 5.74545, 0, 10)
+mesh = SubResource("BoxMesh_2r1r2")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("ShaderMaterial_77mbh")
+
+[node name="MeshInstance3D18" parent="road_lines" instance=ExtResource("6_pollb")]
+transform = Transform3D(-3, 0, 0, 0, 0.01, 0, 0, 0, 0.2, 5.74545, 0, 8)
+mesh = SubResource("BoxMesh_2r1r2")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("ShaderMaterial_03wcs")
+
+[node name="MeshInstance3D19" parent="road_lines" instance=ExtResource("6_pollb")]
+transform = Transform3D(-3, 0, 0, 0, 0.01, 0, 0, 0, 0.2, 5.74545, 0, 6)
+mesh = SubResource("BoxMesh_2r1r2")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("ShaderMaterial_bil7j")
+
+[node name="MeshInstance3D20" parent="road_lines" instance=ExtResource("6_pollb")]
+transform = Transform3D(-3, 0, 0, 0, 0.01, 0, 0, 0, 0.2, 5.74545, 0, 4)
+mesh = SubResource("BoxMesh_2r1r2")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("ShaderMaterial_gc3rq")
+
+[node name="MeshInstance3D21" parent="road_lines" instance=ExtResource("6_pollb")]
+transform = Transform3D(-3, 0, 0, 0, 0.01, 0, 0, 0, 0.2, 5.74545, 0, 2)
+mesh = SubResource("BoxMesh_2r1r2")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("ShaderMaterial_t3hw5")
+
+[node name="MeshInstance3D22" parent="road_lines" instance=ExtResource("6_pollb")]
+transform = Transform3D(-3, 0, 0, 0, 0.01, 0, 0, 0, 0.2, 5.74545, 0, 0)
+mesh = SubResource("BoxMesh_2r1r2")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("ShaderMaterial_b0gfc")
+
+[node name="MeshInstance3D23" parent="road_lines" instance=ExtResource("6_pollb")]
+transform = Transform3D(-3, 0, 0, 0, 0.01, 0, 0, 0, 0.2, 5.74545, 0, -2)
+mesh = SubResource("BoxMesh_2r1r2")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("ShaderMaterial_ubqdk")
 
 [connection signal="parked" from="parking_area" to="CanvasLayer/CenterContainer/RichTextLabel" method="_on_parking_area_parked"]
