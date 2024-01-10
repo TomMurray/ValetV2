@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dagghassaijsd"]
+[gd_scene load_steps=13 format=3 uid="uid://dagghassaijsd"]
 
 [ext_resource type="PackedScene" uid="uid://ba6xyqiidsic4" path="res://scenes/picocar.tscn" id="1_jpuht"]
 [ext_resource type="PackedScene" uid="uid://dlcl4g8eeahy7" path="res://scenes/traffic_cone.tscn" id="2_7ix00"]
@@ -17,6 +17,15 @@ uv1_scale = Vector3(144.485, 144.485, 144.485)
 material = SubResource("StandardMaterial3D_8k7c6")
 size = Vector2(100, 100)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_2i2m5"]
+size = Vector3(0.2, 1, 20)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2lo6k"]
+material = SubResource("StandardMaterial3D_8k7c6")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qhj0r"]
+size = Vector3(0.2, 1, 13)
+
 [sub_resource type="GDScript" id="GDScript_gs6a6"]
 script/source = "extends RichTextLabel
 
@@ -31,6 +40,7 @@ transform = Transform3D(0.336415, 0.709899, -0.618763, -0.450194, 0.698352, 0.55
 shadow_enabled = true
 
 [node name="picocar" parent="." instance=ExtResource("1_jpuht")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0168858, -4.76837e-07, 0.00103188)
 colour = Color(0.466667, 0.733333, 0.639216, 1)
 
 [node name="follow_camera" type="Node3D" parent="." node_paths=PackedStringArray("target")]
@@ -38,22 +48,58 @@ script = ExtResource("2_c0ry7")
 target = NodePath("../picocar")
 
 [node name="Camera3D" type="Camera3D" parent="follow_camera" node_paths=PackedStringArray("target")]
-transform = Transform3D(-1, 6.99378e-08, -5.24542e-08, 0, 0.600006, 0.799995, 8.74228e-08, 0.799995, -0.600006, 0, 4.94629, -3.70978)
+transform = Transform3D(-0.99999, 0.00363988, -0.00273074, 0, 0.600117, 0.799912, 0.00455035, 0.799904, -0.600111, 0, 4.94629, -3.70978)
 script = ExtResource("2_rff2v")
 target = NodePath("../../picocar")
 
 [node name="ground" type="StaticBody3D" parent="."]
 collision_layer = 4
-metadata/_edit_lock_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ground"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("BoxShape3D_xs6ya")
-metadata/_edit_lock_ = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="ground"]
 mesh = SubResource("PlaneMesh_xwcf5")
-metadata/_edit_lock_ = true
+
+[node name="walls" type="StaticBody3D" parent="."]
+collision_layer = 4
+
+[node name="wall" type="CollisionShape3D" parent="walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0.5, 7)
+shape = SubResource("BoxShape3D_2i2m5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="walls/wall"]
+transform = Transform3D(0.2, 0, 0, 0, 1, 0, 0, 0, 20, 0, 0, 0)
+mesh = SubResource("BoxMesh_2lo6k")
+skeleton = NodePath("../..")
+
+[node name="wall2" type="CollisionShape3D" parent="walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0.5, 7)
+shape = SubResource("BoxShape3D_2i2m5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="walls/wall2"]
+transform = Transform3D(0.2, 0, 0, 0, 1, 0, 0, 0, 20, 0, 0, 0)
+mesh = SubResource("BoxMesh_2lo6k")
+skeleton = NodePath("../..")
+
+[node name="wall3" type="CollisionShape3D" parent="walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.5, 0.5, -3)
+shape = SubResource("BoxShape3D_qhj0r")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="walls/wall3"]
+transform = Transform3D(0.2, 0, 0, 0, 1, 0, 0, 0, 13.2, 0, 0, 0)
+mesh = SubResource("BoxMesh_2lo6k")
+skeleton = NodePath("../..")
+
+[node name="wall4" type="CollisionShape3D" parent="walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.5, 0.5, 17)
+shape = SubResource("BoxShape3D_qhj0r")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="walls/wall4"]
+transform = Transform3D(0.2, 0, 0, 0, 1, 0, 0, 0, 13.2, 0, 0, 0)
+mesh = SubResource("BoxMesh_2lo6k")
+skeleton = NodePath("../..")
 
 [node name="traffic_cones" type="Node3D" parent="."]
 

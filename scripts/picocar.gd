@@ -36,8 +36,6 @@ class_name PicoCar
 @export var accel_per_sec : float = 20
 @export var friction_per_sec : float = 0.6
 
-var z_velocity : float = 0
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
@@ -113,9 +111,9 @@ func _physics_process(delta):
 		# Move the front/back wheels of the "bicycle" by the desired
 		# amount in the direction they are facing. Note this is done
 		# relative to the transform of the car node itself.
-		z_velocity = min(max_speed_per_sec, z_velocity + accel * accel_per_sec * delta)
-		z_velocity *= pow(friction_per_sec, delta)
-		var v = z_velocity * delta
+		forward_velocity = min(max_speed_per_sec, forward_velocity + accel * accel_per_sec * delta)
+		forward_velocity *= pow(friction_per_sec, delta)
+		var v = forward_velocity * delta
 		
 		back_midpoint.y += v
 		# Must be a more succinct way of doing this, but using sin/cos
@@ -177,8 +175,12 @@ func _physics_process(delta):
 		const recovery_as_collision = true
 		const margin := 0.001
 		var ignored_nodes := []
-		var result := move_and_collide(velocity * delta, test_only, margin, recovery_as_collision, 6)
-		while result and (result.get_collision_count() > 0):
+		const max_retries := 50
+		var retries := 0
+		while true:
+			var result := move_and_collide(velocity * delta, test_only, margin, recovery_as_collision, 6)
+			if not result:
+				break
 			var c := result.get_collider(0)
 			var r := c as RigidBody3D
 			if r:
@@ -186,11 +188,23 @@ func _physics_process(delta):
 				position = prev_pos
 				add_collision_exception_with(c)
 				ignored_nodes.push_back(c)
-				result = move_and_collide(velocity * delta, test_only, margin, recovery_as_collision, 6)
 			else:
-				print("TODO: Colliding with something else, should slide & continue, but will stop dead for now...")
+				# Move out of collision (I believe because we enabled recovery_as_collision)
+				# We don't want to ever move vertically however, we'll rely on
+				position += result.get_normal(0) * result.get_depth()
+				# For now just stop dead - it actually seems reasonable because the car's tyres should
+				# stop it from sliding left/right very much - maybe we can allow a bit of slip for
+				# when the car is mostly parallel with a wall for instance
+				velocity = Vector3.ZERO
+			
+			prev_pos = position
+			result = move_and_collide(velocity * delta, test_only, margin, recovery_as_collision, 6)
+			retries += 1
+			if retries >= max_retries or not result or result.get_collision_count() == 0:
+				break
 				
-		# We want to receive collisions in the next frame, so keep these collision exceptions only temporarily
+		# We want to receive collisions with RigidBodies in the next frame,
+		# so remove the collision exceptions once handling is complete
 		for n in ignored_nodes:
 			remove_collision_exception_with(n)
 	
