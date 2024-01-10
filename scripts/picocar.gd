@@ -164,14 +164,35 @@ func _physics_process(delta):
 		
 		# The following allows us to react to collisions without impeding the
 		# motion of the vehicle:
-		var c := move_and_collide(velocity * delta, true)
-		if c:
-			print("There was a collision")
-			for i in range(0, c.get_collision_count()):
-				var r = c.get_collider(i) as RigidBody3D
-				if r:
-					print("Collided with RigidBody: ", r)
-		position += velocity * delta
+		
+		# The behaviour we want for our car is:
+		#  - Report collisions with RigidBody but acts with essentially infinite mass (push them away)
+		#  - Collide and slide with StaticBody (e.g. walls and other static props) 
+		#  - Stick to starting plane, i.e. movement is 2D in the X/Z plane
+		#
+		# To achieve this we use move_and_collide directly and differentiate between responses to
+		# moveable obstacles and immoveable ones.
+		var prev_pos := position
+		const test_only = false
+		const recovery_as_collision = true
+		const margin := 0.001
+		var ignored_nodes := []
+		var result := move_and_collide(velocity * delta, test_only, margin, recovery_as_collision, 6)
+		while result and (result.get_collision_count() > 0):
+			var c := result.get_collider(0)
+			var r := c as RigidBody3D
+			if r:
+				# If colliding with a RigidBody, undo travel & try again ignoring the RigidBody
+				position = prev_pos
+				add_collision_exception_with(c)
+				ignored_nodes.push_back(c)
+				result = move_and_collide(velocity * delta, test_only, margin, recovery_as_collision, 6)
+			else:
+				print("TODO: Colliding with something else, should slide & continue, but will stop dead for now...")
+				
+		# We want to receive collisions in the next frame, so keep these collision exceptions only temporarily
+		for n in ignored_nodes:
+			remove_collision_exception_with(n)
 	
 	pass
 
