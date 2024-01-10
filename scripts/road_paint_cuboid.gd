@@ -8,7 +8,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	print("process called in editor")
 	# Sync shader parameters with the node
 	var material = get_surface_override_material(0) as ShaderMaterial
 	if material:
