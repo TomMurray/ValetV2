@@ -50,8 +50,8 @@ func get_node3d_midpoint(a : Array[Node3D]):
 func _physics_process(delta):
 	# Apply correct visual rotation to the front wheels
 	if not Engine.is_editor_hint():
-		var steer = Input.get_axis("steer_left", "steer_right")
-		var accel = Input.get_axis("brake_reverse", "accelerate")
+		var steer := Input.get_axis("steer_left", "steer_right")
+		var accel := Input.get_axis("brake_reverse", "accelerate")
 		
 		
 		var back_wheels = wheels.slice(0, 2)
@@ -105,7 +105,7 @@ func _physics_process(delta):
 		# turning the car unless going straight ahead, so we're simplifying
 		# just to get a signed velocity so we know whether we're reversing or
 		# travelling forwards.
-		var forward_velocity = sign(velocity.dot(basis.z)) * velocity.length()
+		var forward_velocity := signf(velocity.dot(basis.z)) * velocity.length()
 		
 		# TODO: Special behaviour for accelerate/brake/reverse. If the car
 		# is currently moving forwards, pressing backwards will brake
@@ -113,21 +113,28 @@ func _physics_process(delta):
 		# come to a complete stop before the car starts reversing.
 		
 		# Firstly, use a different accel/max speed for reversing the car
-		var max_speed_per_sec = max_speed_per_sec_fwd if accel >= 0 else max_speed_per_sec_bwd
-		var accel_per_sec = accel_per_sec_fwd if accel >= 0 else accel_per_sec_bwd
+		var accel_per_sec = accel_per_sec_fwd if accel >= 0.0 else accel_per_sec_bwd
+		
+		# Apply acceleration
+		forward_velocity = forward_velocity + accel * accel_per_sec * delta
+		
+		# Clamp to max speed depending on direction of acceleration
+		if accel >= 0.0:
+			forward_velocity = min(forward_velocity, max_speed_per_sec_fwd)
+		else:
+			forward_velocity = max(forward_velocity, -max_speed_per_sec_bwd)
+			
+		# Apply friction
+		forward_velocity *= pow(friction_per_sec, delta)
+		
 		
 		# Move the front/back wheels of the "bicycle" by the desired
 		# amount in the direction they are facing. Note this is done
 		# relative to the transform of the car node itself.
-		forward_velocity = min(max_speed_per_sec, forward_velocity + accel * accel_per_sec * delta)
-		forward_velocity *= pow(friction_per_sec, delta)
-		var v = forward_velocity * delta
-		
-		back_midpoint.y += v
-		# Must be a more succinct way of doing this, but using sin/cos
-		# for now
-		front_midpoint.x += sin(curr_steer_angle) * v
-		front_midpoint.y += cos(curr_steer_angle) * v
+		var forward_velocity_d = forward_velocity * delta
+		back_midpoint.y += forward_velocity_d
+		front_midpoint.x += sin(curr_steer_angle) * forward_velocity_d
+		front_midpoint.y += cos(curr_steer_angle) * forward_velocity_d
 		
 		# Calculate new body rotation delta - this assumes the original
 		# vector between back and front bicycle wheel was y axis vector.
