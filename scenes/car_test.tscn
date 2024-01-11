@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://dagghassaijsd"]
+[gd_scene load_steps=41 format=3 uid="uid://dagghassaijsd"]
 
 [ext_resource type="PackedScene" uid="uid://ba6xyqiidsic4" path="res://scenes/picocar.tscn" id="1_jpuht"]
 [ext_resource type="PackedScene" uid="uid://dlcl4g8eeahy7" path="res://scenes/traffic_cone.tscn" id="2_7ix00"]
@@ -13,8 +13,17 @@
 [sub_resource type="GDScript" id="GDScript_gs6a6"]
 script/source = "extends RichTextLabel
 
-func _on_parking_area_parked():
-	show()
+func _on_level_logic_complete(success : bool):
+	if success:
+		show()
+"
+
+[sub_resource type="GDScript" id="GDScript_8wmm4"]
+script/source = "extends RichTextLabel
+
+func _on_level_logic_complete(success):
+	if not success:
+		show()
 "
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xs6ya"]
@@ -183,6 +192,22 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 script = SubResource("GDScript_gs6a6")
+
+[node name="FailureText" type="RichTextLabel" parent="CanvasLayer/CenterContainer"]
+visible = false
+clip_contents = false
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 15
+theme_override_constants/shadow_offset_y = 20
+theme_override_constants/shadow_outline_size = 10
+theme_override_font_sizes/normal_font_size = 335
+bbcode_enabled = true
+text = "[rainbow sat=0.4][tornado radius=10.0 freq=30 connected=1]BAD[/tornado][/rainbow]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+script = SubResource("GDScript_8wmm4")
 
 [node name="sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.336415, 0.709899, -0.618763, -0.450194, 0.698352, 0.556444, 0.827134, 0.0913677, 0.554529, 0, 15.1739, 14.8684)
@@ -653,4 +678,6 @@ surface_material_override/0 = SubResource("ShaderMaterial_gi44y")
 script = ExtResource("8_kplki")
 objective = SubResource("Resource_1n4c4")
 
-[connection signal="parked" from="parking_area" to="CanvasLayer/CenterContainer/SuccessText" method="_on_parking_area_parked"]
+[connection signal="parked" from="parking_area" to="LevelLogic" method="on_parked"]
+[connection signal="complete" from="LevelLogic" to="CanvasLayer/CenterContainer/SuccessText" method="_on_level_logic_complete"]
+[connection signal="complete" from="LevelLogic" to="CanvasLayer/CenterContainer/FailureText" method="_on_level_logic_complete"]
