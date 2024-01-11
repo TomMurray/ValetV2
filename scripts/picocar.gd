@@ -19,17 +19,6 @@ class_name PicoCar
 @export var wheel_back_right : Node3D
 @export var wheel_back_left : Node3D
 
-# Array of wheel nodes accessible by flattened 2-d index
-# [y, x] e.g. front-right = (1, 1) flattened index = 3
-@onready var wheels : Array[Node3D] = [
-	wheel_back_left,
-	wheel_back_right,
-	wheel_front_left,
-	wheel_front_right
-]
-
-@onready var wheel_radius : float = wheels[0].scale.y
-
 @export_category("General motion")
 @export var max_steer_angle : float = 40.0
 @export var steer_per_sec : float = 120.0
@@ -43,6 +32,19 @@ class_name PicoCar
 @export var max_speed_per_sec_bwd : float = 2
 @export var accel_per_sec_bwd : float = 2
 
+@export_category("Braking")
+@export var brake_decel_per_sec : float = 30
+
+# Array of wheel nodes accessible by flattened 2-d index
+# [y, x] e.g. front-right = (1, 1) flattened index = 3
+@onready var wheels : Array[Node3D] = [
+	wheel_back_left,
+	wheel_back_right,
+	wheel_front_left,
+	wheel_front_right
+]
+
+@onready var wheel_radius : float = wheels[0].scale.y
 
 func get_node3d_midpoint(a : Array[Node3D]):
 	return a.map(func(x : Node3D): return x.transform.origin).reduce(func(a, b): return a + b) / a.size()
@@ -52,7 +54,6 @@ func _physics_process(delta):
 	if not Engine.is_editor_hint():
 		var steer := Input.get_axis("steer_left", "steer_right")
 		var accel := Input.get_axis("brake_reverse", "accelerate")
-		
 		
 		var back_wheels = wheels.slice(0, 2)
 		var front_wheels = wheels.slice(2, 4)
@@ -113,7 +114,13 @@ func _physics_process(delta):
 		# come to a complete stop before the car starts reversing.
 		
 		# Firstly, use a different accel/max speed for reversing the car
-		var accel_per_sec = accel_per_sec_fwd if accel >= 0.0 else accel_per_sec_bwd
+		var accel_fwd := accel >= 0.0
+		var is_braking := (forward_velocity >= 0.0) != accel_fwd
+		var accel_per_sec = (
+			brake_decel_per_sec if is_braking
+			else accel_per_sec_fwd if accel_fwd
+			else accel_per_sec_bwd
+		)
 		
 		# Apply acceleration
 		forward_velocity = forward_velocity + accel * accel_per_sec * delta

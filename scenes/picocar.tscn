@@ -18,6 +18,7 @@ max_speed_per_sec_fwd = 8.0
 accel_per_sec_fwd = 15.0
 max_speed_per_sec_bwd = 3.0
 accel_per_sec_bwd = 5.0
+brake_decel_per_sec = null
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.670243, 0)
