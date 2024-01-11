@@ -257,7 +257,7 @@ script = ExtResource("7_eo0h5")
 target = NodePath("../picocar")
 
 [node name="Camera3D" type="Camera3D" parent="follow_camera" node_paths=PackedStringArray("target")]
-transform = Transform3D(-0.99999, 0.00363988, -0.00273075, 0, 0.600117, 0.799912, 0.00455036, 0.799904, -0.600111, 0, 4.94629, -3.70978)
+transform = Transform3D(-0.99999, 0.00363988, -0.00273074, 0, 0.600117, 0.799912, 0.00455036, 0.799904, -0.600111, 0, 4.94629, -3.70978)
 script = ExtResource("8_gofos")
 target = NodePath("../../picocar")
 

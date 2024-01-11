@@ -12,7 +12,8 @@ class_name PicoCar
 		var new_mtl := body.get_active_material(0).duplicate() as BaseMaterial3D
 		new_mtl.albedo_color = colour
 		body.set_surface_override_material(0, new_mtl)
-		
+
+@export_category("wheels")
 @export var wheel_front_right : Node3D
 @export var wheel_front_left : Node3D
 @export var wheel_back_right : Node3D
@@ -29,12 +30,19 @@ class_name PicoCar
 
 @onready var wheel_radius : float = wheels[0].scale.y
 
+@export_category("General motion")
 @export var max_steer_angle : float = 40.0
 @export var steer_per_sec : float = 120.0
-
-@export var max_speed_per_sec : float = 10
-@export var accel_per_sec : float = 20
 @export var friction_per_sec : float = 0.6
+
+@export_category("Forward motion")
+@export var max_speed_per_sec_fwd : float = 5
+@export var accel_per_sec_fwd : float = 10
+
+@export_category("Backward motion")
+@export var max_speed_per_sec_bwd : float = 2
+@export var accel_per_sec_bwd : float = 2
+
 
 func get_node3d_midpoint(a : Array[Node3D]):
 	return a.map(func(x : Node3D): return x.transform.origin).reduce(func(a, b): return a + b) / a.size()
@@ -103,6 +111,10 @@ func _physics_process(delta):
 		# is currently moving forwards, pressing backwards will brake
 		# until the car stops. There should be a delay once the car has
 		# come to a complete stop before the car starts reversing.
+		
+		# Firstly, use a different accel/max speed for reversing the car
+		var max_speed_per_sec = max_speed_per_sec_fwd if accel >= 0 else max_speed_per_sec_bwd
+		var accel_per_sec = accel_per_sec_fwd if accel >= 0 else accel_per_sec_bwd
 		
 		# Move the front/back wheels of the "bicycle" by the desired
 		# amount in the direction they are facing. Note this is done
