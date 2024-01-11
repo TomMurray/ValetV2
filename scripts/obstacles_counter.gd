@@ -6,8 +6,8 @@ class_name ObstaclesCounter
 
 func update_text():
 	if level_logic:
-		var limit : int = level_logic.get_max_obstacles_hit()
-		var curr : int = min(level_logic.get_obstacles_hit(), limit)
+		var limit := level_logic.get_max_obstacles_hit()
+		var curr := mini(level_logic.get_obstacles_hit(), limit)
 		text = "%d/%d" % [curr, limit]
 		# Make the text increasingly red as it approaches the limit
 		var ratio : float = float(curr) / float(limit)
