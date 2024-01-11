@@ -1,9 +1,12 @@
-[gd_scene load_steps=41 format=3 uid="uid://dagghassaijsd"]
+[gd_scene load_steps=44 format=3 uid="uid://dagghassaijsd"]
 
 [ext_resource type="PackedScene" uid="uid://ba6xyqiidsic4" path="res://scenes/picocar.tscn" id="1_jpuht"]
+[ext_resource type="Theme" uid="uid://cat7eb156l4u1" path="res://themes/exclamation.tres" id="1_vm7rs"]
 [ext_resource type="PackedScene" uid="uid://dlcl4g8eeahy7" path="res://scenes/traffic_cone.tscn" id="2_7ix00"]
 [ext_resource type="Script" path="res://scripts/follow.gd" id="2_c0ry7"]
 [ext_resource type="Script" path="res://scripts/lookat_camera.gd" id="2_rff2v"]
+[ext_resource type="Theme" uid="uid://dpqnmj3en2tdc" path="res://themes/in_game_overlay.tres" id="2_ugnkn"]
+[ext_resource type="Script" path="res://scripts/obstacles_counter.gd" id="3_5b5rk"]
 [ext_resource type="PackedScene" uid="uid://btsndqkxonpfh" path="res://scenes/parking_area.tscn" id="5_ta1mn"]
 [ext_resource type="Shader" path="res://shaders/road_paint.gdshader" id="6_73ftp"]
 [ext_resource type="PackedScene" uid="uid://bg30bqbscr1ox" path="res://scenes/road_paint_cube.tscn" id="6_pollb"]
@@ -181,11 +184,7 @@ grow_vertical = 2
 visible = false
 clip_contents = false
 layout_mode = 2
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_offset_x = 15
-theme_override_constants/shadow_offset_y = 20
-theme_override_constants/shadow_outline_size = 10
-theme_override_font_sizes/normal_font_size = 335
+theme = ExtResource("1_vm7rs")
 bbcode_enabled = true
 text = "[rainbow sat=0.4][tornado radius=10.0 freq=30 connected=1]GENIUS[/tornado][/rainbow]"
 fit_content = true
@@ -197,17 +196,42 @@ script = SubResource("GDScript_gs6a6")
 visible = false
 clip_contents = false
 layout_mode = 2
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_offset_x = 15
-theme_override_constants/shadow_offset_y = 20
-theme_override_constants/shadow_outline_size = 10
-theme_override_font_sizes/normal_font_size = 335
+theme = ExtResource("1_vm7rs")
 bbcode_enabled = true
 text = "[rainbow sat=0.4][tornado radius=10.0 freq=30 connected=1]BAD[/tornado][/rainbow]"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
 script = SubResource("GDScript_8wmm4")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -529.0
+offset_bottom = 237.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+
+[node name="ObstaclesCounter" type="RichTextLabel" parent="CanvasLayer/MarginContainer/CenterContainer" node_paths=PackedStringArray("level_logic")]
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("2_ugnkn")
+bbcode_enabled = true
+text = "###/###"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+script = ExtResource("3_5b5rk")
+level_logic = NodePath("../../../../LevelLogic")
 
 [node name="sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.336415, 0.709899, -0.618763, -0.450194, 0.698352, 0.556444, 0.827134, 0.0913677, 0.554529, 0, 15.1739, 14.8684)
@@ -222,7 +246,7 @@ script = ExtResource("2_c0ry7")
 target = NodePath("../picocar")
 
 [node name="Camera3D" type="Camera3D" parent="follow_camera" node_paths=PackedStringArray("target")]
-transform = Transform3D(-0.99999, 0.00363988, -0.00273074, 0, 0.600117, 0.799912, 0.00455036, 0.799904, -0.600111, 0, 4.94629, -3.70978)
+transform = Transform3D(-0.99999, 0.00363988, -0.00273075, 0, 0.600117, 0.799912, 0.00455036, 0.799904, -0.600111, 0, 4.94629, -3.70978)
 script = ExtResource("2_rff2v")
 target = NodePath("../../picocar")
 
@@ -681,3 +705,4 @@ objective = SubResource("Resource_1n4c4")
 [connection signal="parked" from="parking_area" to="LevelLogic" method="on_parked"]
 [connection signal="complete" from="LevelLogic" to="CanvasLayer/CenterContainer/SuccessText" method="_on_level_logic_complete"]
 [connection signal="complete" from="LevelLogic" to="CanvasLayer/CenterContainer/FailureText" method="_on_level_logic_complete"]
+[connection signal="objectives_progress_changed" from="LevelLogic" to="CanvasLayer/MarginContainer/CenterContainer/ObstaclesCounter" method="_on_level_logic_objectives_progress_changed"]
