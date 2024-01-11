@@ -1,5 +1,5 @@
 extends Node3D
-class_name ParkedTrigger
+class_name Area3DFullyContained
 
 var in_exclusion_area : Dictionary
 var in_inclusion_area : Dictionary

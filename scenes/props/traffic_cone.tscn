@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://dlcl4g8eeahy7"]
 
-[ext_resource type="Script" path="res://scripts/traffic_cone.gd" id="1_g3svk"]
-[ext_resource type="Script" path="res://scripts/obstacle_component.gd" id="1_o5ccy"]
+[ext_resource type="Script" path="res://scripts/props/traffic_cone.gd" id="1_g3svk"]
+[ext_resource type="Script" path="res://scripts/components/obstacle_component.gd" id="1_o5ccy"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6ng6y"]
 resource_name = "Orange Plastic"

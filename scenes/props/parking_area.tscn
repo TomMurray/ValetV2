@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://btsndqkxonpfh"]
 
-[ext_resource type="Script" path="res://scripts/objective_area.gd" id="1_5o0qc"]
+[ext_resource type="Script" path="res://scripts/props/objective_area.gd" id="1_5o0qc"]
 [ext_resource type="PackedScene" uid="uid://cjwcesada6xmm" path="res://scenes/xyz_cube_fade_up.tscn" id="1_mjnkl"]
-[ext_resource type="PackedScene" uid="uid://cfityf1msljum" path="res://scenes/parked_trigger.tscn" id="3_j11vx"]
+[ext_resource type="PackedScene" uid="uid://cfityf1msljum" path="res://scenes/area3d_fully_contained.tscn" id="3_slvn6"]
 
 [node name="parking_area" type="Node3D"]
 script = ExtResource("1_5o0qc")
@@ -11,7 +11,7 @@ script = ExtResource("1_5o0qc")
 transform = Transform3D(1, 0, 0, 0, 0.3, 0, 0, 0, 1, 0, -0.7, 0)
 base_colour = Color(0.521569, 0.913725, 0.956863, 0.611765)
 
-[node name="area" parent="." instance=ExtResource("3_j11vx")]
+[node name="area" parent="." instance=ExtResource("3_slvn6")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 
 [connection signal="body_entered" from="area" to="." method="_on_area_body_entered"]
