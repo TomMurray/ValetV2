@@ -5,7 +5,7 @@ class_name ObstaclesCounter
 @export var level_logic : LevelLogic
 
 func update_text():
-	if level_logic:
+	if is_ready() and level_logic:
 		var limit := level_logic.get_max_obstacles_hit()
 		var curr := mini(level_logic.get_obstacles_hit(), limit)
 		text = "%d/%d" % [curr, limit]

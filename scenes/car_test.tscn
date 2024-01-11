@@ -1,5 +1,7 @@
-[gd_scene load_steps=44 format=3 uid="uid://dagghassaijsd"]
+[gd_scene load_steps=46 format=3 uid="uid://dagghassaijsd"]
 
+[ext_resource type="Script" path="res://scripts/ui/ui_in_game_overlay.gd" id="1_6f0xv"]
+[ext_resource type="PackedScene" uid="uid://b0jhovhbmtndu" path="res://scenes/ui/ui_black_overlay.tscn" id="1_anhts"]
 [ext_resource type="PackedScene" uid="uid://ba6xyqiidsic4" path="res://scenes/picocar.tscn" id="1_jpuht"]
 [ext_resource type="Theme" uid="uid://cat7eb156l4u1" path="res://themes/exclamation.tres" id="1_vm7rs"]
 [ext_resource type="PackedScene" uid="uid://dlcl4g8eeahy7" path="res://scenes/traffic_cone.tscn" id="2_7ix00"]
@@ -39,15 +41,6 @@ uv1_scale = Vector3(144.485, 144.485, 144.485)
 [sub_resource type="PlaneMesh" id="PlaneMesh_xwcf5"]
 material = SubResource("StandardMaterial3D_8k7c6")
 size = Vector2(100, 100)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_2i2m5"]
-size = Vector3(0.2, 1, 20)
-
-[sub_resource type="BoxMesh" id="BoxMesh_2lo6k"]
-material = SubResource("StandardMaterial3D_8k7c6")
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_qhj0r"]
-size = Vector3(0.2, 1, 13)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bi4mt"]
 render_priority = 0
@@ -159,52 +152,38 @@ render_priority = 0
 shader = ExtResource("6_73ftp")
 shader_parameter/transform = null
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_2i2m5"]
+size = Vector3(0.2, 1, 20)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2lo6k"]
+material = SubResource("StandardMaterial3D_8k7c6")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qhj0r"]
+size = Vector3(0.2, 1, 13)
+
 [sub_resource type="Resource" id="Resource_1n4c4"]
 script = ExtResource("9_wc5tp")
 max_obstacles_hit = 5
 
 [node name="Node3D" type="Node3D"]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="ui" type="CanvasLayer" parent="."]
 
-[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+[node name="Control" type="Control" parent="ui"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_6f0xv")
 
-[node name="SuccessText" type="RichTextLabel" parent="CanvasLayer/CenterContainer"]
-visible = false
-clip_contents = false
-layout_mode = 2
-theme = ExtResource("1_vm7rs")
-bbcode_enabled = true
-text = "[rainbow sat=0.4][tornado radius=10.0 freq=30 connected=1]GENIUS[/tornado][/rainbow]"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-script = SubResource("GDScript_gs6a6")
+[node name="level_black_overlay" parent="ui/Control" instance=ExtResource("1_anhts")]
+z_index = 1
+layout_mode = 1
 
-[node name="FailureText" type="RichTextLabel" parent="CanvasLayer/CenterContainer"]
-visible = false
-clip_contents = false
-layout_mode = 2
-theme = ExtResource("1_vm7rs")
-bbcode_enabled = true
-text = "[rainbow sat=0.4][tornado radius=10.0 freq=30 connected=1]BAD[/tornado][/rainbow]"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-script = SubResource("GDScript_8wmm4")
-
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+[node name="obstacles_counter_container" type="MarginContainer" parent="ui/Control"]
+layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -218,10 +197,7 @@ theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 
-[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/MarginContainer"]
-layout_mode = 2
-
-[node name="ObstaclesCounter" type="RichTextLabel" parent="CanvasLayer/MarginContainer/CenterContainer" node_paths=PackedStringArray("level_logic")]
+[node name="obstacles_counter" type="RichTextLabel" parent="ui/Control/obstacles_counter_container" node_paths=PackedStringArray("level_logic")]
 clip_contents = false
 layout_mode = 2
 theme = ExtResource("2_ugnkn")
@@ -232,6 +208,41 @@ scroll_active = false
 autowrap_mode = 0
 script = ExtResource("3_5b5rk")
 level_logic = NodePath("../../../../LevelLogic")
+
+[node name="level_end_text" type="CenterContainer" parent="ui/Control"]
+z_index = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="SuccessText" type="RichTextLabel" parent="ui/Control/level_end_text"]
+visible = false
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("1_vm7rs")
+bbcode_enabled = true
+text = "[rainbow sat=0.4][tornado radius=10.0 freq=30 connected=1]GENIUS[/tornado][/rainbow]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+script = SubResource("GDScript_gs6a6")
+
+[node name="FailureText" type="RichTextLabel" parent="ui/Control/level_end_text"]
+visible = false
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("1_vm7rs")
+bbcode_enabled = true
+text = "[rainbow sat=0.4][tornado radius=10.0 freq=30 connected=1]BAD[/tornado][/rainbow]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+script = SubResource("GDScript_8wmm4")
 
 [node name="sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.336415, 0.709899, -0.618763, -0.450194, 0.698352, 0.556444, 0.827134, 0.0913677, 0.554529, 0, 15.1739, 14.8684)
@@ -259,6 +270,118 @@ shape = SubResource("BoxShape3D_xs6ya")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="ground"]
 mesh = SubResource("PlaneMesh_xwcf5")
+
+[node name="road_lines" type="Node3D" parent="ground"]
+
+[node name="road_line" parent="ground/road_lines" instance=ExtResource("6_pollb")]
+transform = Transform3D(-7.86805e-07, 0, 0.2, 0, 0.005, 0, -18, 0, -8.74228e-09, -4, 0, 7)
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("ShaderMaterial_bi4mt")
+
+[node name="road_line1" parent="ground/road_lines" instance=ExtResource("6_pollb")]
+transform = Transform3D(3, 0, 0, 0, 0.005, 0, 0, 0, 0.2, -2.6, 0, 16)
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("ShaderMaterial_l1go1")
+
+[node name="road_line2" parent="ground/road_lines" instance=ExtResource("6_pollb")]
+transform = Transform3D(3, 0, 0, 0, 0.005, 0, 0, 0, 0.2, -2.6, 0, 14)
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("ShaderMaterial_14y6f")
+
+[node name="road_line3" parent="ground/road_lines" instance=ExtResource("6_pollb")]
+transform = Transform3D(3, 0, 0, 0, 0.005, 0, 0, 0, 0.2, -2.6, 0, 12)
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("ShaderMaterial_u0kbm")
+
+[node name="road_line4" parent="ground/road_lines" instance=ExtResource("6_pollb")]
+transform = Transform3D(3, 0, 0, 0, 0.005, 0, 0, 0, 0.2, -2.6, 0, 10)
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("ShaderMaterial_xjpmm")
+
+[node name="road_line5" parent="ground/road_lines" instance=ExtResource("6_pollb")]
+transform = Transform3D(3, 0, 0, 0, 0.005, 0, 0, 0, 0.2, -2.6, 0, 8)
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("ShaderMaterial_6wr0b")
+
+[node name="road_line6" parent="ground/road_lines" instance=ExtResource("6_pollb")]
+transform = Transform3D(3, 0, 0, 0, 0.005, 0, 0, 0, 0.2, -2.6, 0, 6)
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("ShaderMaterial_873g0")
+
+[node name="road_line7" parent="ground/road_lines" instance=ExtResource("6_pollb")]
+transform = Transform3D(3, 0, 0, 0, 0.005, 0, 0, 0, 0.2, -2.6, 0, 4)
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("ShaderMaterial_ron4n")
+
+[node name="road_line8" parent="ground/road_lines" instance=ExtResource("6_pollb")]
+transform = Transform3D(3, 0, 0, 0, 0.005, 0, 0, 0, 0.2, -2.6, 0, 2)
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("ShaderMaterial_lwfsd")
+
+[node name="road_line9" parent="ground/road_lines" instance=ExtResource("6_pollb")]
+transform = Transform3D(3, 0, 0, 0, 0.005, 0, 0, 0, 0.2, -2.6, 0, 0)
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("ShaderMaterial_qf6ju")
+
+[node name="road_line10" parent="ground/road_lines" instance=ExtResource("6_pollb")]
+transform = Transform3D(3, 0, 0, 0, 0.005, 0, 0, 0, 0.2, -2.6, 0, -2)
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("ShaderMaterial_vbklc")
+
+[node name="road_line11" parent="ground/road_lines" instance=ExtResource("6_pollb")]
+transform = Transform3D(1.35896e-06, 0, -0.2, 0, 0.005, 0, 18, 0, 1.50996e-08, 6.54545, 0, 7)
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("ShaderMaterial_maky3")
+
+[node name="road_line12" parent="ground/road_lines" instance=ExtResource("6_pollb")]
+transform = Transform3D(-3, 0, -3.01992e-08, 0, 0.005, 0, 4.52987e-07, 0, -0.2, 5.14545, 0, -2)
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("ShaderMaterial_i5ox4")
+
+[node name="road_line13" parent="ground/road_lines" instance=ExtResource("6_pollb")]
+transform = Transform3D(-3, 0, -3.01992e-08, 0, 0.005, 0, 4.52987e-07, 0, -0.2, 5.14545, 0, 0)
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("ShaderMaterial_4bdkt")
+
+[node name="road_line14" parent="ground/road_lines" instance=ExtResource("6_pollb")]
+transform = Transform3D(-3, 0, -3.01992e-08, 0, 0.005, 0, 4.52987e-07, 0, -0.2, 5.14545, 0, 2)
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("ShaderMaterial_ove1n")
+
+[node name="road_line15" parent="ground/road_lines" instance=ExtResource("6_pollb")]
+transform = Transform3D(-3, 0, -3.01992e-08, 0, 0.005, 0, 4.52987e-07, 0, -0.2, 5.14545, 0, 4)
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("ShaderMaterial_842e2")
+
+[node name="road_line16" parent="ground/road_lines" instance=ExtResource("6_pollb")]
+transform = Transform3D(-3, 0, -3.01992e-08, 0, 0.005, 0, 4.52987e-07, 0, -0.2, 5.14545, 0, 6)
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("ShaderMaterial_27pye")
+
+[node name="road_line17" parent="ground/road_lines" instance=ExtResource("6_pollb")]
+transform = Transform3D(-3, 0, -3.01992e-08, 0, 0.005, 0, 4.52987e-07, 0, -0.2, 5.14545, 0, 8)
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("ShaderMaterial_mpn51")
+
+[node name="road_line18" parent="ground/road_lines" instance=ExtResource("6_pollb")]
+transform = Transform3D(-3, 0, -3.01992e-08, 0, 0.005, 0, 4.52987e-07, 0, -0.2, 5.14546, 0, 10)
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("ShaderMaterial_0dg7r")
+
+[node name="road_line19" parent="ground/road_lines" instance=ExtResource("6_pollb")]
+transform = Transform3D(-3, 0, -3.01992e-08, 0, 0.005, 0, 4.52987e-07, 0, -0.2, 5.14546, 0, 12)
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("ShaderMaterial_a7402")
+
+[node name="road_line20" parent="ground/road_lines" instance=ExtResource("6_pollb")]
+transform = Transform3D(-3, 0, -3.01992e-08, 0, 0.005, 0, 4.52987e-07, 0, -0.2, 5.14546, 0, 14)
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("ShaderMaterial_wlehu")
+
+[node name="road_line21" parent="ground/road_lines" instance=ExtResource("6_pollb")]
+transform = Transform3D(-3, 0, -3.01992e-08, 0, 0.005, 0, 4.52987e-07, 0, -0.2, 5.14546, 0, 16)
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("ShaderMaterial_gi44y")
 
 [node name="walls" type="StaticBody3D" parent="."]
 collision_layer = 4
@@ -546,7 +669,7 @@ transform = Transform3D(0.696126, 0.000626503, 0.71792, 2.98078e-11, 1, -0.00087
 level_logic = NodePath("../../LevelLogic")
 
 [node name="traffic_cone41" parent="traffic_cones" node_paths=PackedStringArray("level_logic") instance=ExtResource("2_7ix00")]
-transform = Transform3D(0.696126, 0, 0.71792, 0, 1, 0, -0.71792, 0, 0.696126, -1.95709, 0.020687, 14.3579)
+transform = Transform3D(0.696126, 0, 0.71792, 0, 1, 0, -0.71792, 0, 0.696126, -1.71465, 0.020687, 13.6137)
 level_logic = NodePath("../../LevelLogic")
 
 [node name="traffic_cone42" parent="traffic_cones" node_paths=PackedStringArray("level_logic") instance=ExtResource("2_7ix00")]
@@ -608,101 +731,12 @@ level_logic = NodePath("../../LevelLogic")
 [node name="parking_area" parent="." instance=ExtResource("5_ta1mn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 2.121, 4.172, 1.01, 0.72)
 
-[node name="road_lines" type="Node3D" parent="."]
-
-[node name="road_line" parent="road_lines" instance=ExtResource("6_pollb")]
-transform = Transform3D(-7.86805e-07, 0, 0.2, 0, 0.005, 0, -18, 0, -8.74228e-09, -4, 0, 7)
-surface_material_override/0 = SubResource("ShaderMaterial_bi4mt")
-
-[node name="road_line1" parent="road_lines" instance=ExtResource("6_pollb")]
-transform = Transform3D(3, 0, 0, 0, 0.005, 0, 0, 0, 0.2, -2.6, 0, 16)
-surface_material_override/0 = SubResource("ShaderMaterial_l1go1")
-
-[node name="road_line2" parent="road_lines" instance=ExtResource("6_pollb")]
-transform = Transform3D(3, 0, 0, 0, 0.005, 0, 0, 0, 0.2, -2.6, 0, 14)
-surface_material_override/0 = SubResource("ShaderMaterial_14y6f")
-
-[node name="road_line3" parent="road_lines" instance=ExtResource("6_pollb")]
-transform = Transform3D(3, 0, 0, 0, 0.005, 0, 0, 0, 0.2, -2.6, 0, 12)
-surface_material_override/0 = SubResource("ShaderMaterial_u0kbm")
-
-[node name="road_line4" parent="road_lines" instance=ExtResource("6_pollb")]
-transform = Transform3D(3, 0, 0, 0, 0.005, 0, 0, 0, 0.2, -2.6, 0, 10)
-surface_material_override/0 = SubResource("ShaderMaterial_xjpmm")
-
-[node name="road_line5" parent="road_lines" instance=ExtResource("6_pollb")]
-transform = Transform3D(3, 0, 0, 0, 0.005, 0, 0, 0, 0.2, -2.6, 0, 8)
-surface_material_override/0 = SubResource("ShaderMaterial_6wr0b")
-
-[node name="road_line6" parent="road_lines" instance=ExtResource("6_pollb")]
-transform = Transform3D(3, 0, 0, 0, 0.005, 0, 0, 0, 0.2, -2.6, 0, 6)
-surface_material_override/0 = SubResource("ShaderMaterial_873g0")
-
-[node name="road_line7" parent="road_lines" instance=ExtResource("6_pollb")]
-transform = Transform3D(3, 0, 0, 0, 0.005, 0, 0, 0, 0.2, -2.6, 0, 4)
-surface_material_override/0 = SubResource("ShaderMaterial_ron4n")
-
-[node name="road_line8" parent="road_lines" instance=ExtResource("6_pollb")]
-transform = Transform3D(3, 0, 0, 0, 0.005, 0, 0, 0, 0.2, -2.6, 0, 2)
-surface_material_override/0 = SubResource("ShaderMaterial_lwfsd")
-
-[node name="road_line9" parent="road_lines" instance=ExtResource("6_pollb")]
-transform = Transform3D(3, 0, 0, 0, 0.005, 0, 0, 0, 0.2, -2.6, 0, 0)
-surface_material_override/0 = SubResource("ShaderMaterial_qf6ju")
-
-[node name="road_line10" parent="road_lines" instance=ExtResource("6_pollb")]
-transform = Transform3D(3, 0, 0, 0, 0.005, 0, 0, 0, 0.2, -2.6, 0, -2)
-surface_material_override/0 = SubResource("ShaderMaterial_vbklc")
-
-[node name="road_line11" parent="road_lines" instance=ExtResource("6_pollb")]
-transform = Transform3D(1.35896e-06, 0, -0.2, 0, 0.005, 0, 18, 0, 1.50996e-08, 6.54545, 0, 7)
-surface_material_override/0 = SubResource("ShaderMaterial_maky3")
-
-[node name="road_line12" parent="road_lines" instance=ExtResource("6_pollb")]
-transform = Transform3D(-3, 0, -3.01992e-08, 0, 0.005, 0, 4.52987e-07, 0, -0.2, 5.14545, 0, -2)
-surface_material_override/0 = SubResource("ShaderMaterial_i5ox4")
-
-[node name="road_line13" parent="road_lines" instance=ExtResource("6_pollb")]
-transform = Transform3D(-3, 0, -3.01992e-08, 0, 0.005, 0, 4.52987e-07, 0, -0.2, 5.14545, 0, 0)
-surface_material_override/0 = SubResource("ShaderMaterial_4bdkt")
-
-[node name="road_line14" parent="road_lines" instance=ExtResource("6_pollb")]
-transform = Transform3D(-3, 0, -3.01992e-08, 0, 0.005, 0, 4.52987e-07, 0, -0.2, 5.14545, 0, 2)
-surface_material_override/0 = SubResource("ShaderMaterial_ove1n")
-
-[node name="road_line15" parent="road_lines" instance=ExtResource("6_pollb")]
-transform = Transform3D(-3, 0, -3.01992e-08, 0, 0.005, 0, 4.52987e-07, 0, -0.2, 5.14545, 0, 4)
-surface_material_override/0 = SubResource("ShaderMaterial_842e2")
-
-[node name="road_line16" parent="road_lines" instance=ExtResource("6_pollb")]
-transform = Transform3D(-3, 0, -3.01992e-08, 0, 0.005, 0, 4.52987e-07, 0, -0.2, 5.14545, 0, 6)
-surface_material_override/0 = SubResource("ShaderMaterial_27pye")
-
-[node name="road_line17" parent="road_lines" instance=ExtResource("6_pollb")]
-transform = Transform3D(-3, 0, -3.01992e-08, 0, 0.005, 0, 4.52987e-07, 0, -0.2, 5.14545, 0, 8)
-surface_material_override/0 = SubResource("ShaderMaterial_mpn51")
-
-[node name="road_line18" parent="road_lines" instance=ExtResource("6_pollb")]
-transform = Transform3D(-3, 0, -3.01992e-08, 0, 0.005, 0, 4.52987e-07, 0, -0.2, 5.14546, 0, 10)
-surface_material_override/0 = SubResource("ShaderMaterial_0dg7r")
-
-[node name="road_line19" parent="road_lines" instance=ExtResource("6_pollb")]
-transform = Transform3D(-3, 0, -3.01992e-08, 0, 0.005, 0, 4.52987e-07, 0, -0.2, 5.14546, 0, 12)
-surface_material_override/0 = SubResource("ShaderMaterial_a7402")
-
-[node name="road_line20" parent="road_lines" instance=ExtResource("6_pollb")]
-transform = Transform3D(-3, 0, -3.01992e-08, 0, 0.005, 0, 4.52987e-07, 0, -0.2, 5.14546, 0, 14)
-surface_material_override/0 = SubResource("ShaderMaterial_wlehu")
-
-[node name="road_line21" parent="road_lines" instance=ExtResource("6_pollb")]
-transform = Transform3D(-3, 0, -3.01992e-08, 0, 0.005, 0, 4.52987e-07, 0, -0.2, 5.14546, 0, 16)
-surface_material_override/0 = SubResource("ShaderMaterial_gi44y")
-
 [node name="LevelLogic" type="Node" parent="."]
 script = ExtResource("8_kplki")
 objective = SubResource("Resource_1n4c4")
 
 [connection signal="parked" from="parking_area" to="LevelLogic" method="on_parked"]
-[connection signal="complete" from="LevelLogic" to="CanvasLayer/CenterContainer/SuccessText" method="_on_level_logic_complete"]
-[connection signal="complete" from="LevelLogic" to="CanvasLayer/CenterContainer/FailureText" method="_on_level_logic_complete"]
-[connection signal="objectives_progress_changed" from="LevelLogic" to="CanvasLayer/MarginContainer/CenterContainer/ObstaclesCounter" method="_on_level_logic_objectives_progress_changed"]
+[connection signal="complete" from="LevelLogic" to="ui/Control" method="_on_level_logic_complete"]
+[connection signal="complete" from="LevelLogic" to="ui/Control/level_end_text/SuccessText" method="_on_level_logic_complete"]
+[connection signal="complete" from="LevelLogic" to="ui/Control/level_end_text/FailureText" method="_on_level_logic_complete"]
+[connection signal="objectives_progress_changed" from="LevelLogic" to="ui/Control/obstacles_counter_container/obstacles_counter" method="_on_level_logic_objectives_progress_changed"]
