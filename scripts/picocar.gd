@@ -36,10 +36,6 @@ class_name PicoCar
 @export var accel_per_sec : float = 20
 @export var friction_per_sec : float = 0.6
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass
-
 func get_node3d_midpoint(a : Array[Node3D]):
 	return a.map(func(x : Node3D): return x.transform.origin).reduce(func(a, b): return a + b) / a.size()
 
@@ -196,6 +192,11 @@ func _physics_process(delta):
 				# stop it from sliding left/right very much - maybe we can allow a bit of slip for
 				# when the car is mostly parallel with a wall for instance
 				velocity = Vector3.ZERO
+			
+			# Check if the node we're colliding with has an ObstacleComponent and notify it if so
+			var oc := Utils.get_child_of_type(c, ObstacleComponent) as ObstacleComponent
+			if oc:
+				oc.hit(Hit.new(self, result.get_normal(0), result.get_depth()))
 			
 			prev_pos = position
 			result = move_and_collide(velocity * delta, test_only, margin, recovery_as_collision, 6)
