@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://dlcl4g8eeahy7"]
+[gd_scene load_steps=9 format=3 uid="uid://dlcl4g8eeahy7"]
 
+[ext_resource type="Script" path="res://scripts/traffic_cone.gd" id="1_g3svk"]
 [ext_resource type="Script" path="res://scripts/obstacle_component.gd" id="1_o5ccy"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6ng6y"]
@@ -110,8 +111,10 @@ points = PackedVector3Array(-0.774544, 0, -0.706613, -0.774544, 0, 0.706438, -0.
 [node name="traffic_cone" type="RigidBody3D"]
 collision_layer = 4
 collision_mask = 7
+script = ExtResource("1_g3svk")
 
 [node name="ObstacleComponent" type="Node3D" parent="."]
+unique_name_in_owner = true
 script = ExtResource("1_o5ccy")
 
 [node name="Cone" type="MeshInstance3D" parent="."]
