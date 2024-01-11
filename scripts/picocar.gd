@@ -154,7 +154,7 @@ func _physics_process(delta):
 		#
 		# Note use of get_rotation_quaternion because basis of the car also
 		# encodes scale, and we want to apply rotation independent of scale.
-		velocity = (basis.get_rotation_quaternion() * Vector3(pos_delta.x, 0, pos_delta.y)) / delta
+		var motion := (basis.get_rotation_quaternion() * Vector3(pos_delta.x, 0, pos_delta.y))
 		
 		# The following allows us to react to collisions without impeding the
 		# motion of the vehicle:
@@ -174,7 +174,7 @@ func _physics_process(delta):
 		const max_retries := 50
 		var retries := 0
 		while true:
-			var result := move_and_collide(velocity * delta, test_only, margin, recovery_as_collision, 6)
+			var result := move_and_collide(motion, test_only, margin, recovery_as_collision, 6)
 			if not result:
 				break
 			var c := result.get_collider(0)
@@ -191,7 +191,7 @@ func _physics_process(delta):
 				# For now just stop dead - it actually seems reasonable because the car's tyres should
 				# stop it from sliding left/right very much - maybe we can allow a bit of slip for
 				# when the car is mostly parallel with a wall for instance
-				velocity = Vector3.ZERO
+				motion = Vector3.ZERO
 			
 			# Check if the node we're colliding with has an ObstacleComponent and notify it if so
 			var oc := Utils.get_child_of_type(c, ObstacleComponent) as ObstacleComponent
@@ -199,7 +199,7 @@ func _physics_process(delta):
 				oc.hit(Hit.new(self, result.get_normal(0), result.get_depth()))
 			
 			prev_pos = position
-			result = move_and_collide(velocity * delta, test_only, margin, recovery_as_collision, 6)
+			result = move_and_collide(motion, test_only, margin, recovery_as_collision, 6)
 			retries += 1
 			if retries >= max_retries or not result or result.get_collision_count() == 0:
 				break
@@ -208,6 +208,14 @@ func _physics_process(delta):
 		# so remove the collision exceptions once handling is complete
 		for n in ignored_nodes:
 			remove_collision_exception_with(n)
+		
+		# Setup velocity for the next frame, rather than directly using the velocity applied
+		# to move the car this frame because otherwise we lose velocity when turning the car
+		# due to the approximation higher up which feels bad man.
+		if motion != Vector3.ZERO:
+			velocity = basis.get_rotation_quaternion() * (Vector3.BACK * forward_velocity)
+		else:
+			velocity = Vector3.ZERO
 	
 	pass
 
