@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://dagghassaijsd"]
+[gd_scene load_steps=48 format=3 uid="uid://dagghassaijsd"]
 
 [ext_resource type="Script" path="res://scripts/ui/ui_in_game_overlay.gd" id="1_vwobm"]
 [ext_resource type="PackedScene" uid="uid://b0jhovhbmtndu" path="res://scenes/ui/ui_black_overlay.tscn" id="2_b4njx"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://ba6xyqiidsic4" path="res://scenes/picocar.tscn" id="6_mojs0"]
 [ext_resource type="Script" path="res://scripts/follow.gd" id="7_eo0h5"]
 [ext_resource type="Script" path="res://scripts/props/lookat_camera.gd" id="8_gofos"]
+[ext_resource type="Material" uid="uid://dewqjyhx6l3lt" path="res://assets/textures/tarmac.tres" id="9_7sovt"]
 [ext_resource type="PackedScene" uid="uid://bg30bqbscr1ox" path="res://scenes/road_paint_cuboid.tscn" id="9_27sdn"]
 [ext_resource type="Shader" path="res://shaders/road_paint.gdshader" id="10_0tt7n"]
 [ext_resource type="PackedScene" uid="uid://dlcl4g8eeahy7" path="res://scenes/props/traffic_cone.tscn" id="11_d05dk"]
@@ -35,13 +36,9 @@ func _on_level_logic_complete(success):
 [sub_resource type="BoxShape3D" id="BoxShape3D_xs6ya"]
 size = Vector3(100, 1, 100)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8k7c6"]
-albedo_color = Color(0.117647, 0.117647, 0.117647, 1)
-uv1_scale = Vector3(144.485, 144.485, 144.485)
-
 [sub_resource type="PlaneMesh" id="PlaneMesh_xwcf5"]
-material = SubResource("StandardMaterial3D_8k7c6")
-size = Vector2(100, 100)
+material = ExtResource("9_7sovt")
+size = Vector2(50, 50)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bi4mt"]
 render_priority = 0
@@ -156,6 +153,10 @@ shader_parameter/transform = null
 [sub_resource type="BoxShape3D" id="BoxShape3D_2i2m5"]
 size = Vector3(0.2, 1, 20)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8k7c6"]
+albedo_color = Color(0.117647, 0.117647, 0.117647, 1)
+uv1_scale = Vector3(144.485, 144.485, 144.485)
+
 [sub_resource type="BoxMesh" id="BoxMesh_2lo6k"]
 material = SubResource("StandardMaterial3D_8k7c6")
 
@@ -258,7 +259,7 @@ script = ExtResource("7_eo0h5")
 target = NodePath("../picocar")
 
 [node name="Camera3D" type="Camera3D" parent="follow_camera" node_paths=PackedStringArray("target")]
-transform = Transform3D(-0.99999, 0.00363988, -0.00273075, 0, 0.600117, 0.799912, 0.00455036, 0.799904, -0.600111, 0, 4.94629, -3.70978)
+transform = Transform3D(-0.99999, 0.00363988, -0.00273074, 0, 0.600117, 0.799912, 0.00455036, 0.799904, -0.600111, 0, 4.94629, -3.70978)
 script = ExtResource("8_gofos")
 target = NodePath("../../picocar")
 

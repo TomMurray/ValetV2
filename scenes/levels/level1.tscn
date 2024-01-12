@@ -1,8 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://c1ss72v31rhec"]
+[gd_scene load_steps=4 format=3 uid="uid://c1ss72v31rhec"]
 
+[ext_resource type="Material" uid="uid://dewqjyhx6l3lt" path="res://assets/textures/tarmac.tres" id="1_2j7rx"]
 [ext_resource type="Script" path="res://scripts/props/lookat_camera.gd" id="1_fev4h"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_65fdj"]
+material = ExtResource("1_2j7rx")
+size = Vector3(50, 1, 50)
+subdivide_width = 128
+subdivide_height = 128
 
 [node name="Node3D" type="Node3D"]
 
@@ -10,7 +15,7 @@
 mesh = SubResource("BoxMesh_65fdj")
 
 [node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
-transform = Transform3D(0.77795, 0.27065, -0.567047, 0, 0.902472, 0.430748, 0.628326, -0.3351, 0.702079, -2.78951, 2.11901, 3.45378)
+transform = Transform3D(-0.530065, -0.344096, 0.775003, 0, 0.913964, 0.405794, -0.847957, 0.215097, -0.48446, 17.1301, 8.96937, -10.7081)
 script = ExtResource("1_fev4h")
 target = NodePath("../MeshInstance3D")
 

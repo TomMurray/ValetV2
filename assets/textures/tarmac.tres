@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dewqjyhx6l3lt"]
+
+[ext_resource type="Shader" uid="uid://bbya1x0un3x4k" path="res://shaders/tarmac.tres" id="1_7dqpc"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_7dqpc")
