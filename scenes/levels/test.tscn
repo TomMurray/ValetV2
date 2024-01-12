@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://dagghassaijsd"]
+[gd_scene load_steps=47 format=3 uid="uid://dagghassaijsd"]
 
 [ext_resource type="Script" path="res://scripts/ui/ui_in_game_overlay.gd" id="1_vwobm"]
 [ext_resource type="PackedScene" uid="uid://b0jhovhbmtndu" path="res://scenes/ui/ui_black_overlay.tscn" id="2_b4njx"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://btsndqkxonpfh" path="res://scenes/props/parking_area.tscn" id="12_eqakc"]
 [ext_resource type="Script" path="res://scripts/level/level_logic.gd" id="13_8lu1j"]
 [ext_resource type="Script" path="res://scripts/level/level_objective.gd" id="14_otio3"]
+[ext_resource type="Script" path="res://scripts/components/level_port_component.gd" id="15_ojrsk"]
 
 [sub_resource type="GDScript" id="GDScript_gs6a6"]
 script/source = "extends RichTextLabel
@@ -257,7 +258,7 @@ script = ExtResource("7_eo0h5")
 target = NodePath("../picocar")
 
 [node name="Camera3D" type="Camera3D" parent="follow_camera" node_paths=PackedStringArray("target")]
-transform = Transform3D(-0.99999, 0.00363988, -0.00273074, 0, 0.600117, 0.799912, 0.00455036, 0.799904, -0.600111, 0, 4.94629, -3.70978)
+transform = Transform3D(-0.99999, 0.00363988, -0.00273075, 0, 0.600117, 0.799912, 0.00455036, 0.799904, -0.600111, 0, 4.94629, -3.70978)
 script = ExtResource("8_gofos")
 target = NodePath("../../picocar")
 
@@ -735,6 +736,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 2.121, 4.172, 1.01, 0.72)
 script = ExtResource("13_8lu1j")
 objective = SubResource("Resource_1n4c4")
 
+[node name="level_port" type="Node" parent="."]
+script = ExtResource("15_ojrsk")
+target_level = "res://scenes/levels/level1.tscn"
+
+[connection signal="faded_in" from="ui/Control/level_black_overlay" to="level_port" method="go"]
 [connection signal="parked" from="parking_area" to="level_logic" method="on_parked"]
 [connection signal="complete" from="level_logic" to="ui/Control" method="_on_level_logic_complete"]
 [connection signal="complete" from="level_logic" to="ui/Control/level_end_text/SuccessText" method="_on_level_logic_complete"]

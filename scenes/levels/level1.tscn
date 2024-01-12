@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1ss72v31rhec"]
+
+[ext_resource type="Script" path="res://scripts/props/lookat_camera.gd" id="1_fev4h"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_65fdj"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_65fdj")
+
+[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
+transform = Transform3D(0.77795, 0.27065, -0.567047, 0, 0.902472, 0.430748, 0.628326, -0.3351, 0.702079, -2.78951, 2.11901, 3.45378)
+script = ExtResource("1_fev4h")
+target = NodePath("../MeshInstance3D")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.5, 0.224144, -0.836516, 0, 0.965926, 0.258819, 0.866025, -0.12941, 0.482963, -4.11908, 4.13598, 2.47653)
