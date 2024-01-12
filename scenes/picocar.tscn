@@ -23,4 +23,20 @@ shape = SubResource("BoxShape3D_fcil1")
 [node name="ParkableComponent" type="Node3D" parent="." index="6"]
 script = ExtResource("3_0nb6r")
 
+[node name="headlight_l" type="SpotLight3D" parent="." index="7"]
+transform = Transform3D(-1, 0, 8.9407e-08, 0, 1, 0, -8.9407e-08, 0, -1, 0.456, 0.64, 1.178)
+light_color = Color(0.913725, 0.713726, 0.266667, 1)
+light_energy = 5.0
+light_volumetric_fog_energy = 2.0
+shadow_enabled = true
+distance_fade_enabled = true
+
+[node name="headlight_l2" type="SpotLight3D" parent="." index="8"]
+transform = Transform3D(-1, 0, 8.9407e-08, 0, 1, 0, -8.9407e-08, 0, -1, -0.456, 0.64, 1.178)
+light_color = Color(0.913725, 0.713726, 0.266667, 1)
+light_energy = 5.0
+light_volumetric_fog_energy = 2.0
+shadow_enabled = true
+distance_fade_enabled = true
+
 [connection signal="parked_status_changed" from="." to="ParkableComponent" method="set_is_parked"]

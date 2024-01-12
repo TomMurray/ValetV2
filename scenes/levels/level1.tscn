@@ -1,23 +1,48 @@
-[gd_scene load_steps=4 format=3 uid="uid://c1ss72v31rhec"]
+[gd_scene load_steps=8 format=3 uid="uid://c1ss72v31rhec"]
 
 [ext_resource type="Material" uid="uid://dewqjyhx6l3lt" path="res://assets/textures/tarmac.tres" id="1_2j7rx"]
+[ext_resource type="PackedScene" uid="uid://ba6xyqiidsic4" path="res://scenes/picocar.tscn" id="1_efre1"]
 [ext_resource type="Script" path="res://scripts/props/lookat_camera.gd" id="1_fev4h"]
+[ext_resource type="Script" path="res://scripts/follow.gd" id="1_tdgni"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_65fdj"]
 material = ExtResource("1_2j7rx")
-size = Vector3(50, 1, 50)
+size = Vector3(15, 1, 25)
 subdivide_width = 128
 subdivide_height = 128
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vhv4j"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_2fxmj"]
+material = SubResource("StandardMaterial3D_vhv4j")
+size = Vector2(200, 200)
+
 [node name="Node3D" type="Node3D"]
+
+[node name="Node3D" type="Node3D" parent="." node_paths=PackedStringArray("target")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+script = ExtResource("1_tdgni")
+target = NodePath("../picocar")
+
+[node name="Camera3D" type="Camera3D" parent="Node3D" node_paths=PackedStringArray("target")]
+transform = Transform3D(-1, 5.85065e-08, -6.49595e-08, 0, 0.74305, 0.669236, 8.74228e-08, 0.669236, -0.74305, 0, 3.31123, -3.67644)
+script = ExtResource("1_fev4h")
+target = NodePath("../../picocar")
+
+[node name="picocar" parent="." instance=ExtResource("1_efre1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+colour = Color(1, 0.368627, 0.12549, 1)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_65fdj")
 
-[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
-transform = Transform3D(-0.530063, -0.344097, 0.775004, 0, 0.913964, 0.405794, -0.847958, 0.215096, -0.484458, 17.1301, 8.96937, -10.7081)
-script = ExtResource("1_fev4h")
-target = NodePath("../MeshInstance3D")
+[node name="ground" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_2fxmj")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.5, 0.224144, -0.836516, 0, 0.965926, 0.258819, 0.866025, -0.12941, 0.482963, -4.11908, 4.13598, 2.47653)
+transform = Transform3D(0.707107, 0.5, -0.5, 0, 0.707107, 0.707107, 0.707107, -0.5, 0.5, -7, 6.85145, 6.04361)
+light_indirect_energy = 2.388
+light_angular_distance = 22.5
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
