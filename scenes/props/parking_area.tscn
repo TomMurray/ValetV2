@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://btsndqkxonpfh"]
 
-[ext_resource type="Script" path="res://scripts/props/objective_area.gd" id="1_5o0qc"]
+[ext_resource type="Script" path="res://scripts/props/parking_area.gd" id="1_5o0qc"]
 [ext_resource type="PackedScene" uid="uid://cjwcesada6xmm" path="res://scenes/xyz_cube_fade_up.tscn" id="1_mjnkl"]
 [ext_resource type="PackedScene" uid="uid://cfityf1msljum" path="res://scenes/area3d_fully_contained.tscn" id="3_slvn6"]
 
