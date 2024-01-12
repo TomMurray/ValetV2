@@ -12,4 +12,4 @@ func _process(delta):
 	# Sync shader parameters with the node
 	var material = get_surface_override_material(0) as ShaderMaterial
 	if material:
-		material.set_shader_parameter("transform", transform)
+		material.set_shader_parameter("transform", global_transform)
