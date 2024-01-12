@@ -14,11 +14,11 @@ wheel_front_right = NodePath("wheel_fr")
 wheel_front_left = NodePath("wheel_fl")
 wheel_back_right = NodePath("wheel_br")
 wheel_back_left = NodePath("wheel_bl")
+secs_to_change_dir = null
 max_speed_per_sec_fwd = 8.0
 accel_per_sec_fwd = 15.0
 max_speed_per_sec_bwd = 3.0
 accel_per_sec_bwd = 5.0
-brake_decel_per_sec = null
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.670243, 0)

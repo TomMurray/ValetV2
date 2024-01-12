@@ -23,6 +23,7 @@ class_name PicoCar
 @export var max_steer_angle : float = 40.0
 @export var steer_per_sec : float = 120.0
 @export var friction_per_sec : float = 0.6
+@export var secs_to_change_dir : float = 1.0
 
 @export_category("Forward motion")
 @export var max_speed_per_sec_fwd : float = 5
@@ -45,6 +46,9 @@ class_name PicoCar
 ]
 
 @onready var wheel_radius : float = wheels[0].scale.y
+
+var prev_accel_dir : float = 0.0
+var change_dir_timer : SceneTreeTimer = null
 
 func get_node3d_midpoint(a : Array[Node3D]):
 	return a.map(func(x : Node3D): return x.transform.origin).reduce(func(a, b): return a + b) / a.size()
@@ -106,24 +110,41 @@ func _physics_process(delta):
 		# turning the car unless going straight ahead, so we're simplifying
 		# just to get a signed velocity so we know whether we're reversing or
 		# travelling forwards.
-		var forward_velocity := signf(velocity.dot(basis.z)) * velocity.length()
-		
-		# TODO: Special behaviour for accelerate/brake/reverse. If the car
-		# is currently moving forwards, pressing backwards will brake
-		# until the car stops. There should be a delay once the car has
-		# come to a complete stop before the car starts reversing.
+		var prev_forward_velocity := signf(velocity.dot(basis.z)) * velocity.length()
 		
 		# Firstly, use a different accel/max speed for reversing the car
 		var accel_fwd := accel >= 0.0
-		var is_braking := (forward_velocity >= 0.0) != accel_fwd
-		var accel_per_sec = (
-			brake_decel_per_sec if is_braking
-			else accel_per_sec_fwd if accel_fwd
-			else accel_per_sec_bwd
-		)
-		
+		var is_braking := !is_zero_approx(prev_forward_velocity) and (prev_forward_velocity >= 0.0) != accel_fwd
+		var accel_per_sec = accel_per_sec_fwd if accel_fwd else accel_per_sec_bwd
+		if is_braking:
+			# Scale brake deceleration by how close to 0 velocity we are to smooth
+			# it out
+			var factor := maxf(0.1, minf(1.0, absf(prev_forward_velocity)))
+			accel_per_sec = brake_decel_per_sec * factor
+	
 		# Apply acceleration
-		forward_velocity = forward_velocity + accel * accel_per_sec * delta
+		var velocity_delta = accel * accel_per_sec * delta
+		
+		# If we're in the process of changing direction and the player is still acceleration in the
+		# 'brake' direction, do not apply any acceleration
+		if change_dir_timer != null:
+			if prev_accel_dir != accel or change_dir_timer.time_left <= 0.0:
+				change_dir_timer = null
+			else:
+				velocity_delta = 0.0
+			
+		var forward_velocity = prev_forward_velocity + velocity_delta
+		
+		# If acceleration brings the car to a stop, and we're braking, introduce
+		# a little pause before starting to move in the other direction.
+		if is_braking and (!is_zero_approx(prev_forward_velocity)
+							and (is_zero_approx(forward_velocity)
+							or sign(prev_forward_velocity) != sign(forward_velocity))):
+			# Start timeout
+			change_dir_timer = get_tree().create_timer(secs_to_change_dir, false, true)
+			prev_accel_dir = accel
+			# Come to a full stop
+			forward_velocity = 0.0
 		
 		# Clamp to max speed depending on direction of acceleration
 		if accel >= 0.0:
