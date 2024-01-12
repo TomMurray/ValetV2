@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://ba6xyqiidsic4" path="res://scenes/picocar.tscn" id="6_mojs0"]
 [ext_resource type="Script" path="res://scripts/follow.gd" id="7_eo0h5"]
 [ext_resource type="Script" path="res://scripts/props/lookat_camera.gd" id="8_gofos"]
-[ext_resource type="Material" uid="uid://dewqjyhx6l3lt" path="res://assets/textures/tarmac.tres" id="9_7sovt"]
+[ext_resource type="Material" uid="uid://dewqjyhx6l3lt" path="res://assets/materials/tarmac.tres" id="9_7sovt"]
 [ext_resource type="PackedScene" uid="uid://bg30bqbscr1ox" path="res://scenes/road_paint_cuboid.tscn" id="9_27sdn"]
 [ext_resource type="PackedScene" uid="uid://dlcl4g8eeahy7" path="res://scenes/props/traffic_cone.tscn" id="11_d05dk"]
 [ext_resource type="PackedScene" uid="uid://btsndqkxonpfh" path="res://scenes/props/parking_area.tscn" id="12_eqakc"]
