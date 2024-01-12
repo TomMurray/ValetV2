@@ -9,7 +9,7 @@ size = Vector3(1, 1.194, 2.356)
 
 [node name="picocar" node_paths=PackedStringArray("wheel_front_right", "wheel_front_left", "wheel_back_right", "wheel_back_left") instance=ExtResource("1_5i6mq")]
 collision_layer = 2
-collision_mask = 4
+collision_mask = 5
 script = ExtResource("2_lkg2x")
 wheel_front_right = NodePath("wheel_fr")
 wheel_front_left = NodePath("wheel_fl")

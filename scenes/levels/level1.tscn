@@ -62,5 +62,35 @@ transform = Transform3D(0.707107, 0.5, -0.5, 0, 0.707107, 0.707107, 0.707107, -0
 light_volumetric_fog_energy = 2.469
 light_angular_distance = 22.5
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 0)
+[node name="walls" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.6, 1, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="walls"]
+transform = Transform3D(0.983393, 0, 0, 0, 0.983393, 0, 0, 0, 0.983393, 0.126213, 0, -0.0418496)
+use_collision = true
+collision_mask = 7
+size = Vector3(0.2, 1, 25)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="walls"]
+transform = Transform3D(0.983393, 0, 0, 0, 0.983393, 0, 0, 0, 0.983393, 15.0738, 0, -0.0418496)
+use_collision = true
+collision_mask = 7
+size = Vector3(0.2, 1, 25)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="walls"]
+transform = Transform3D(-4.29855e-08, 0, 0.983393, 0, 0.983393, 0, -0.983393, 0, -4.29855e-08, 7.6, 0, 12.3489)
+use_collision = true
+collision_mask = 7
+size = Vector3(0.2, 1, 15.4)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="walls"]
+transform = Transform3D(-4.29855e-08, 0, 0.983393, 0, 0.983393, 0, -0.983393, 0, -4.29855e-08, 2.97805, 0, -12.4326)
+use_collision = true
+collision_mask = 7
+size = Vector3(0.2, 1, 6)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="walls"]
+transform = Transform3D(-4.3125e-08, 0, 0.986586, 0, 0.986586, 0, -0.986586, 0, -4.3125e-08, 12.2219, 0, -12.4326)
+use_collision = true
+collision_mask = 7
+size = Vector3(0.2, 1, 6)
