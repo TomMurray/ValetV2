@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://dagghassaijsd"]
+[gd_scene load_steps=25 format=3 uid="uid://dagghassaijsd"]
 
 [ext_resource type="Script" path="res://scripts/ui/ui_in_game_overlay.gd" id="1_vwobm"]
 [ext_resource type="PackedScene" uid="uid://b0jhovhbmtndu" path="res://scenes/ui/ui_black_overlay.tscn" id="2_b4njx"]
@@ -10,7 +10,6 @@
 [ext_resource type="Script" path="res://scripts/props/lookat_camera.gd" id="8_gofos"]
 [ext_resource type="Material" uid="uid://dewqjyhx6l3lt" path="res://assets/textures/tarmac.tres" id="9_7sovt"]
 [ext_resource type="PackedScene" uid="uid://bg30bqbscr1ox" path="res://scenes/road_paint_cuboid.tscn" id="9_27sdn"]
-[ext_resource type="Shader" path="res://shaders/road_paint.gdshader" id="10_0tt7n"]
 [ext_resource type="PackedScene" uid="uid://dlcl4g8eeahy7" path="res://scenes/props/traffic_cone.tscn" id="11_d05dk"]
 [ext_resource type="PackedScene" uid="uid://btsndqkxonpfh" path="res://scenes/props/parking_area.tscn" id="12_eqakc"]
 [ext_resource type="Script" path="res://scripts/level/level_logic.gd" id="13_8lu1j"]
@@ -39,116 +38,6 @@ size = Vector3(100, 1, 100)
 [sub_resource type="PlaneMesh" id="PlaneMesh_xwcf5"]
 material = ExtResource("9_7sovt")
 size = Vector2(50, 50)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_bi4mt"]
-render_priority = 0
-shader = ExtResource("10_0tt7n")
-shader_parameter/transform = null
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_l1go1"]
-render_priority = 0
-shader = ExtResource("10_0tt7n")
-shader_parameter/transform = null
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_14y6f"]
-render_priority = 0
-shader = ExtResource("10_0tt7n")
-shader_parameter/transform = null
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_u0kbm"]
-render_priority = 0
-shader = ExtResource("10_0tt7n")
-shader_parameter/transform = null
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_xjpmm"]
-render_priority = 0
-shader = ExtResource("10_0tt7n")
-shader_parameter/transform = null
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_6wr0b"]
-render_priority = 0
-shader = ExtResource("10_0tt7n")
-shader_parameter/transform = null
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_873g0"]
-render_priority = 0
-shader = ExtResource("10_0tt7n")
-shader_parameter/transform = null
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ron4n"]
-render_priority = 0
-shader = ExtResource("10_0tt7n")
-shader_parameter/transform = null
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_lwfsd"]
-render_priority = 0
-shader = ExtResource("10_0tt7n")
-shader_parameter/transform = null
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_qf6ju"]
-render_priority = 0
-shader = ExtResource("10_0tt7n")
-shader_parameter/transform = null
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_vbklc"]
-render_priority = 0
-shader = ExtResource("10_0tt7n")
-shader_parameter/transform = null
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_maky3"]
-render_priority = 0
-shader = ExtResource("10_0tt7n")
-shader_parameter/transform = null
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_i5ox4"]
-render_priority = 0
-shader = ExtResource("10_0tt7n")
-shader_parameter/transform = null
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_4bdkt"]
-render_priority = 0
-shader = ExtResource("10_0tt7n")
-shader_parameter/transform = null
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ove1n"]
-render_priority = 0
-shader = ExtResource("10_0tt7n")
-shader_parameter/transform = null
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_842e2"]
-render_priority = 0
-shader = ExtResource("10_0tt7n")
-shader_parameter/transform = null
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_27pye"]
-render_priority = 0
-shader = ExtResource("10_0tt7n")
-shader_parameter/transform = null
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_mpn51"]
-render_priority = 0
-shader = ExtResource("10_0tt7n")
-shader_parameter/transform = null
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_0dg7r"]
-render_priority = 0
-shader = ExtResource("10_0tt7n")
-shader_parameter/transform = null
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_a7402"]
-render_priority = 0
-shader = ExtResource("10_0tt7n")
-shader_parameter/transform = null
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_wlehu"]
-render_priority = 0
-shader = ExtResource("10_0tt7n")
-shader_parameter/transform = null
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_gi44y"]
-render_priority = 0
-shader = ExtResource("10_0tt7n")
-shader_parameter/transform = null
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2i2m5"]
 size = Vector3(0.2, 1, 20)
@@ -278,112 +167,90 @@ mesh = SubResource("PlaneMesh_xwcf5")
 [node name="road_line" parent="ground/road_lines" instance=ExtResource("9_27sdn")]
 transform = Transform3D(-7.86805e-07, 0, 0.2, 0, 0.005, 0, -18, 0, -8.74228e-09, -4, 0, 7)
 skeleton = NodePath("../../..")
-surface_material_override/0 = SubResource("ShaderMaterial_bi4mt")
 
 [node name="road_line1" parent="ground/road_lines" instance=ExtResource("9_27sdn")]
 transform = Transform3D(3, 0, 0, 0, 0.005, 0, 0, 0, 0.2, -2.6, 0, 16)
 skeleton = NodePath("../../..")
-surface_material_override/0 = SubResource("ShaderMaterial_l1go1")
 
 [node name="road_line2" parent="ground/road_lines" instance=ExtResource("9_27sdn")]
 transform = Transform3D(3, 0, 0, 0, 0.005, 0, 0, 0, 0.2, -2.6, 0, 14)
 skeleton = NodePath("../../..")
-surface_material_override/0 = SubResource("ShaderMaterial_14y6f")
 
 [node name="road_line3" parent="ground/road_lines" instance=ExtResource("9_27sdn")]
 transform = Transform3D(3, 0, 0, 0, 0.005, 0, 0, 0, 0.2, -2.6, 0, 12)
 skeleton = NodePath("../../..")
-surface_material_override/0 = SubResource("ShaderMaterial_u0kbm")
 
 [node name="road_line4" parent="ground/road_lines" instance=ExtResource("9_27sdn")]
 transform = Transform3D(3, 0, 0, 0, 0.005, 0, 0, 0, 0.2, -2.6, 0, 10)
 skeleton = NodePath("../../..")
-surface_material_override/0 = SubResource("ShaderMaterial_xjpmm")
 
 [node name="road_line5" parent="ground/road_lines" instance=ExtResource("9_27sdn")]
 transform = Transform3D(3, 0, 0, 0, 0.005, 0, 0, 0, 0.2, -2.6, 0, 8)
 skeleton = NodePath("../../..")
-surface_material_override/0 = SubResource("ShaderMaterial_6wr0b")
 
 [node name="road_line6" parent="ground/road_lines" instance=ExtResource("9_27sdn")]
 transform = Transform3D(3, 0, 0, 0, 0.005, 0, 0, 0, 0.2, -2.6, 0, 6)
 skeleton = NodePath("../../..")
-surface_material_override/0 = SubResource("ShaderMaterial_873g0")
 
 [node name="road_line7" parent="ground/road_lines" instance=ExtResource("9_27sdn")]
 transform = Transform3D(3, 0, 0, 0, 0.005, 0, 0, 0, 0.2, -2.6, 0, 4)
 skeleton = NodePath("../../..")
-surface_material_override/0 = SubResource("ShaderMaterial_ron4n")
 
 [node name="road_line8" parent="ground/road_lines" instance=ExtResource("9_27sdn")]
 transform = Transform3D(3, 0, 0, 0, 0.005, 0, 0, 0, 0.2, -2.6, 0, 2)
 skeleton = NodePath("../../..")
-surface_material_override/0 = SubResource("ShaderMaterial_lwfsd")
 
 [node name="road_line9" parent="ground/road_lines" instance=ExtResource("9_27sdn")]
 transform = Transform3D(3, 0, 0, 0, 0.005, 0, 0, 0, 0.2, -2.6, 0, 0)
 skeleton = NodePath("../../..")
-surface_material_override/0 = SubResource("ShaderMaterial_qf6ju")
 
 [node name="road_line10" parent="ground/road_lines" instance=ExtResource("9_27sdn")]
 transform = Transform3D(3, 0, 0, 0, 0.005, 0, 0, 0, 0.2, -2.6, 0, -2)
 skeleton = NodePath("../../..")
-surface_material_override/0 = SubResource("ShaderMaterial_vbklc")
 
 [node name="road_line11" parent="ground/road_lines" instance=ExtResource("9_27sdn")]
 transform = Transform3D(1.35896e-06, 0, -0.2, 0, 0.005, 0, 18, 0, 1.50996e-08, 6.54545, 0, 7)
 skeleton = NodePath("../../..")
-surface_material_override/0 = SubResource("ShaderMaterial_maky3")
 
 [node name="road_line12" parent="ground/road_lines" instance=ExtResource("9_27sdn")]
 transform = Transform3D(-3, 0, -3.01992e-08, 0, 0.005, 0, 4.52987e-07, 0, -0.2, 5.14545, 0, -2)
 skeleton = NodePath("../../..")
-surface_material_override/0 = SubResource("ShaderMaterial_i5ox4")
 
 [node name="road_line13" parent="ground/road_lines" instance=ExtResource("9_27sdn")]
 transform = Transform3D(-3, 0, -3.01992e-08, 0, 0.005, 0, 4.52987e-07, 0, -0.2, 5.14545, 0, 0)
 skeleton = NodePath("../../..")
-surface_material_override/0 = SubResource("ShaderMaterial_4bdkt")
 
 [node name="road_line14" parent="ground/road_lines" instance=ExtResource("9_27sdn")]
 transform = Transform3D(-3, 0, -3.01992e-08, 0, 0.005, 0, 4.52987e-07, 0, -0.2, 5.14545, 0, 2)
 skeleton = NodePath("../../..")
-surface_material_override/0 = SubResource("ShaderMaterial_ove1n")
 
 [node name="road_line15" parent="ground/road_lines" instance=ExtResource("9_27sdn")]
 transform = Transform3D(-3, 0, -3.01992e-08, 0, 0.005, 0, 4.52987e-07, 0, -0.2, 5.14545, 0, 4)
 skeleton = NodePath("../../..")
-surface_material_override/0 = SubResource("ShaderMaterial_842e2")
 
 [node name="road_line16" parent="ground/road_lines" instance=ExtResource("9_27sdn")]
 transform = Transform3D(-3, 0, -3.01992e-08, 0, 0.005, 0, 4.52987e-07, 0, -0.2, 5.14545, 0, 6)
 skeleton = NodePath("../../..")
-surface_material_override/0 = SubResource("ShaderMaterial_27pye")
 
 [node name="road_line17" parent="ground/road_lines" instance=ExtResource("9_27sdn")]
 transform = Transform3D(-3, 0, -3.01992e-08, 0, 0.005, 0, 4.52987e-07, 0, -0.2, 5.14545, 0, 8)
 skeleton = NodePath("../../..")
-surface_material_override/0 = SubResource("ShaderMaterial_mpn51")
 
 [node name="road_line18" parent="ground/road_lines" instance=ExtResource("9_27sdn")]
 transform = Transform3D(-3, 0, -3.01992e-08, 0, 0.005, 0, 4.52987e-07, 0, -0.2, 5.14546, 0, 10)
 skeleton = NodePath("../../..")
-surface_material_override/0 = SubResource("ShaderMaterial_0dg7r")
 
 [node name="road_line19" parent="ground/road_lines" instance=ExtResource("9_27sdn")]
 transform = Transform3D(-3, 0, -3.01992e-08, 0, 0.005, 0, 4.52987e-07, 0, -0.2, 5.14546, 0, 12)
 skeleton = NodePath("../../..")
-surface_material_override/0 = SubResource("ShaderMaterial_a7402")
 
 [node name="road_line20" parent="ground/road_lines" instance=ExtResource("9_27sdn")]
 transform = Transform3D(-3, 0, -3.01992e-08, 0, 0.005, 0, 4.52987e-07, 0, -0.2, 5.14546, 0, 14)
 skeleton = NodePath("../../..")
-surface_material_override/0 = SubResource("ShaderMaterial_wlehu")
 
 [node name="road_line21" parent="ground/road_lines" instance=ExtResource("9_27sdn")]
 transform = Transform3D(-3, 0, -3.01992e-08, 0, 0.005, 0, 4.52987e-07, 0, -0.2, 5.14546, 0, 16)
 skeleton = NodePath("../../..")
-surface_material_override/0 = SubResource("ShaderMaterial_gi44y")
 
 [node name="walls" type="StaticBody3D" parent="."]
 collision_layer = 4

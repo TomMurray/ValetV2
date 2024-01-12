@@ -1,9 +1,24 @@
-[gd_scene load_steps=8 format=3 uid="uid://c1ss72v31rhec"]
+[gd_scene load_steps=12 format=3 uid="uid://c1ss72v31rhec"]
 
 [ext_resource type="Material" uid="uid://dewqjyhx6l3lt" path="res://assets/textures/tarmac.tres" id="1_2j7rx"]
 [ext_resource type="PackedScene" uid="uid://ba6xyqiidsic4" path="res://scenes/picocar.tscn" id="1_efre1"]
 [ext_resource type="Script" path="res://scripts/props/lookat_camera.gd" id="1_fev4h"]
 [ext_resource type="Script" path="res://scripts/follow.gd" id="1_tdgni"]
+[ext_resource type="PackedScene" uid="uid://bg30bqbscr1ox" path="res://scenes/road_paint_cuboid.tscn" id="5_82wqr"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_odfnc"]
+sky_curve = 0.252269
+ground_bottom_color = Color(0.466667, 0.576471, 0.866667, 1)
+ground_curve = 0.101965
+
+[sub_resource type="Sky" id="Sky_oeblg"]
+sky_material = SubResource("ProceduralSkyMaterial_odfnc")
+
+[sub_resource type="Environment" id="Environment_h20ge"]
+background_mode = 2
+sky = SubResource("Sky_oeblg")
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0285
 
 [sub_resource type="BoxMesh" id="BoxMesh_65fdj"]
 material = ExtResource("1_2j7rx")
@@ -20,13 +35,16 @@ size = Vector2(200, 200)
 
 [node name="Node3D" type="Node3D"]
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_h20ge")
+
 [node name="Node3D" type="Node3D" parent="." node_paths=PackedStringArray("target")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 script = ExtResource("1_tdgni")
 target = NodePath("../picocar")
 
 [node name="Camera3D" type="Camera3D" parent="Node3D" node_paths=PackedStringArray("target")]
-transform = Transform3D(-1, 5.85065e-08, -6.49595e-08, 0, 0.74305, 0.669236, 8.74228e-08, 0.669236, -0.74305, 0, 3.31123, -3.67644)
+transform = Transform3D(0.822878, -0.204398, 0.530182, 0, 0.933061, 0.359718, -0.568218, -0.296004, 0.767795, 3.48465, 2.36427, 5.04638)
 script = ExtResource("1_fev4h")
 target = NodePath("../../picocar")
 
@@ -40,9 +58,55 @@ mesh = SubResource("BoxMesh_65fdj")
 [node name="ground" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_2fxmj")
 
+[node name="lines" type="Node3D" parent="ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.29237, 0.5, -4.23538)
+
+[node name="road_line" parent="ground/lines" instance=ExtResource("5_82wqr")]
+transform = Transform3D(-7.86805e-07, 0, 0.2, 0, 0.005, 0, -18, 0, -8.74228e-09, -4, 0, 7)
+skeleton = NodePath("../../..")
+
+[node name="road_line1" parent="ground/lines" instance=ExtResource("5_82wqr")]
+transform = Transform3D(3, 0, 0, 0, 0.005, 0, 0, 0, 0.2, -2.6, 0, 16)
+skeleton = NodePath("../../..")
+
+[node name="road_line2" parent="ground/lines" instance=ExtResource("5_82wqr")]
+transform = Transform3D(3, 0, 0, 0, 0.005, 0, 0, 0, 0.2, -2.6, 0, 14)
+skeleton = NodePath("../../..")
+
+[node name="road_line3" parent="ground/lines" instance=ExtResource("5_82wqr")]
+transform = Transform3D(3, 0, 0, 0, 0.005, 0, 0, 0, 0.2, -2.6, 0, 12)
+skeleton = NodePath("../../..")
+
+[node name="road_line4" parent="ground/lines" instance=ExtResource("5_82wqr")]
+transform = Transform3D(3, 0, 0, 0, 0.005, 0, 0, 0, 0.2, -2.6, 0, 10)
+skeleton = NodePath("../../..")
+
+[node name="road_line5" parent="ground/lines" instance=ExtResource("5_82wqr")]
+transform = Transform3D(3, 0, 0, 0, 0.005, 0, 0, 0, 0.2, -2.6, 0, 8)
+skeleton = NodePath("../../..")
+
+[node name="road_line6" parent="ground/lines" instance=ExtResource("5_82wqr")]
+transform = Transform3D(3, 0, 0, 0, 0.005, 0, 0, 0, 0.2, -2.6, 0, 6)
+skeleton = NodePath("../../..")
+
+[node name="road_line7" parent="ground/lines" instance=ExtResource("5_82wqr")]
+transform = Transform3D(3, 0, 0, 0, 0.005, 0, 0, 0, 0.2, -2.6, 0, 4)
+skeleton = NodePath("../../..")
+
+[node name="road_line8" parent="ground/lines" instance=ExtResource("5_82wqr")]
+transform = Transform3D(3, 0, 0, 0, 0.005, 0, 0, 0, 0.2, -2.6, 0, 2)
+skeleton = NodePath("../../..")
+
+[node name="road_line9" parent="ground/lines" instance=ExtResource("5_82wqr")]
+transform = Transform3D(3, 0, 0, 0, 0.005, 0, 0, 0, 0.2, -2.6, 0, 0)
+skeleton = NodePath("../../..")
+
+[node name="road_line10" parent="ground/lines" instance=ExtResource("5_82wqr")]
+transform = Transform3D(3, 0, 0, 0, 0.005, 0, 0, 0, 0.2, -2.6, 0, -2)
+skeleton = NodePath("../../..")
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.707107, 0.5, -0.5, 0, 0.707107, 0.707107, 0.707107, -0.5, 0.5, -7, 6.85145, 6.04361)
-light_indirect_energy = 2.388
+light_energy = 0.0
+light_volumetric_fog_energy = 2.469
 light_angular_distance = 22.5
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]

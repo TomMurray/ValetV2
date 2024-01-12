@@ -4,7 +4,7 @@ render_mode depth_draw_never;
 uniform sampler2D depth_texture : hint_depth_texture;
 
 // We can use the transform here to 
-uniform mat4 transform;
+instance uniform mat4 transform;
 
 varying mat4 CAMERA;
 
