@@ -26,15 +26,17 @@ class_name PicoCar
 @export var secs_to_change_dir : float = 1.0
 
 @export_category("Forward motion")
-@export var max_speed_per_sec_fwd : float = 5
-@export var accel_per_sec_fwd : float = 10
+@export var max_speed_per_sec_fwd : float = 8
+@export var accel_per_sec_fwd : float = 5
 
 @export_category("Backward motion")
-@export var max_speed_per_sec_bwd : float = 2
-@export var accel_per_sec_bwd : float = 2
+@export var max_speed_per_sec_bwd : float = 3
+@export var accel_per_sec_bwd : float = 5
 
 @export_category("Braking")
-@export var brake_decel_per_sec : float = 30
+@export var brake_decel_per_sec : float = 15
+
+signal parked_status_changed(parked : bool)
 
 # Array of wheel nodes accessible by flattened 2-d index
 # [y, x] e.g. front-right = (1, 1) flattened index = 3
@@ -117,9 +119,9 @@ func _physics_process(delta):
 		var is_braking := !is_zero_approx(prev_forward_velocity) and (prev_forward_velocity >= 0.0) != accel_fwd
 		var accel_per_sec = accel_per_sec_fwd if accel_fwd else accel_per_sec_bwd
 		if is_braking:
-			# Scale brake deceleration by how close to 0 velocity we are to smooth
-			# it out
-			var factor := maxf(0.1, minf(1.0, absf(prev_forward_velocity)))
+			# Scale brake deceleration by how close to 0 velocity we are to smooth it out
+			# FIXME: Magic numbers, what does '5.0' velocity mean really?
+			var factor := maxf(0.3, minf(5.0, absf(prev_forward_velocity)) / 5.0)
 			accel_per_sec = brake_decel_per_sec * factor
 	
 		# Apply acceleration
@@ -155,6 +157,10 @@ func _physics_process(delta):
 		# Apply friction
 		forward_velocity *= pow(friction_per_sec, delta)
 		
+		var was_moving := !is_zero_approx(prev_forward_velocity)
+		var is_moving := !is_zero_approx(forward_velocity)
+		if was_moving != is_moving:
+			parked_status_changed.emit(!is_moving)
 		
 		# Move the front/back wheels of the "bicycle" by the desired
 		# amount in the direction they are facing. Note this is done
