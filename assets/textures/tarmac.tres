@@ -5,3 +5,4 @@
 [resource]
 render_priority = 0
 shader = ExtResource("1_7dqpc")
+shader_parameter/uv_scale = Vector2(7, 7)

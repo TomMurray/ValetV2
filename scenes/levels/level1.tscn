@@ -15,7 +15,7 @@ subdivide_height = 128
 mesh = SubResource("BoxMesh_65fdj")
 
 [node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
-transform = Transform3D(-0.530065, -0.344096, 0.775003, 0, 0.913964, 0.405794, -0.847957, 0.215097, -0.48446, 17.1301, 8.96937, -10.7081)
+transform = Transform3D(-0.530063, -0.344097, 0.775004, 0, 0.913964, 0.405794, -0.847958, 0.215096, -0.484458, 17.1301, 8.96937, -10.7081)
 script = ExtResource("1_fev4h")
 target = NodePath("../MeshInstance3D")
 
