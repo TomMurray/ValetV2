@@ -1,11 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://c1ss72v31rhec"]
+[gd_scene load_steps=16 format=3 uid="uid://c1ss72v31rhec"]
 
 [ext_resource type="PackedScene" uid="uid://bfeebin6bl3v" path="res://scenes/ui/hud_obstacles_counter.tscn" id="1_2be3q"]
 [ext_resource type="PackedScene" uid="uid://bdm7x5kots6yv" path="res://scenes/ui/end_game_panel.tscn" id="1_hsysk"]
 [ext_resource type="Script" path="res://scripts/level/level_logic.gd" id="2_bm4p2"]
 [ext_resource type="Script" path="res://scripts/level/level_objective.gd" id="3_j75jr"]
-[ext_resource type="Script" path="res://scripts/follow.gd" id="4_gkum8"]
-[ext_resource type="Script" path="res://scripts/props/lookat_camera.gd" id="5_wr2c1"]
+[ext_resource type="PackedScene" uid="uid://dem0tl0qj4t03" path="res://scenes/components/player_camera.tscn" id="5_kkt4w"]
 [ext_resource type="PackedScene" uid="uid://ba6xyqiidsic4" path="res://scenes/picocar.tscn" id="6_8y8q2"]
 [ext_resource type="PackedScene" uid="uid://dlcl4g8eeahy7" path="res://scenes/props/traffic_cone.tscn" id="7_shjy3"]
 [ext_resource type="PackedScene" uid="uid://btsndqkxonpfh" path="res://scenes/props/parking_area.tscn" id="8_0x8ol"]
@@ -53,16 +52,11 @@ level_logic = NodePath("../../../level_logic")
 script = ExtResource("2_bm4p2")
 objective = SubResource("Resource_hvpg7")
 
-[node name="player_camera" type="Node3D" parent="." node_paths=PackedStringArray("target")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5, 0.5, -7)
-script = ExtResource("4_gkum8")
+[node name="player_camera" parent="." node_paths=PackedStringArray("target") instance=ExtResource("5_kkt4w")]
 target = NodePath("../picocar")
 
-[node name="Camera3D" type="Camera3D" parent="player_camera" node_paths=PackedStringArray("target")]
-transform = Transform3D(-1.62921e-07, 0.917332, -0.398123, 0, 0.398123, 0.917332, 1, 1.49452e-07, -6.48625e-08, -2.20013, 5.06941, -4.76837e-07)
-size = 17.0
-near = 0.005
-script = ExtResource("5_wr2c1")
+[node name="Camera3D" parent="player_camera" index="0" node_paths=PackedStringArray("target")]
+transform = Transform3D(-1.47422e-06, 0.917332, -0.398124, 0, 0.398124, 0.917332, 1, 1.35235e-06, -5.86923e-07, -2.20013, 5.06941, -3.33786e-06)
 target = NodePath("../../picocar")
 
 [node name="picocar" parent="." instance=ExtResource("6_8y8q2")]
@@ -251,12 +245,13 @@ target_level = "res://scenes/levels/world1/level1.tscn"
 
 [node name="level_base" parent="." instance=ExtResource("9_ndsb7")]
 
-[connection signal="pressed" from="ui/end_game_panel/CenterContainer/list/to_next_level_container/next_level_button" to="next_level_port" method="go"]
 [connection signal="pressed" from="ui/end_game_panel/CenterContainer/list/to_next_level_container/next_level_button" to="next_level_port" method="_on_next_level_button_pressed"]
+[connection signal="pressed" from="ui/end_game_panel/CenterContainer/list/to_next_level_container/next_level_button" to="next_level_port" method="go"]
 [connection signal="pressed" from="ui/end_game_panel/CenterContainer/list/to_next_level_container/retry_level_button" to="level_restart/level_port" method="go"]
 [connection signal="complete" from="level_logic" to="ui/end_game_panel" method="_on_level_logic_complete"]
 [connection signal="parked" from="parking_area" to="level_logic" method="on_parked"]
 
 [editable path="ui/obstacles_counter_container"]
 [editable path="ui/end_game_panel"]
+[editable path="player_camera"]
 [editable path="level_restart"]
