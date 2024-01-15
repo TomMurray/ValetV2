@@ -1,10 +1,7 @@
-[gd_scene load_steps=26 format=3 uid="uid://dagghassaijsd"]
+[gd_scene load_steps=21 format=3 uid="uid://dagghassaijsd"]
 
-[ext_resource type="Script" path="res://scripts/ui/ui_in_game_overlay.gd" id="1_vwobm"]
-[ext_resource type="PackedScene" uid="uid://b0jhovhbmtndu" path="res://scenes/ui/ui_black_overlay.tscn" id="2_b4njx"]
-[ext_resource type="Theme" uid="uid://dpqnmj3en2tdc" path="res://themes/in_game_overlay.tres" id="3_sgdtu"]
-[ext_resource type="Script" path="res://scripts/ui/ui_obstacles_hit_counter.gd" id="4_uouj6"]
-[ext_resource type="Theme" uid="uid://cat7eb156l4u1" path="res://themes/exclamation.tres" id="5_ca0ck"]
+[ext_resource type="PackedScene" uid="uid://bdm7x5kots6yv" path="res://scenes/ui/end_game_panel.tscn" id="1_ff5sw"]
+[ext_resource type="PackedScene" uid="uid://rs0s2pcprrwi" path="res://scenes/ui/obstacles_counter.tscn" id="4_c3dk2"]
 [ext_resource type="PackedScene" uid="uid://ba6xyqiidsic4" path="res://scenes/picocar.tscn" id="6_mojs0"]
 [ext_resource type="Script" path="res://scripts/follow.gd" id="7_eo0h5"]
 [ext_resource type="Script" path="res://scripts/props/lookat_camera.gd" id="8_gofos"]
@@ -16,22 +13,6 @@
 [ext_resource type="Script" path="res://scripts/level/level_objective.gd" id="14_otio3"]
 [ext_resource type="PackedScene" uid="uid://bic24jaw72fqn" path="res://scenes/components/level_port.tscn" id="15_rtvmt"]
 [ext_resource type="PackedScene" uid="uid://dtflnmjrhol7k" path="res://scenes/components/level_restart.tscn" id="16_y008m"]
-
-[sub_resource type="GDScript" id="GDScript_gs6a6"]
-script/source = "extends RichTextLabel
-
-func _on_level_logic_complete(success : bool):
-	if success:
-		show()
-"
-
-[sub_resource type="GDScript" id="GDScript_8wmm4"]
-script/source = "extends RichTextLabel
-
-func _on_level_logic_complete(success):
-	if not success:
-		show()
-"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xs6ya"]
 size = Vector3(100, 1, 100)
@@ -59,23 +40,14 @@ max_obstacles_hit = 5
 
 [node name="Node3D" type="Node3D"]
 
-[node name="ui" type="CanvasLayer" parent="."]
+[node name="in_game_ui" type="CanvasLayer" parent="."]
 
-[node name="Control" type="Control" parent="ui"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("1_vwobm")
+[node name="end_game_panel" parent="in_game_ui" instance=ExtResource("1_ff5sw")]
 
-[node name="level_black_overlay" parent="ui/Control" instance=ExtResource("2_b4njx")]
-z_index = 1
-layout_mode = 1
+[node name="obstacles_counter" parent="in_game_ui/end_game_panel/list/obstacle_counter_container" index="0" node_paths=PackedStringArray("level_logic")]
+level_logic = NodePath("../../../../../level_logic")
 
-[node name="obstacles_counter_container" type="MarginContainer" parent="ui/Control"]
-layout_mode = 1
+[node name="obstacles_counter_container" type="MarginContainer" parent="in_game_ui"]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -89,52 +61,9 @@ theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 
-[node name="obstacles_counter" type="RichTextLabel" parent="ui/Control/obstacles_counter_container" node_paths=PackedStringArray("level_logic")]
-clip_contents = false
+[node name="obstacles_counter" parent="in_game_ui/obstacles_counter_container" node_paths=PackedStringArray("level_logic") instance=ExtResource("4_c3dk2")]
 layout_mode = 2
-theme = ExtResource("3_sgdtu")
-bbcode_enabled = true
-text = "###/###"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-script = ExtResource("4_uouj6")
-level_logic = NodePath("../../../../level_logic")
-
-[node name="level_end_text" type="CenterContainer" parent="ui/Control"]
-z_index = 2
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="SuccessText" type="RichTextLabel" parent="ui/Control/level_end_text"]
-visible = false
-clip_contents = false
-layout_mode = 2
-theme = ExtResource("5_ca0ck")
-bbcode_enabled = true
-text = "[rainbow sat=0.4][tornado radius=10.0 freq=30 connected=1]GENIUS[/tornado][/rainbow]"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-script = SubResource("GDScript_gs6a6")
-
-[node name="FailureText" type="RichTextLabel" parent="ui/Control/level_end_text"]
-visible = false
-clip_contents = false
-layout_mode = 2
-theme = ExtResource("5_ca0ck")
-bbcode_enabled = true
-text = "[rainbow sat=0.4][tornado radius=10.0 freq=30 connected=1]BAD[/tornado][/rainbow]"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-script = SubResource("GDScript_8wmm4")
+level_logic = NodePath("../../../level_logic")
 
 [node name="sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.336415, 0.709899, -0.618763, -0.450194, 0.698352, 0.556444, 0.827134, 0.0913677, 0.554529, 0, 15.1739, 14.8684)
@@ -149,7 +78,7 @@ script = ExtResource("7_eo0h5")
 target = NodePath("../picocar")
 
 [node name="Camera3D" type="Camera3D" parent="follow_camera" node_paths=PackedStringArray("target")]
-transform = Transform3D(-0.99999, 0.00363988, -0.00273074, 0, 0.600117, 0.799912, 0.00455036, 0.799904, -0.600111, 0, 4.94629, -3.70978)
+transform = Transform3D(-0.99999, 0.00363988, -0.00273075, 0, 0.600117, 0.799912, 0.00455036, 0.799904, -0.600111, 0, 4.94629, -3.70978)
 script = ExtResource("8_gofos")
 target = NodePath("../../picocar")
 
@@ -613,10 +542,10 @@ target_level = "res://scenes/levels/level1.tscn"
 [node name="level_port" parent="level_restart" index="0"]
 target_level = "res://scenes/levels/test.tscn"
 
+[connection signal="pressed" from="in_game_ui/end_game_panel/list/to_next_level_container/next_level_button" to="next_level_port" method="go"]
+[connection signal="pressed" from="in_game_ui/end_game_panel/list/to_next_level_container/retry_level_button" to="level_restart/level_port" method="go"]
 [connection signal="parked" from="parking_area" to="level_logic" method="on_parked"]
-[connection signal="complete" from="level_logic" to="ui/Control" method="_on_level_logic_complete"]
-[connection signal="complete" from="level_logic" to="ui/Control/level_end_text/SuccessText" method="_on_level_logic_complete"]
-[connection signal="complete" from="level_logic" to="ui/Control/level_end_text/FailureText" method="_on_level_logic_complete"]
-[connection signal="objectives_progress_changed" from="level_logic" to="ui/Control/obstacles_counter_container/obstacles_counter" method="_on_level_logic_objectives_progress_changed"]
+[connection signal="complete" from="level_logic" to="in_game_ui/end_game_panel" method="_on_level_logic_complete"]
 
+[editable path="in_game_ui/end_game_panel"]
 [editable path="level_restart"]

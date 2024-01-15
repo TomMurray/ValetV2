@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://rs0s2pcprrwi"]
+
+[ext_resource type="Theme" uid="uid://dpqnmj3en2tdc" path="res://themes/in_game_overlay.tres" id="1_o1yvt"]
+[ext_resource type="Script" path="res://scripts/ui/ui_obstacles_hit_counter.gd" id="2_ei2gi"]
+
+[node name="obstacles_counter" type="RichTextLabel" node_paths=PackedStringArray("level_logic")]
+clip_contents = false
+theme = ExtResource("1_o1yvt")
+bbcode_enabled = true
+text = "###/###"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+script = ExtResource("2_ei2gi")
+level_logic = NodePath("")

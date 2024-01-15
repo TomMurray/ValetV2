@@ -2,7 +2,10 @@
 extends RichTextLabel
 class_name UIObstaclesHitCounter
 
-@export var level_logic : LevelLogic
+@export var level_logic : LevelLogic:
+	set(value):
+		level_logic = value
+		update_configuration_warnings()
 
 func update_text():
 	var limit := level_logic.get_max_obstacles_hit()
