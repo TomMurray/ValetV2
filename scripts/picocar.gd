@@ -19,6 +19,9 @@ class_name PicoCar
 @export var wheel_back_right : Node3D
 @export var wheel_back_left : Node3D
 
+@export_category("lights")
+@export var brake_lights : Array[OmniLight3D]
+
 @export_category("General motion")
 @export var max_steer_angle : float = 40.0
 @export var steer_per_sec : float = 120.0
@@ -123,6 +126,9 @@ func _physics_process(delta):
 			# FIXME: Magic numbers, what does '5.0' velocity mean really?
 			var factor := maxf(0.3, minf(5.0, absf(prev_forward_velocity)) / 5.0)
 			accel_per_sec = brake_decel_per_sec * factor
+		
+		for light in brake_lights:
+			light.light_energy = 0.5 if is_braking else 0.1
 	
 		# Apply acceleration
 		var velocity_delta = accel * accel_per_sec * delta

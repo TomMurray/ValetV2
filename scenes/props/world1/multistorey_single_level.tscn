@@ -29,11 +29,11 @@ shape = SubResource("BoxShape3D_7la1g")
 use_collision = true
 collision_mask = 7
 
-[node name="wall1" type="CSGBox3D" parent="walls"]
+[node name="wall6" type="CSGBox3D" parent="walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 12.6)
 size = Vector3(20.4, 2, 0.2)
 
-[node name="wall2" type="CSGBox3D" parent="walls"]
+[node name="wall7" type="CSGBox3D" parent="walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -12.6)
 size = Vector3(20.4, 2, 0.2)
 
@@ -49,82 +49,75 @@ size = Vector3(25, 2, 0.2)
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, -0.6, 0)
 size = Vector3(25.4, 0.2, 20.4)
 
-[node name="light_cover" parent="walls" instance=ExtResource("3_hvo14")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00904, -12.5238)
+[node name="light_covers" type="Node3D" parent="."]
 
-[node name="OmniLight3D" type="OmniLight3D" parent="walls/light_cover"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.123771, 0)
-light_color = Color(1, 0.827451, 0.52549, 1)
-light_energy = 2.083
-light_indirect_energy = 1.889
-
-[node name="light_cover5" parent="walls" instance=ExtResource("3_hvo14")]
+[node name="light_cover5" parent="light_covers" instance=ExtResource("3_hvo14")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 1.00904, -12.5238)
 
-[node name="OmniLight3D" type="OmniLight3D" parent="walls/light_cover5"]
+[node name="OmniLight3D" type="OmniLight3D" parent="light_covers/light_cover5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.123771, 0)
 light_color = Color(1, 0.827451, 0.52549, 1)
 light_energy = 2.083
 light_indirect_energy = 1.889
 
-[node name="light_cover2" parent="walls" instance=ExtResource("3_hvo14")]
+[node name="light_cover2" parent="light_covers" instance=ExtResource("3_hvo14")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1.00904, -12.5238)
 
-[node name="OmniLight3D" type="OmniLight3D" parent="walls/light_cover2"]
+[node name="OmniLight3D" type="OmniLight3D" parent="light_covers/light_cover2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.123771, 0)
 light_color = Color(1, 0.827451, 0.52549, 1)
 light_energy = 2.083
 light_indirect_energy = 1.889
 
-[node name="light_cover3" parent="walls" instance=ExtResource("3_hvo14")]
+[node name="light_cover3" parent="light_covers" instance=ExtResource("3_hvo14")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1.00904, -12.5238)
 
-[node name="OmniLight3D" type="OmniLight3D" parent="walls/light_cover3"]
+[node name="OmniLight3D" type="OmniLight3D" parent="light_covers/light_cover3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.123771, 0)
 light_color = Color(1, 0.827451, 0.52549, 1)
 light_energy = 2.083
 light_indirect_energy = 1.889
 
-[node name="light_cover4" parent="walls" instance=ExtResource("3_hvo14")]
+[node name="light_cover4" parent="light_covers" instance=ExtResource("3_hvo14")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 1.00904, -12.5238)
 
-[node name="OmniLight3D" type="OmniLight3D" parent="walls/light_cover4"]
+[node name="OmniLight3D" type="OmniLight3D" parent="light_covers/light_cover4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.123771, 0)
 light_color = Color(1, 0.827451, 0.52549, 1)
 light_energy = 2.083
 light_indirect_energy = 1.889
 
-[node name="light_cover7" parent="walls" instance=ExtResource("3_hvo14")]
+[node name="light_cover7" parent="light_covers" instance=ExtResource("3_hvo14")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -8, 1.00904, 12.4762)
 
-[node name="OmniLight3D" type="OmniLight3D" parent="walls/light_cover7"]
+[node name="OmniLight3D" type="OmniLight3D" parent="light_covers/light_cover7"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.123771, 0)
 light_color = Color(1, 0.827451, 0.52549, 1)
 light_energy = 2.083
 light_indirect_energy = 1.889
 
-[node name="light_cover8" parent="walls" instance=ExtResource("3_hvo14")]
+[node name="light_cover8" parent="light_covers" instance=ExtResource("3_hvo14")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -4, 1.00904, 12.4762)
 
-[node name="OmniLight3D" type="OmniLight3D" parent="walls/light_cover8"]
+[node name="OmniLight3D" type="OmniLight3D" parent="light_covers/light_cover8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.123771, 0)
 light_color = Color(1, 0.827451, 0.52549, 1)
 light_energy = 2.083
 light_indirect_energy = 1.889
 
-[node name="light_cover9" parent="walls" instance=ExtResource("3_hvo14")]
+[node name="light_cover9" parent="light_covers" instance=ExtResource("3_hvo14")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 4, 1.00904, 12.4762)
 
-[node name="OmniLight3D" type="OmniLight3D" parent="walls/light_cover9"]
+[node name="OmniLight3D" type="OmniLight3D" parent="light_covers/light_cover9"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.123771, 0)
 light_color = Color(1, 0.827451, 0.52549, 1)
 light_energy = 2.083
 light_indirect_energy = 1.889
 
-[node name="light_cover10" parent="walls" instance=ExtResource("3_hvo14")]
+[node name="light_cover10" parent="light_covers" instance=ExtResource("3_hvo14")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 8, 1.00904, 12.4762)
 
-[node name="OmniLight3D" type="OmniLight3D" parent="walls/light_cover10"]
+[node name="OmniLight3D" type="OmniLight3D" parent="light_covers/light_cover10"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.123771, 0)
 light_color = Color(1, 0.827451, 0.52549, 1)
 light_energy = 2.083

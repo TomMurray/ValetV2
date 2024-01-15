@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://ctt833e34g50t"]
+
+[ext_resource type="PackedScene" uid="uid://o8bbuwnr03eo" path="res://scenes/props/world1/multistorey_single_level.tscn" id="1_mejde"]
+
+[node name="multistorey_single_level_with_pillars" type="Node3D"]
+
+[node name="multistorey_single_level" parent="." instance=ExtResource("1_mejde")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
+
+[node name="pillar1" type="CSGBox3D" parent="multistorey_single_level/walls" index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 1.8, 12.5)
+size = Vector3(0.4, 3, 0.4)
+
+[node name="pillar2" type="CSGBox3D" parent="multistorey_single_level/walls" index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 1.8, 12.5)
+size = Vector3(0.4, 3, 0.4)
+
+[node name="pillar3" type="CSGBox3D" parent="multistorey_single_level/walls" index="7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 1.8, -12.5)
+size = Vector3(0.4, 3, 0.4)
+
+[node name="pillar4" type="CSGBox3D" parent="multistorey_single_level/walls" index="8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 1.8, -12.5)
+size = Vector3(0.4, 3, 0.4)
+
+[editable path="multistorey_single_level"]

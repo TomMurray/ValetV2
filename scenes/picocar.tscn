@@ -7,7 +7,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_fcil1"]
 size = Vector3(1, 1.194, 2.356)
 
-[node name="picocar" node_paths=PackedStringArray("wheel_front_right", "wheel_front_left", "wheel_back_right", "wheel_back_left") instance=ExtResource("1_5i6mq")]
+[node name="picocar" node_paths=PackedStringArray("wheel_front_right", "wheel_front_left", "wheel_back_right", "wheel_back_left", "brake_lights") instance=ExtResource("1_5i6mq")]
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("2_lkg2x")
@@ -15,6 +15,7 @@ wheel_front_right = NodePath("wheel_fr")
 wheel_front_left = NodePath("wheel_fl")
 wheel_back_right = NodePath("wheel_br")
 wheel_back_left = NodePath("wheel_bl")
+brake_lights = [NodePath("brakelight_r"), NodePath("brakelight_l")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.670243, 0)
@@ -29,14 +30,28 @@ light_color = Color(0.913725, 0.713726, 0.266667, 1)
 light_energy = 5.0
 light_volumetric_fog_energy = 2.0
 shadow_enabled = true
+shadow_bias = 0.535
 distance_fade_enabled = true
 
-[node name="headlight_l2" type="SpotLight3D" parent="." index="8"]
+[node name="headlight_r" type="SpotLight3D" parent="." index="8"]
 transform = Transform3D(-1, 0, 8.9407e-08, 0, 1, 0, -8.9407e-08, 0, -1, -0.456, 0.64, 1.178)
 light_color = Color(0.913725, 0.713726, 0.266667, 1)
 light_energy = 5.0
 light_volumetric_fog_energy = 2.0
 shadow_enabled = true
+shadow_bias = 0.535
 distance_fade_enabled = true
+
+[node name="brakelight_r" type="OmniLight3D" parent="." index="9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.427378, 0.573413, -1.30698)
+light_color = Color(1, 0, 0, 1)
+light_energy = 0.1
+shadow_enabled = true
+
+[node name="brakelight_l" type="OmniLight3D" parent="." index="10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.427, 0.573458, -1.30678)
+light_color = Color(1, 0, 0, 1)
+light_energy = 0.1
+shadow_enabled = true
 
 [connection signal="parked_status_changed" from="." to="ParkableComponent" method="set_is_parked"]

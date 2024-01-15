@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c1ss72v31rhec"]
+[gd_scene load_steps=14 format=3 uid="uid://c1ss72v31rhec"]
 
 [ext_resource type="PackedScene" uid="uid://ba6xyqiidsic4" path="res://scenes/picocar.tscn" id="1_efre1"]
 [ext_resource type="Script" path="res://scripts/props/lookat_camera.gd" id="1_fev4h"]
@@ -8,35 +8,34 @@
 [ext_resource type="PackedScene" uid="uid://dlcl4g8eeahy7" path="res://scenes/props/traffic_cone.tscn" id="6_8ye1h"]
 [ext_resource type="Script" path="res://scripts/level/level_logic.gd" id="7_2r1ou"]
 [ext_resource type="PackedScene" uid="uid://btsndqkxonpfh" path="res://scenes/props/parking_area.tscn" id="7_xfbd8"]
-[ext_resource type="PackedScene" uid="uid://o8bbuwnr03eo" path="res://scenes/props/world1/multistorey_single_level.tscn" id="9_b4c1i"]
+[ext_resource type="PackedScene" uid="uid://1aps6snaxwys" path="res://scenes/levels/level_chunks/world1/multistorey.tscn" id="9_x1o66"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_odfnc"]
 sky_curve = 0.252269
 ground_bottom_color = Color(0.466667, 0.576471, 0.866667, 1)
 ground_curve = 0.101965
 
-[sub_resource type="Sky" id="Sky_oeblg"]
+[sub_resource type="Sky" id="Sky_ukivk"]
 sky_material = SubResource("ProceduralSkyMaterial_odfnc")
 
 [sub_resource type="Environment" id="Environment_h20ge"]
 background_mode = 2
-sky = SubResource("Sky_oeblg")
+sky = SubResource("Sky_ukivk")
+sdfgi_use_occlusion = true
 glow_enabled = true
 volumetric_fog_enabled = true
-volumetric_fog_density = 0.0551
+volumetric_fog_density = 0.0338
+volumetric_fog_albedo = Color(0.890196, 0.890196, 0.890196, 1)
+volumetric_fog_emission = Color(0.494118, 0.619608, 0.819608, 1)
 
 [sub_resource type="Resource" id="Resource_hvpg7"]
 script = ExtResource("5_jykah")
 max_obstacles_hit = 1
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vhv4j"]
-albedo_color = Color(0, 0, 0, 1)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_2fxmj"]
-material = SubResource("StandardMaterial3D_vhv4j")
-size = Vector2(200, 200)
-
 [node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_h20ge")
 
 [node name="ui" type="CanvasLayer" parent="."]
 
@@ -45,16 +44,19 @@ size = Vector2(200, 200)
 [node name="obstacles_counter" parent="ui/end_game_panel/list/obstacle_counter_container" index="0" node_paths=PackedStringArray("level_logic")]
 level_logic = NodePath("../../../../../level_logic")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_h20ge")
+[node name="level_logic" type="Node" parent="."]
+script = ExtResource("7_2r1ou")
+objective = SubResource("Resource_hvpg7")
 
-[node name="camera" type="Node3D" parent="." node_paths=PackedStringArray("target")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+[node name="player_camera" type="Node3D" parent="." node_paths=PackedStringArray("target")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5, 0.5, -7)
 script = ExtResource("1_tdgni")
 target = NodePath("../picocar")
 
-[node name="Camera3D" type="Camera3D" parent="camera" node_paths=PackedStringArray("target")]
-transform = Transform3D(0.658078, 0.240759, -0.71342, 0, 0.9475, 0.319755, 0.75295, -0.210424, 0.623529, 0, 2.241, -2.63)
+[node name="Camera3D" type="Camera3D" parent="player_camera" node_paths=PackedStringArray("target")]
+transform = Transform3D(-1.62921e-07, 0.917332, -0.398123, 0, 0.398123, 0.917332, 1, 1.49452e-07, -6.48625e-08, -2.20013, 5.06941, -4.76837e-07)
+size = 17.0
+near = 0.005
 script = ExtResource("1_fev4h")
 target = NodePath("../../picocar")
 
@@ -63,13 +65,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.5, -7)
 colour = Color(1, 0.368627, 0.12549, 1)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.707107, 0.5, -0.5, 0, 0.707107, 0.707107, 0.707107, -0.5, 0.5, -7, 6.85145, 6.04361)
-light_volumetric_fog_energy = 2.469
-light_angular_distance = 22.5
-
-[node name="level_logic" type="Node" parent="."]
-script = ExtResource("7_2r1ou")
-objective = SubResource("Resource_hvpg7")
+transform = Transform3D(0.707107, 0.5, -0.5, 0, 0.707107, 0.707107, 0.707107, -0.5, 0.5, -7, 5.85145, 6.04361)
+light_energy = 1.323
+light_angular_distance = 5.62
+shadow_enabled = true
+shadow_blur = 0.6
 
 [node name="obstacles" type="Node3D" parent="."]
 
@@ -233,45 +233,12 @@ level_logic = NodePath("../../level_logic")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0.5, 9)
 level_logic = NodePath("../../level_logic")
 
-[node name="traffic_cone10" parent="obstacles" node_paths=PackedStringArray("level_logic") instance=ExtResource("6_8ye1h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.5, -6)
-level_logic = NodePath("../../level_logic")
-
 [node name="parking_area" parent="." instance=ExtResource("7_xfbd8")]
 transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 2.64, 5, 0.51, 7)
 
-[node name="level_base" type="Node3D" parent="."]
-
-[node name="ground" type="MeshInstance3D" parent="level_base"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -13, 0)
-mesh = SubResource("PlaneMesh_2fxmj")
-skeleton = NodePath("../..")
-
-[node name="multistorey" type="Node3D" parent="level_base"]
-
-[node name="storey" parent="level_base/multistorey" instance=ExtResource("9_b4c1i")]
-
-[node name="storey3" parent="level_base/multistorey" instance=ExtResource("9_b4c1i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
-
-[node name="pillar1" type="CSGBox3D" parent="level_base/multistorey/storey3/walls" index="5"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 1.3, 12.5)
-size = Vector3(0.4, 2, 0.4)
-
-[node name="pillar2" type="CSGBox3D" parent="level_base/multistorey/storey3/walls" index="6"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 1.3, 12.5)
-size = Vector3(0.4, 2, 0.4)
-
-[node name="pillar3" type="CSGBox3D" parent="level_base/multistorey/storey3/walls" index="7"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 1.3, -12.5)
-size = Vector3(0.4, 2, 0.4)
-
-[node name="pillar4" type="CSGBox3D" parent="level_base/multistorey/storey3/walls" index="8"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 1.3, -12.5)
-size = Vector3(0.4, 2, 0.4)
+[node name="level_base" parent="." instance=ExtResource("9_x1o66")]
 
 [connection signal="complete" from="level_logic" to="ui/end_game_panel" method="_on_level_logic_complete"]
 [connection signal="parked" from="parking_area" to="level_logic" method="on_parked"]
 
 [editable path="ui/end_game_panel"]
-[editable path="level_base/multistorey/storey3"]
