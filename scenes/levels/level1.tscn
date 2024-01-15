@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://c1ss72v31rhec"]
+[gd_scene load_steps=12 format=3 uid="uid://c1ss72v31rhec"]
 
 [ext_resource type="Material" uid="uid://dewqjyhx6l3lt" path="res://assets/materials/tarmac.tres" id="1_2j7rx"]
 [ext_resource type="PackedScene" uid="uid://ba6xyqiidsic4" path="res://scenes/picocar.tscn" id="1_efre1"]
 [ext_resource type="Script" path="res://scripts/props/lookat_camera.gd" id="1_fev4h"]
 [ext_resource type="Script" path="res://scripts/follow.gd" id="1_tdgni"]
+[ext_resource type="PackedScene" uid="uid://bg30bqbscr1ox" path="res://scenes/road_paint_cuboid.tscn" id="5_s1fph"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_odfnc"]
 sky_curve = 0.252269
@@ -21,7 +22,7 @@ volumetric_fog_density = 0.0285
 
 [sub_resource type="BoxMesh" id="BoxMesh_65fdj"]
 material = ExtResource("1_2j7rx")
-size = Vector3(15, 1, 25)
+size = Vector3(20, 1, 25)
 subdivide_width = 128
 subdivide_height = 128
 
@@ -43,7 +44,7 @@ script = ExtResource("1_tdgni")
 target = NodePath("../picocar")
 
 [node name="Camera3D" type="Camera3D" parent="Node3D" node_paths=PackedStringArray("target")]
-transform = Transform3D(0.822878, -0.204398, 0.530182, 0, 0.933061, 0.359718, -0.568218, -0.296004, 0.767795, 3.48465, 2.36427, 5.04638)
+transform = Transform3D(-1, 5.67e-08, -6.65421e-08, 0, 0.761153, 0.648572, 8.74228e-08, 0.648572, -0.761153, 0, 2.241, -2.63)
 script = ExtResource("1_fev4h")
 target = NodePath("../../picocar")
 
@@ -57,40 +58,135 @@ mesh = SubResource("BoxMesh_65fdj")
 [node name="ground" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_2fxmj")
 
+[node name="road_line" parent="ground" instance=ExtResource("5_s1fph")]
+transform = Transform3D(0.2, 0, 0, 0, 0.005, 0, 0, 0, 16, 0, 0.5, 0)
+
+[node name="road_line2" parent="ground" instance=ExtResource("5_s1fph")]
+transform = Transform3D(-8.74228e-09, 0, -6, 0, 0.005, 0, 0.2, 0, -2.62268e-07, 0, 0.5, 0)
+
+[node name="road_line3" parent="ground" instance=ExtResource("5_s1fph")]
+transform = Transform3D(-8.74228e-09, 0, -6, 0, 0.005, 0, 0.2, 0, -2.62268e-07, 0, 0.5, 2)
+
+[node name="road_line4" parent="ground" instance=ExtResource("5_s1fph")]
+transform = Transform3D(-8.74228e-09, 0, -6, 0, 0.005, 0, 0.2, 0, -2.62268e-07, 0, 0.5, 4)
+
+[node name="road_line5" parent="ground" instance=ExtResource("5_s1fph")]
+transform = Transform3D(-8.74228e-09, 0, -6, 0, 0.005, 0, 0.2, 0, -2.62268e-07, 0, 0.5, 6)
+
+[node name="road_line10" parent="ground" instance=ExtResource("5_s1fph")]
+transform = Transform3D(-8.74228e-09, 0, -6, 0, 0.005, 0, 0.2, 0, -2.62268e-07, 0, 0.5, 8)
+
+[node name="road_line6" parent="ground" instance=ExtResource("5_s1fph")]
+transform = Transform3D(-8.74228e-09, 0, -6, 0, 0.005, 0, 0.2, 0, -2.62268e-07, 0, 0.5, -8)
+
+[node name="road_line11" parent="ground" instance=ExtResource("5_s1fph")]
+transform = Transform3D(-8.74228e-09, 0, -3, 0, 0.005, 0, 0.2, 0, -1.31134e-07, 8.5, 0.5, -8)
+
+[node name="road_line12" parent="ground" instance=ExtResource("5_s1fph")]
+transform = Transform3D(-8.74228e-09, 0, -3, 0, 0.005, 0, 0.2, 0, -1.31134e-07, 8.5, 0.5, -6)
+
+[node name="road_line13" parent="ground" instance=ExtResource("5_s1fph")]
+transform = Transform3D(-8.74228e-09, 0, -3, 0, 0.005, 0, 0.2, 0, -1.31134e-07, 8.5, 0.5, -4)
+
+[node name="road_line14" parent="ground" instance=ExtResource("5_s1fph")]
+transform = Transform3D(-8.74228e-09, 0, -3, 0, 0.005, 0, 0.2, 0, -1.31134e-07, 8.5, 0.5, -2)
+
+[node name="road_line15" parent="ground" instance=ExtResource("5_s1fph")]
+transform = Transform3D(-8.74228e-09, 0, -3, 0, 0.005, 0, 0.2, 0, -1.31134e-07, 8.5, 0.5, 0)
+
+[node name="road_line16" parent="ground" instance=ExtResource("5_s1fph")]
+transform = Transform3D(-8.74228e-09, 0, -3, 0, 0.005, 0, 0.2, 0, -1.31134e-07, 8.5, 0.5, 2)
+
+[node name="road_line17" parent="ground" instance=ExtResource("5_s1fph")]
+transform = Transform3D(-8.74228e-09, 0, -3, 0, 0.005, 0, 0.2, 0, -1.31134e-07, 8.5, 0.5, 4)
+
+[node name="road_line18" parent="ground" instance=ExtResource("5_s1fph")]
+transform = Transform3D(-8.74228e-09, 0, -3, 0, 0.005, 0, 0.2, 0, -1.31134e-07, 8.5, 0.5, 6)
+
+[node name="road_line19" parent="ground" instance=ExtResource("5_s1fph")]
+transform = Transform3D(-8.74228e-09, 0, -3, 0, 0.005, 0, 0.2, 0, -1.31134e-07, 8.5, 0.5, 8)
+
+[node name="road_line20" parent="ground" instance=ExtResource("5_s1fph")]
+transform = Transform3D(-8.74228e-09, 0, -3, 0, 0.005, 0, 0.2, 0, -1.31134e-07, 8.5, 0.5, 10)
+
+[node name="road_line21" parent="ground" instance=ExtResource("5_s1fph")]
+transform = Transform3D(-8.74228e-09, 0, -3, 0, 0.005, 0, 0.2, 0, -1.31134e-07, 8.5, 0.5, -10)
+
+[node name="road_line22" parent="ground" instance=ExtResource("5_s1fph")]
+transform = Transform3D(-8.74228e-09, 0, -3, 0, 0.005, 0, 0.2, 0, -1.31134e-07, 8.5, 0.5, -12)
+
+[node name="road_line23" parent="ground" instance=ExtResource("5_s1fph")]
+transform = Transform3D(-8.74228e-09, 0, -3, 0, 0.005, 0, 0.2, 0, -1.31134e-07, 8.5, 0.5, 12)
+
+[node name="road_line24" parent="ground" instance=ExtResource("5_s1fph")]
+transform = Transform3D(-8.74228e-09, 0, -3, 0, 0.005, 0, 0.2, 0, -1.31134e-07, -8.5, 0.5, -8)
+
+[node name="road_line25" parent="ground" instance=ExtResource("5_s1fph")]
+transform = Transform3D(-8.74228e-09, 0, -3, 0, 0.005, 0, 0.2, 0, -1.31134e-07, -8.5, 0.5, -6)
+
+[node name="road_line26" parent="ground" instance=ExtResource("5_s1fph")]
+transform = Transform3D(-8.74228e-09, 0, -3, 0, 0.005, 0, 0.2, 0, -1.31134e-07, -8.5, 0.5, -4)
+
+[node name="road_line27" parent="ground" instance=ExtResource("5_s1fph")]
+transform = Transform3D(-8.74228e-09, 0, -3, 0, 0.005, 0, 0.2, 0, -1.31134e-07, -8.5, 0.5, -2)
+
+[node name="road_line28" parent="ground" instance=ExtResource("5_s1fph")]
+transform = Transform3D(-8.74228e-09, 0, -3, 0, 0.005, 0, 0.2, 0, -1.31134e-07, -8.5, 0.5, 0)
+
+[node name="road_line29" parent="ground" instance=ExtResource("5_s1fph")]
+transform = Transform3D(-8.74228e-09, 0, -3, 0, 0.005, 0, 0.2, 0, -1.31134e-07, -8.5, 0.5, 2)
+
+[node name="road_line30" parent="ground" instance=ExtResource("5_s1fph")]
+transform = Transform3D(-8.74228e-09, 0, -3, 0, 0.005, 0, 0.2, 0, -1.31134e-07, -8.5, 0.5, 4)
+
+[node name="road_line31" parent="ground" instance=ExtResource("5_s1fph")]
+transform = Transform3D(-8.74228e-09, 0, -3, 0, 0.005, 0, 0.2, 0, -1.31134e-07, -8.5, 0.5, 6)
+
+[node name="road_line32" parent="ground" instance=ExtResource("5_s1fph")]
+transform = Transform3D(-8.74228e-09, 0, -3, 0, 0.005, 0, 0.2, 0, -1.31134e-07, -8.5, 0.5, 8)
+
+[node name="road_line33" parent="ground" instance=ExtResource("5_s1fph")]
+transform = Transform3D(-8.74228e-09, 0, -3, 0, 0.005, 0, 0.2, 0, -1.31134e-07, -8.5, 0.5, 10)
+
+[node name="road_line34" parent="ground" instance=ExtResource("5_s1fph")]
+transform = Transform3D(-8.74228e-09, 0, -3, 0, 0.005, 0, 0.2, 0, -1.31134e-07, -8.5, 0.5, -10)
+
+[node name="road_line35" parent="ground" instance=ExtResource("5_s1fph")]
+transform = Transform3D(-8.74228e-09, 0, -3, 0, 0.005, 0, 0.2, 0, -1.31134e-07, -8.5, 0.5, -12)
+
+[node name="road_line36" parent="ground" instance=ExtResource("5_s1fph")]
+transform = Transform3D(-8.74228e-09, 0, -3, 0, 0.005, 0, 0.2, 0, -1.31134e-07, -8.5, 0.5, 12)
+
+[node name="road_line7" parent="ground" instance=ExtResource("5_s1fph")]
+transform = Transform3D(-8.74228e-09, 0, -6, 0, 0.005, 0, 0.2, 0, -2.62268e-07, 0, 0.5, -6)
+
+[node name="road_line8" parent="ground" instance=ExtResource("5_s1fph")]
+transform = Transform3D(-8.74228e-09, 0, -6, 0, 0.005, 0, 0.2, 0, -2.62268e-07, 0, 0.5, -4)
+
+[node name="road_line9" parent="ground" instance=ExtResource("5_s1fph")]
+transform = Transform3D(-8.74228e-09, 0, -6, 0, 0.005, 0, 0.2, 0, -2.62268e-07, 0, 0.5, -2)
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.707107, 0.5, -0.5, 0, 0.707107, 0.707107, 0.707107, -0.5, 0.5, -7, 6.85145, 6.04361)
 light_volumetric_fog_energy = 2.469
 light_angular_distance = 22.5
 
-[node name="walls" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.6, 1, 0)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="walls"]
-transform = Transform3D(0.983393, 0, 0, 0, 0.983393, 0, 0, 0, 0.983393, 0.126213, 0, -0.0418496)
+[node name="walls" type="CSGCombiner3D" parent="."]
 use_collision = true
 collision_mask = 7
-size = Vector3(0.2, 1, 25)
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="walls"]
-transform = Transform3D(0.983393, 0, 0, 0, 0.983393, 0, 0, 0, 0.983393, 15.0738, 0, -0.0418496)
-use_collision = true
-collision_mask = 7
-size = Vector3(0.2, 1, 25)
+[node name="wall1" type="CSGBox3D" parent="walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 12.6)
+size = Vector3(20.4, 1.5, 0.2)
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="walls"]
-transform = Transform3D(-4.29855e-08, 0, 0.983393, 0, 0.983393, 0, -0.983393, 0, -4.29855e-08, 7.6, 0, 12.3489)
-use_collision = true
-collision_mask = 7
-size = Vector3(0.2, 1, 15.4)
+[node name="wall2" type="CSGBox3D" parent="walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, -12.6)
+size = Vector3(20.4, 1.5, 0.2)
 
-[node name="CSGBox3D4" type="CSGBox3D" parent="walls"]
-transform = Transform3D(-4.29855e-08, 0, 0.983393, 0, 0.983393, 0, -0.983393, 0, -4.29855e-08, 2.97805, 0, -12.4326)
-use_collision = true
-collision_mask = 7
-size = Vector3(0.2, 1, 6)
+[node name="wall3" type="CSGBox3D" parent="walls"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -10.1, 0.75, 0)
+size = Vector3(25, 1.5, 0.2)
 
-[node name="CSGBox3D5" type="CSGBox3D" parent="walls"]
-transform = Transform3D(-4.3125e-08, 0, 0.986586, 0, 0.986586, 0, -0.986586, 0, -4.3125e-08, 12.2219, 0, -12.4326)
-use_collision = true
-collision_mask = 7
-size = Vector3(0.2, 1, 6)
+[node name="wall4" type="CSGBox3D" parent="walls"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 10.1, 0.75, 0)
+size = Vector3(25, 1.5, 0.2)
