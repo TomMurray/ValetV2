@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bic24jaw72fqn"]
+
+[ext_resource type="Script" path="res://scripts/components/level_port_component.gd" id="1_nfu2h"]
+
+[node name="next_level_port" type="Node"]
+script = ExtResource("1_nfu2h")

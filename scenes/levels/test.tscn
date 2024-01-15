@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dagghassaijsd"]
+[gd_scene load_steps=26 format=3 uid="uid://dagghassaijsd"]
 
 [ext_resource type="Script" path="res://scripts/ui/ui_in_game_overlay.gd" id="1_vwobm"]
 [ext_resource type="PackedScene" uid="uid://b0jhovhbmtndu" path="res://scenes/ui/ui_black_overlay.tscn" id="2_b4njx"]
@@ -14,7 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://btsndqkxonpfh" path="res://scenes/props/parking_area.tscn" id="12_eqakc"]
 [ext_resource type="Script" path="res://scripts/level/level_logic.gd" id="13_8lu1j"]
 [ext_resource type="Script" path="res://scripts/level/level_objective.gd" id="14_otio3"]
-[ext_resource type="Script" path="res://scripts/components/level_port_component.gd" id="15_ojrsk"]
+[ext_resource type="PackedScene" uid="uid://bic24jaw72fqn" path="res://scenes/components/level_port.tscn" id="15_rtvmt"]
+[ext_resource type="PackedScene" uid="uid://dtflnmjrhol7k" path="res://scenes/components/level_restart.tscn" id="16_y008m"]
 
 [sub_resource type="GDScript" id="GDScript_gs6a6"]
 script/source = "extends RichTextLabel
@@ -604,13 +605,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 2.121, 4.172, 1.01, 0.72)
 script = ExtResource("13_8lu1j")
 objective = SubResource("Resource_1n4c4")
 
-[node name="level_port" type="Node" parent="."]
-script = ExtResource("15_ojrsk")
+[node name="next_level_port" parent="." instance=ExtResource("15_rtvmt")]
 target_level = "res://scenes/levels/level1.tscn"
 
-[connection signal="faded_in" from="ui/Control/level_black_overlay" to="level_port" method="go"]
+[node name="level_restart" parent="." instance=ExtResource("16_y008m")]
+
+[node name="level_port" parent="level_restart" index="0"]
+target_level = "res://scenes/levels/test.tscn"
+
 [connection signal="parked" from="parking_area" to="level_logic" method="on_parked"]
 [connection signal="complete" from="level_logic" to="ui/Control" method="_on_level_logic_complete"]
 [connection signal="complete" from="level_logic" to="ui/Control/level_end_text/SuccessText" method="_on_level_logic_complete"]
 [connection signal="complete" from="level_logic" to="ui/Control/level_end_text/FailureText" method="_on_level_logic_complete"]
 [connection signal="objectives_progress_changed" from="level_logic" to="ui/Control/obstacles_counter_container/obstacles_counter" method="_on_level_logic_objectives_progress_changed"]
+
+[editable path="level_restart"]

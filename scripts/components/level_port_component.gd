@@ -3,7 +3,6 @@ extends Node
 class_name LevelPortComponent
 
 @export var target_level : String:
-	get: return target_level
 	set(value):
 		target_level = value
 		update_configuration_warnings()
