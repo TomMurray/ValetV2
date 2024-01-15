@@ -78,7 +78,8 @@ script = ExtResource("7_eo0h5")
 target = NodePath("../picocar")
 
 [node name="Camera3D" type="Camera3D" parent="follow_camera" node_paths=PackedStringArray("target")]
-transform = Transform3D(-0.99999, 0.00363988, -0.00273075, 0, 0.600117, 0.799912, 0.00455036, 0.799904, -0.600111, 0, 4.94629, -3.70978)
+transform = Transform3D(-0.99999, 0.00363988, -0.00273074, 0, 0.600117, 0.799912, 0.00455036, 0.799904, -0.600111, 0, 4.94629, -3.70978)
+current = true
 script = ExtResource("8_gofos")
 target = NodePath("../../picocar")
 
@@ -95,92 +96,70 @@ mesh = SubResource("PlaneMesh_xwcf5")
 [node name="road_lines" type="Node3D" parent="ground"]
 
 [node name="road_line" parent="ground/road_lines" instance=ExtResource("9_27sdn")]
-transform = Transform3D(-7.86805e-07, 0, 0.2, 0, 0.005, 0, -18, 0, -8.74228e-09, -4, 0, 7)
-skeleton = NodePath("../../..")
+transform = Transform3D(-7.86805e-07, 0, 0.2, 0, 0.48, 0, -18, 0, -8.74228e-09, -4, 0, 7)
 
 [node name="road_line1" parent="ground/road_lines" instance=ExtResource("9_27sdn")]
 transform = Transform3D(3, 0, 0, 0, 0.005, 0, 0, 0, 0.2, -2.6, 0, 16)
-skeleton = NodePath("../../..")
 
 [node name="road_line2" parent="ground/road_lines" instance=ExtResource("9_27sdn")]
 transform = Transform3D(3, 0, 0, 0, 0.005, 0, 0, 0, 0.2, -2.6, 0, 14)
-skeleton = NodePath("../../..")
 
 [node name="road_line3" parent="ground/road_lines" instance=ExtResource("9_27sdn")]
 transform = Transform3D(3, 0, 0, 0, 0.005, 0, 0, 0, 0.2, -2.6, 0, 12)
-skeleton = NodePath("../../..")
 
 [node name="road_line4" parent="ground/road_lines" instance=ExtResource("9_27sdn")]
 transform = Transform3D(3, 0, 0, 0, 0.005, 0, 0, 0, 0.2, -2.6, 0, 10)
-skeleton = NodePath("../../..")
 
 [node name="road_line5" parent="ground/road_lines" instance=ExtResource("9_27sdn")]
 transform = Transform3D(3, 0, 0, 0, 0.005, 0, 0, 0, 0.2, -2.6, 0, 8)
-skeleton = NodePath("../../..")
 
 [node name="road_line6" parent="ground/road_lines" instance=ExtResource("9_27sdn")]
 transform = Transform3D(3, 0, 0, 0, 0.005, 0, 0, 0, 0.2, -2.6, 0, 6)
-skeleton = NodePath("../../..")
 
 [node name="road_line7" parent="ground/road_lines" instance=ExtResource("9_27sdn")]
 transform = Transform3D(3, 0, 0, 0, 0.005, 0, 0, 0, 0.2, -2.6, 0, 4)
-skeleton = NodePath("../../..")
 
 [node name="road_line8" parent="ground/road_lines" instance=ExtResource("9_27sdn")]
 transform = Transform3D(3, 0, 0, 0, 0.005, 0, 0, 0, 0.2, -2.6, 0, 2)
-skeleton = NodePath("../../..")
 
 [node name="road_line9" parent="ground/road_lines" instance=ExtResource("9_27sdn")]
 transform = Transform3D(3, 0, 0, 0, 0.005, 0, 0, 0, 0.2, -2.6, 0, 0)
-skeleton = NodePath("../../..")
 
 [node name="road_line10" parent="ground/road_lines" instance=ExtResource("9_27sdn")]
 transform = Transform3D(3, 0, 0, 0, 0.005, 0, 0, 0, 0.2, -2.6, 0, -2)
-skeleton = NodePath("../../..")
 
 [node name="road_line11" parent="ground/road_lines" instance=ExtResource("9_27sdn")]
 transform = Transform3D(1.35896e-06, 0, -0.2, 0, 0.005, 0, 18, 0, 1.50996e-08, 6.54545, 0, 7)
-skeleton = NodePath("../../..")
 
 [node name="road_line12" parent="ground/road_lines" instance=ExtResource("9_27sdn")]
 transform = Transform3D(-3, 0, -3.01992e-08, 0, 0.005, 0, 4.52987e-07, 0, -0.2, 5.14545, 0, -2)
-skeleton = NodePath("../../..")
 
 [node name="road_line13" parent="ground/road_lines" instance=ExtResource("9_27sdn")]
 transform = Transform3D(-3, 0, -3.01992e-08, 0, 0.005, 0, 4.52987e-07, 0, -0.2, 5.14545, 0, 0)
-skeleton = NodePath("../../..")
 
 [node name="road_line14" parent="ground/road_lines" instance=ExtResource("9_27sdn")]
 transform = Transform3D(-3, 0, -3.01992e-08, 0, 0.005, 0, 4.52987e-07, 0, -0.2, 5.14545, 0, 2)
-skeleton = NodePath("../../..")
 
 [node name="road_line15" parent="ground/road_lines" instance=ExtResource("9_27sdn")]
 transform = Transform3D(-3, 0, -3.01992e-08, 0, 0.005, 0, 4.52987e-07, 0, -0.2, 5.14545, 0, 4)
-skeleton = NodePath("../../..")
 
 [node name="road_line16" parent="ground/road_lines" instance=ExtResource("9_27sdn")]
 transform = Transform3D(-3, 0, -3.01992e-08, 0, 0.005, 0, 4.52987e-07, 0, -0.2, 5.14545, 0, 6)
-skeleton = NodePath("../../..")
 
 [node name="road_line17" parent="ground/road_lines" instance=ExtResource("9_27sdn")]
 transform = Transform3D(-3, 0, -3.01992e-08, 0, 0.005, 0, 4.52987e-07, 0, -0.2, 5.14545, 0, 8)
-skeleton = NodePath("../../..")
 
 [node name="road_line18" parent="ground/road_lines" instance=ExtResource("9_27sdn")]
 transform = Transform3D(-3, 0, -3.01992e-08, 0, 0.005, 0, 4.52987e-07, 0, -0.2, 5.14546, 0, 10)
-skeleton = NodePath("../../..")
 
 [node name="road_line19" parent="ground/road_lines" instance=ExtResource("9_27sdn")]
 transform = Transform3D(-3, 0, -3.01992e-08, 0, 0.005, 0, 4.52987e-07, 0, -0.2, 5.14546, 0, 12)
-skeleton = NodePath("../../..")
 
 [node name="road_line20" parent="ground/road_lines" instance=ExtResource("9_27sdn")]
 transform = Transform3D(-3, 0, -3.01992e-08, 0, 0.005, 0, 4.52987e-07, 0, -0.2, 5.14546, 0, 14)
-skeleton = NodePath("../../..")
 
 [node name="road_line21" parent="ground/road_lines" instance=ExtResource("9_27sdn")]
 transform = Transform3D(-3, 0, -3.01992e-08, 0, 0.005, 0, 4.52987e-07, 0, -0.2, 5.14546, 0, 16)
-skeleton = NodePath("../../..")
 
 [node name="walls" type="StaticBody3D" parent="."]
 collision_mask = 7

@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://bg30bqbscr1ox"]
+[gd_scene load_steps=4 format=3 uid="uid://bg30bqbscr1ox"]
 
 [ext_resource type="Shader" path="res://shaders/road_paint.gdshader" id="1_1rjbg"]
-[ext_resource type="Script" path="res://scripts/road_paint_cuboid.gd" id="2_p0mps"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hbbfw"]
 render_priority = 0
@@ -12,5 +11,3 @@ material = SubResource("ShaderMaterial_hbbfw")
 
 [node name="MeshInstance3D" type="MeshInstance3D"]
 mesh = SubResource("BoxMesh_40lpp")
-skeleton = NodePath("../..")
-script = ExtResource("2_p0mps")

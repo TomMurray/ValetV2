@@ -3,9 +3,6 @@ render_mode depth_draw_never;
 
 uniform sampler2D depth_texture : hint_depth_texture;
 
-// We can use the transform here to 
-instance uniform mat4 transform;
-
 varying mat4 CAMERA;
 
 void vertex() {
@@ -21,11 +18,15 @@ void fragment() {
 	vec4 world = CAMERA * INV_PROJECTION_MATRIX * vec4(ndc, 1.0);
 	vec3 world_p = world.xyz / world.w;
 	
-	mat3 basis_c = mat3(transform);
-	vec3 position_c = transform[3].xyz;
-	vec3 lengths = vec3(length(basis_c[0]), length(basis_c[1]), length(basis_c[2]));
+	mat3 basis = mat3(MODEL_MATRIX);
+	vec3 basis_x = basis[0];
+	vec3 basis_y = basis[1];
+	vec3 basis_z = basis[2];
+	
+	vec3 position_c = MODEL_MATRIX[3].xyz;
+	vec3 lengths = vec3(length(basis_x), length(basis_y), length(basis_z));
 	vec3 b = lengths * 0.5;
-	mat3 rot = mat3(basis_c[0] / lengths.x, basis_c[1] / lengths.y, basis_c[2] / lengths.z);
+	mat3 rot = mat3(basis_x / lengths.x, basis_y / lengths.y, basis_z / lengths.z);
 	mat3 rot_inverse_c = inverse(rot);
 	// Rect bounds
 	
