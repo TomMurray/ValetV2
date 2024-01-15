@@ -26,7 +26,7 @@ class_name PicoCar
 @export var max_steer_angle : float = 40.0
 @export var steer_per_sec : float = 120.0
 @export var friction_per_sec : float = 0.6
-@export var secs_to_change_dir : float = 1.0
+@export var secs_to_change_dir : float = 0.5
 
 @export_category("Forward motion")
 @export var max_speed_per_sec_fwd : float = 8
