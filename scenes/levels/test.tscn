@@ -1,7 +1,7 @@
 [gd_scene load_steps=21 format=3 uid="uid://dagghassaijsd"]
 
 [ext_resource type="PackedScene" uid="uid://bdm7x5kots6yv" path="res://scenes/ui/end_game_panel.tscn" id="1_ff5sw"]
-[ext_resource type="PackedScene" uid="uid://rs0s2pcprrwi" path="res://scenes/ui/obstacles_counter.tscn" id="4_c3dk2"]
+[ext_resource type="PackedScene" uid="uid://bfeebin6bl3v" path="res://scenes/ui/hud_obstacles_counter.tscn" id="2_hx1vf"]
 [ext_resource type="PackedScene" uid="uid://ba6xyqiidsic4" path="res://scenes/picocar.tscn" id="6_mojs0"]
 [ext_resource type="Script" path="res://scripts/follow.gd" id="7_eo0h5"]
 [ext_resource type="Script" path="res://scripts/props/lookat_camera.gd" id="8_gofos"]
@@ -47,22 +47,9 @@ max_obstacles_hit = 5
 [node name="obstacles_counter" parent="in_game_ui/end_game_panel/list/obstacle_counter_container" index="0" node_paths=PackedStringArray("level_logic")]
 level_logic = NodePath("../../../../../level_logic")
 
-[node name="obstacles_counter_container" type="MarginContainer" parent="in_game_ui"]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -529.0
-offset_bottom = 237.0
-grow_horizontal = 0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/margin_left = 50
-theme_override_constants/margin_top = 50
-theme_override_constants/margin_right = 50
-theme_override_constants/margin_bottom = 50
+[node name="obstacles_counter_container" parent="in_game_ui" instance=ExtResource("2_hx1vf")]
 
-[node name="obstacles_counter" parent="in_game_ui/obstacles_counter_container" node_paths=PackedStringArray("level_logic") instance=ExtResource("4_c3dk2")]
-layout_mode = 2
+[node name="obstacles_counter" parent="in_game_ui/obstacles_counter_container" index="0" node_paths=PackedStringArray("level_logic")]
 level_logic = NodePath("../../../level_logic")
 
 [node name="sun" type="DirectionalLight3D" parent="."]
@@ -74,11 +61,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0168858, -4.76837e-07, 0.00
 colour = Color(0.466667, 0.733333, 0.639216, 1)
 
 [node name="follow_camera" type="Node3D" parent="." node_paths=PackedStringArray("target")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0168858, -4.76837e-07, 0.00103188)
 script = ExtResource("7_eo0h5")
 target = NodePath("../picocar")
 
 [node name="Camera3D" type="Camera3D" parent="follow_camera" node_paths=PackedStringArray("target")]
-transform = Transform3D(-0.99999, 0.00363988, -0.00273074, 0, 0.600117, 0.799912, 0.00455036, 0.799904, -0.600111, 0, 4.94629, -3.70978)
+transform = Transform3D(-1, 6.99378e-08, -5.24542e-08, 0, 0.600006, 0.799995, 8.74228e-08, 0.799995, -0.600006, 0, 4.94629, -3.70978)
 current = true
 script = ExtResource("8_gofos")
 target = NodePath("../../picocar")
@@ -514,7 +502,7 @@ script = ExtResource("13_8lu1j")
 objective = SubResource("Resource_1n4c4")
 
 [node name="next_level_port" parent="." instance=ExtResource("15_rtvmt")]
-target_level = "res://scenes/levels/level1.tscn"
+target_level = "res://scenes/levels/world1/level1.tscn"
 
 [node name="level_restart" parent="." instance=ExtResource("16_y008m")]
 
@@ -527,4 +515,5 @@ target_level = "res://scenes/levels/test.tscn"
 [connection signal="complete" from="level_logic" to="in_game_ui/end_game_panel" method="_on_level_logic_complete"]
 
 [editable path="in_game_ui/end_game_panel"]
+[editable path="in_game_ui/obstacles_counter_container"]
 [editable path="level_restart"]

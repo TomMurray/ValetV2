@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="ValetV2"
-run/main_scene="res://scenes/levels/test.tscn"
+run/main_scene="res://scenes/levels/world1/level1.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 

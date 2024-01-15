@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bdm7x5kots6yv"]
+[gd_scene load_steps=4 format=3 uid="uid://bdm7x5kots6yv"]
 
 [ext_resource type="Theme" uid="uid://dpqnmj3en2tdc" path="res://themes/in_game_overlay.tres" id="1_xgatg"]
 [ext_resource type="Script" path="res://scripts/ui/end_game_panel.gd" id="2_2bskh"]
-[ext_resource type="PackedScene" uid="uid://rs0s2pcprrwi" path="res://scenes/ui/obstacles_counter.tscn" id="3_hvi30"]
 
 [sub_resource type="GDScript" id="GDScript_gs6a6"]
 script/source = "extends RichTextLabel
@@ -29,7 +28,7 @@ grow_vertical = 2
 theme = ExtResource("1_xgatg")
 script = ExtResource("2_2bskh")
 
-[node name="list" type="VBoxContainer" parent="."]
+[node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -37,10 +36,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="outcome_container" type="CenterContainer" parent="list"]
+[node name="list" type="VBoxContainer" parent="CenterContainer"]
 layout_mode = 2
 
-[node name="success_text" type="RichTextLabel" parent="list/outcome_container"]
+[node name="outcome_container" type="CenterContainer" parent="CenterContainer/list"]
+layout_mode = 2
+
+[node name="success_text" type="RichTextLabel" parent="CenterContainer/list/outcome_container"]
 unique_name_in_owner = true
 visible = false
 clip_contents = false
@@ -53,7 +55,7 @@ scroll_active = false
 autowrap_mode = 0
 script = SubResource("GDScript_gs6a6")
 
-[node name="failure_text" type="RichTextLabel" parent="list/outcome_container"]
+[node name="failure_text" type="RichTextLabel" parent="CenterContainer/list/outcome_container"]
 unique_name_in_owner = true
 visible = false
 clip_contents = false
@@ -66,16 +68,10 @@ scroll_active = false
 autowrap_mode = 0
 script = SubResource("GDScript_gs6a6")
 
-[node name="obstacle_counter_container" type="CenterContainer" parent="list"]
+[node name="to_next_level_container" type="CenterContainer" parent="CenterContainer/list"]
 layout_mode = 2
 
-[node name="obstacles_counter" parent="list/obstacle_counter_container" instance=ExtResource("3_hvi30")]
-layout_mode = 2
-
-[node name="to_next_level_container" type="CenterContainer" parent="list"]
-layout_mode = 2
-
-[node name="next_level_button" type="Button" parent="list/to_next_level_container"]
+[node name="next_level_button" type="Button" parent="CenterContainer/list/to_next_level_container"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -83,7 +79,7 @@ theme = ExtResource("1_xgatg")
 text = "NEXT LEVEL
 "
 
-[node name="retry_level_button" type="Button" parent="list/to_next_level_container"]
+[node name="retry_level_button" type="Button" parent="CenterContainer/list/to_next_level_container"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2

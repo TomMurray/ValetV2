@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://bfeebin6bl3v"]
+
+[ext_resource type="PackedScene" uid="uid://rs0s2pcprrwi" path="res://scenes/ui/obstacles_counter.tscn" id="1_6h4p1"]
+
+[node name="obstacles_counter_container" type="MarginContainer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -529.0
+offset_bottom = 237.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="obstacles_counter" parent="." instance=ExtResource("1_6h4p1")]
+layout_mode = 2

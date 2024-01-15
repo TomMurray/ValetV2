@@ -8,7 +8,7 @@
 script = ExtResource("1_5o0qc")
 
 [node name="xyz_cube" parent="." instance=ExtResource("1_mjnkl")]
-transform = Transform3D(1, 0, 0, 0, 0.3, 0, 0, 0, 1, 0, 0.15, 0)
+transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 0.25, 0)
 base_colour = Color(0.521569, 0.913725, 0.956863, 0.611765)
 
 [node name="area" parent="." instance=ExtResource("3_slvn6")]
