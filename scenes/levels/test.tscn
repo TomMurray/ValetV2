@@ -507,7 +507,7 @@ transform = Transform3D(-0.999134, 0, 0.0415966, 0, 1, 0, -0.0415966, 0, -0.9991
 level_logic = NodePath("../../level_logic")
 
 [node name="parking_area" parent="." instance=ExtResource("12_eqakc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 2.121, 4.172, 1.01, 0.72)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 4.242, 4.172, 0.1, 0.72)
 
 [node name="level_logic" type="Node" parent="."]
 script = ExtResource("13_8lu1j")

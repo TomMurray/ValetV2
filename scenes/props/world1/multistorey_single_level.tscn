@@ -1,0 +1,277 @@
+[gd_scene load_steps=6 format=3 uid="uid://o8bbuwnr03eo"]
+
+[ext_resource type="Material" uid="uid://dewqjyhx6l3lt" path="res://assets/materials/tarmac.tres" id="1_6exyl"]
+[ext_resource type="PackedScene" uid="uid://bg30bqbscr1ox" path="res://scenes/road_paint_cuboid.tscn" id="2_a0oj5"]
+[ext_resource type="PackedScene" uid="uid://dg3jtqd7g3yd3" path="res://scenes/props/world1/light_cover.tscn" id="3_hvo14"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_65fdj"]
+material = ExtResource("1_6exyl")
+size = Vector3(20, 1, 25)
+subdivide_width = 128
+subdivide_height = 128
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7la1g"]
+size = Vector3(20, 1, 25)
+
+[node name="storey" type="Node3D"]
+
+[node name="floor" type="StaticBody3D" parent="."]
+collision_mask = 7
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="floor"]
+mesh = SubResource("BoxMesh_65fdj")
+skeleton = NodePath("../../../../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="floor"]
+shape = SubResource("BoxShape3D_7la1g")
+
+[node name="walls" type="CSGCombiner3D" parent="."]
+use_collision = true
+collision_mask = 7
+
+[node name="wall1" type="CSGBox3D" parent="walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 12.6)
+size = Vector3(20.4, 2, 0.2)
+
+[node name="wall2" type="CSGBox3D" parent="walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -12.6)
+size = Vector3(20.4, 2, 0.2)
+
+[node name="wall3" type="CSGBox3D" parent="walls"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -10.1, 0.5, 0)
+size = Vector3(25, 2, 0.2)
+
+[node name="wall4" type="CSGBox3D" parent="walls"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 10.1, 0.5, 0)
+size = Vector3(25, 2, 0.2)
+
+[node name="wall5" type="CSGBox3D" parent="walls"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, -0.6, 0)
+size = Vector3(25.4, 0.2, 20.4)
+
+[node name="light_cover" parent="walls" instance=ExtResource("3_hvo14")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00904, -12.5238)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="walls/light_cover"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.123771, 0)
+light_color = Color(1, 0.827451, 0.52549, 1)
+light_energy = 2.083
+light_indirect_energy = 1.889
+
+[node name="light_cover5" parent="walls" instance=ExtResource("3_hvo14")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 1.00904, -12.5238)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="walls/light_cover5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.123771, 0)
+light_color = Color(1, 0.827451, 0.52549, 1)
+light_energy = 2.083
+light_indirect_energy = 1.889
+
+[node name="light_cover2" parent="walls" instance=ExtResource("3_hvo14")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1.00904, -12.5238)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="walls/light_cover2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.123771, 0)
+light_color = Color(1, 0.827451, 0.52549, 1)
+light_energy = 2.083
+light_indirect_energy = 1.889
+
+[node name="light_cover3" parent="walls" instance=ExtResource("3_hvo14")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1.00904, -12.5238)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="walls/light_cover3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.123771, 0)
+light_color = Color(1, 0.827451, 0.52549, 1)
+light_energy = 2.083
+light_indirect_energy = 1.889
+
+[node name="light_cover4" parent="walls" instance=ExtResource("3_hvo14")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 1.00904, -12.5238)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="walls/light_cover4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.123771, 0)
+light_color = Color(1, 0.827451, 0.52549, 1)
+light_energy = 2.083
+light_indirect_energy = 1.889
+
+[node name="light_cover7" parent="walls" instance=ExtResource("3_hvo14")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -8, 1.00904, 12.4762)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="walls/light_cover7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.123771, 0)
+light_color = Color(1, 0.827451, 0.52549, 1)
+light_energy = 2.083
+light_indirect_energy = 1.889
+
+[node name="light_cover8" parent="walls" instance=ExtResource("3_hvo14")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -4, 1.00904, 12.4762)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="walls/light_cover8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.123771, 0)
+light_color = Color(1, 0.827451, 0.52549, 1)
+light_energy = 2.083
+light_indirect_energy = 1.889
+
+[node name="light_cover9" parent="walls" instance=ExtResource("3_hvo14")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 4, 1.00904, 12.4762)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="walls/light_cover9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.123771, 0)
+light_color = Color(1, 0.827451, 0.52549, 1)
+light_energy = 2.083
+light_indirect_energy = 1.889
+
+[node name="light_cover10" parent="walls" instance=ExtResource("3_hvo14")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 8, 1.00904, 12.4762)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="walls/light_cover10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.123771, 0)
+light_color = Color(1, 0.827451, 0.52549, 1)
+light_energy = 2.083
+light_indirect_energy = 1.889
+
+[node name="road_lines" type="Node3D" parent="."]
+
+[node name="road_line" parent="road_lines" instance=ExtResource("2_a0oj5")]
+transform = Transform3D(0.2, 0, 0, 0, 0.005, 0, 0, 0, 16, 0, 0.5, 0)
+skeleton = NodePath("../../../../ground")
+
+[node name="road_line2" parent="road_lines" instance=ExtResource("2_a0oj5")]
+transform = Transform3D(-8.74228e-09, 0, -6, 0, 0.005, 0, 0.2, 0, -2.62268e-07, 0, 0.5, 0)
+skeleton = NodePath("../../../../ground")
+
+[node name="road_line3" parent="road_lines" instance=ExtResource("2_a0oj5")]
+transform = Transform3D(-8.74228e-09, 0, -6, 0, 0.005, 0, 0.2, 0, -2.62268e-07, 0, 0.5, 2)
+skeleton = NodePath("../../../../ground")
+
+[node name="road_line4" parent="road_lines" instance=ExtResource("2_a0oj5")]
+transform = Transform3D(-8.74228e-09, 0, -6, 0, 0.005, 0, 0.2, 0, -2.62268e-07, 0, 0.5, 4)
+skeleton = NodePath("../../../../ground")
+
+[node name="road_line5" parent="road_lines" instance=ExtResource("2_a0oj5")]
+transform = Transform3D(-8.74228e-09, 0, -6, 0, 0.005, 0, 0.2, 0, -2.62268e-07, 0, 0.5, 6)
+skeleton = NodePath("../../../../ground")
+
+[node name="road_line10" parent="road_lines" instance=ExtResource("2_a0oj5")]
+transform = Transform3D(-8.74228e-09, 0, -6, 0, 0.005, 0, 0.2, 0, -2.62268e-07, 0, 0.5, 8)
+skeleton = NodePath("../../../../ground")
+
+[node name="road_line6" parent="road_lines" instance=ExtResource("2_a0oj5")]
+transform = Transform3D(-8.74228e-09, 0, -6, 0, 0.005, 0, 0.2, 0, -2.62268e-07, 0, 0.5, -8)
+skeleton = NodePath("../../../../ground")
+
+[node name="road_line11" parent="road_lines" instance=ExtResource("2_a0oj5")]
+transform = Transform3D(-8.74228e-09, 0, -3, 0, 0.005, 0, 0.2, 0, -1.31134e-07, 8.5, 0.5, -8)
+skeleton = NodePath("../../../../ground")
+
+[node name="road_line12" parent="road_lines" instance=ExtResource("2_a0oj5")]
+transform = Transform3D(-8.74228e-09, 0, -3, 0, 0.005, 0, 0.2, 0, -1.31134e-07, 8.5, 0.5, -6)
+skeleton = NodePath("../../../../ground")
+
+[node name="road_line13" parent="road_lines" instance=ExtResource("2_a0oj5")]
+transform = Transform3D(-8.74228e-09, 0, -3, 0, 0.005, 0, 0.2, 0, -1.31134e-07, 8.5, 0.5, -4)
+skeleton = NodePath("../../../../ground")
+
+[node name="road_line14" parent="road_lines" instance=ExtResource("2_a0oj5")]
+transform = Transform3D(-8.74228e-09, 0, -3, 0, 0.005, 0, 0.2, 0, -1.31134e-07, 8.5, 0.5, -2)
+skeleton = NodePath("../../../../ground")
+
+[node name="road_line15" parent="road_lines" instance=ExtResource("2_a0oj5")]
+transform = Transform3D(-8.74228e-09, 0, -3, 0, 0.005, 0, 0.2, 0, -1.31134e-07, 8.5, 0.5, 0)
+skeleton = NodePath("../../../../ground")
+
+[node name="road_line16" parent="road_lines" instance=ExtResource("2_a0oj5")]
+transform = Transform3D(-8.74228e-09, 0, -3, 0, 0.005, 0, 0.2, 0, -1.31134e-07, 8.5, 0.5, 2)
+skeleton = NodePath("../../../../ground")
+
+[node name="road_line17" parent="road_lines" instance=ExtResource("2_a0oj5")]
+transform = Transform3D(-8.74228e-09, 0, -3, 0, 0.005, 0, 0.2, 0, -1.31134e-07, 8.5, 0.5, 4)
+skeleton = NodePath("../../../../ground")
+
+[node name="road_line18" parent="road_lines" instance=ExtResource("2_a0oj5")]
+transform = Transform3D(-8.74228e-09, 0, -3, 0, 0.005, 0, 0.2, 0, -1.31134e-07, 8.5, 0.5, 6)
+skeleton = NodePath("../../../../ground")
+
+[node name="road_line19" parent="road_lines" instance=ExtResource("2_a0oj5")]
+transform = Transform3D(-8.74228e-09, 0, -3, 0, 0.005, 0, 0.2, 0, -1.31134e-07, 8.5, 0.5, 8)
+skeleton = NodePath("../../../../ground")
+
+[node name="road_line20" parent="road_lines" instance=ExtResource("2_a0oj5")]
+transform = Transform3D(-8.74228e-09, 0, -3, 0, 0.005, 0, 0.2, 0, -1.31134e-07, 8.5, 0.5, 10)
+skeleton = NodePath("../../../../ground")
+
+[node name="road_line21" parent="road_lines" instance=ExtResource("2_a0oj5")]
+transform = Transform3D(-8.74228e-09, 0, -3, 0, 0.005, 0, 0.2, 0, -1.31134e-07, 8.5, 0.5, -10)
+skeleton = NodePath("../../../../ground")
+
+[node name="road_line22" parent="road_lines" instance=ExtResource("2_a0oj5")]
+transform = Transform3D(-8.74228e-09, 0, -3, 0, 0.005, 0, 0.2, 0, -1.31134e-07, 8.5, 0.5, -12)
+skeleton = NodePath("../../../../ground")
+
+[node name="road_line23" parent="road_lines" instance=ExtResource("2_a0oj5")]
+transform = Transform3D(-8.74228e-09, 0, -3, 0, 0.005, 0, 0.2, 0, -1.31134e-07, 8.5, 0.5, 12)
+skeleton = NodePath("../../../../ground")
+
+[node name="road_line24" parent="road_lines" instance=ExtResource("2_a0oj5")]
+transform = Transform3D(-8.74228e-09, 0, -3, 0, 0.005, 0, 0.2, 0, -1.31134e-07, -8.5, 0.5, -8)
+skeleton = NodePath("../../../../ground")
+
+[node name="road_line25" parent="road_lines" instance=ExtResource("2_a0oj5")]
+transform = Transform3D(-8.74228e-09, 0, -3, 0, 0.005, 0, 0.2, 0, -1.31134e-07, -8.5, 0.5, -6)
+skeleton = NodePath("../../../../ground")
+
+[node name="road_line26" parent="road_lines" instance=ExtResource("2_a0oj5")]
+transform = Transform3D(-8.74228e-09, 0, -3, 0, 0.005, 0, 0.2, 0, -1.31134e-07, -8.5, 0.5, -4)
+skeleton = NodePath("../../../../ground")
+
+[node name="road_line27" parent="road_lines" instance=ExtResource("2_a0oj5")]
+transform = Transform3D(-8.74228e-09, 0, -3, 0, 0.005, 0, 0.2, 0, -1.31134e-07, -8.5, 0.5, -2)
+skeleton = NodePath("../../../../ground")
+
+[node name="road_line28" parent="road_lines" instance=ExtResource("2_a0oj5")]
+transform = Transform3D(-8.74228e-09, 0, -3, 0, 0.005, 0, 0.2, 0, -1.31134e-07, -8.5, 0.5, 0)
+skeleton = NodePath("../../../../ground")
+
+[node name="road_line29" parent="road_lines" instance=ExtResource("2_a0oj5")]
+transform = Transform3D(-8.74228e-09, 0, -3, 0, 0.005, 0, 0.2, 0, -1.31134e-07, -8.5, 0.5, 2)
+skeleton = NodePath("../../../../ground")
+
+[node name="road_line30" parent="road_lines" instance=ExtResource("2_a0oj5")]
+transform = Transform3D(-8.74228e-09, 0, -3, 0, 0.005, 0, 0.2, 0, -1.31134e-07, -8.5, 0.5, 4)
+skeleton = NodePath("../../../../ground")
+
+[node name="road_line31" parent="road_lines" instance=ExtResource("2_a0oj5")]
+transform = Transform3D(-8.74228e-09, 0, -3, 0, 0.005, 0, 0.2, 0, -1.31134e-07, -8.5, 0.5, 6)
+skeleton = NodePath("../../../../ground")
+
+[node name="road_line32" parent="road_lines" instance=ExtResource("2_a0oj5")]
+transform = Transform3D(-8.74228e-09, 0, -3, 0, 0.005, 0, 0.2, 0, -1.31134e-07, -8.5, 0.5, 8)
+skeleton = NodePath("../../../../ground")
+
+[node name="road_line33" parent="road_lines" instance=ExtResource("2_a0oj5")]
+transform = Transform3D(-8.74228e-09, 0, -3, 0, 0.005, 0, 0.2, 0, -1.31134e-07, -8.5, 0.5, 10)
+skeleton = NodePath("../../../../ground")
+
+[node name="road_line34" parent="road_lines" instance=ExtResource("2_a0oj5")]
+transform = Transform3D(-8.74228e-09, 0, -3, 0, 0.005, 0, 0.2, 0, -1.31134e-07, -8.5, 0.5, -10)
+skeleton = NodePath("../../../../ground")
+
+[node name="road_line35" parent="road_lines" instance=ExtResource("2_a0oj5")]
+transform = Transform3D(-8.74228e-09, 0, -3, 0, 0.005, 0, 0.2, 0, -1.31134e-07, -8.5, 0.5, -12)
+skeleton = NodePath("../../../../ground")
+
+[node name="road_line36" parent="road_lines" instance=ExtResource("2_a0oj5")]
+transform = Transform3D(-8.74228e-09, 0, -3, 0, 0.005, 0, 0.2, 0, -1.31134e-07, -8.5, 0.5, 12)
+skeleton = NodePath("../../../../ground")
+
+[node name="road_line7" parent="road_lines" instance=ExtResource("2_a0oj5")]
+transform = Transform3D(-8.74228e-09, 0, -6, 0, 0.005, 0, 0.2, 0, -2.62268e-07, 0, 0.5, -6)
+skeleton = NodePath("../../../../ground")
+
+[node name="road_line8" parent="road_lines" instance=ExtResource("2_a0oj5")]
+transform = Transform3D(-8.74228e-09, 0, -6, 0, 0.005, 0, 0.2, 0, -2.62268e-07, 0, 0.5, -4)
+skeleton = NodePath("../../../../ground")
+
+[node name="road_line9" parent="road_lines" instance=ExtResource("2_a0oj5")]
+transform = Transform3D(-8.74228e-09, 0, -6, 0, 0.005, 0, 0.2, 0, -2.62268e-07, 0, 0.5, -2)
+skeleton = NodePath("../../../../ground")

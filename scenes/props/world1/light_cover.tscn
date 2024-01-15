@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://dg3jtqd7g3yd3"]
+
+[node name="light_cover" type="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.6276, -5.52381)
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+rings = 26
+
+[node name="CSGSphere3D2" type="CSGSphere3D" parent="."]
+transform = Transform3D(0.88, 0, 0, 0, 0.88, 0, 0, 0, 0.88, 0, 0, 0)
+operation = 2
+rings = 26
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.25)
+operation = 2
+size = Vector3(1, 1, 0.5)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0.25)
+operation = 2
+size = Vector3(1, 0.5, 0.5)
