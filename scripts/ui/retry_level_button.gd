@@ -7,7 +7,7 @@ func _on_ready():
 	disabled = scene_tree_links == null or not scene_tree_links.has_curr()
 
 func _ready():
-	disabled = scene_tree_links == null or not scene_tree_links.has_next()
+	disabled = scene_tree_links == null or not scene_tree_links.has_curr()
 
 func _on_pressed():
 	scene_tree_links.reload_current()
