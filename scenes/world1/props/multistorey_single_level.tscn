@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://o8bbuwnr03eo"]
+[gd_scene load_steps=7 format=3 uid="uid://o8bbuwnr03eo"]
 
 [ext_resource type="Material" uid="uid://dewqjyhx6l3lt" path="res://assets/materials/tarmac.tres" id="1_6exyl"]
 [ext_resource type="PackedScene" uid="uid://bg30bqbscr1ox" path="res://scenes/road_paint_cuboid.tscn" id="2_a0oj5"]
 [ext_resource type="PackedScene" uid="uid://dg3jtqd7g3yd3" path="res://scenes/world1/props/light_cover.tscn" id="3_hvo14"]
+[ext_resource type="PackedScene" uid="uid://crlt4to4wcejw" path="res://scenes/prefabs/road_arrow_right.tscn" id="4_7on2k"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_65fdj"]
 material = ExtResource("1_6exyl")
@@ -232,3 +233,17 @@ transform = Transform3D(-8.74228e-09, 0, -6, 0, 0.005, 0, 0.2, 0, -2.62268e-07, 
 
 [node name="road_line9" parent="road_lines" instance=ExtResource("2_a0oj5")]
 transform = Transform3D(-8.74228e-09, 0, -6, 0, 0.005, 0, 0.2, 0, -2.62268e-07, 0, 0.5, -2)
+
+[node name="road_arrow_right" parent="road_lines" instance=ExtResource("4_7on2k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.5, -10)
+
+[node name="road_arrow_right3" parent="road_lines" instance=ExtResource("4_7on2k")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5, 0.5, 10)
+
+[node name="road_arrow_right4" parent="road_lines" instance=ExtResource("4_7on2k")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -5, 0.5, 10)
+
+[node name="road_arrow_right5" parent="road_lines" instance=ExtResource("4_7on2k")]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -5, 0.5, -10)
+
+[node name="road_arrow_right2" parent="road_lines" instance=ExtResource("4_7on2k")]

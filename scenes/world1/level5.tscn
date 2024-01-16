@@ -1,0 +1,317 @@
+[gd_scene load_steps=14 format=3 uid="uid://7ccwl8uxxcc"]
+
+[ext_resource type="PackedScene" uid="uid://bv8snj5dy8q4c" path="res://scenes/world1/prefabs/foggy_rainy_world_environment.tscn" id="1_w5lvt"]
+[ext_resource type="PackedScene" uid="uid://bdm7x5kots6yv" path="res://scenes/ui/end_game_panel.tscn" id="2_6nv6c"]
+[ext_resource type="PackedScene" uid="uid://dem0tl0qj4t03" path="res://scenes/prefabs/player_camera.tscn" id="3_hdnra"]
+[ext_resource type="PackedScene" uid="uid://10k7nln8wxq3" path="res://scenes/world1/prefabs/car.tscn" id="4_d66sp"]
+[ext_resource type="PackedScene" uid="uid://b4mgfyr48tc6j" path="res://scenes/world1/prefabs/parking_area.tscn" id="5_uo1nk"]
+[ext_resource type="Script" path="res://scripts/level/level_logic.gd" id="6_gv5v5"]
+[ext_resource type="Script" path="res://scripts/level/level_objective.gd" id="7_y051k"]
+[ext_resource type="PackedScene" uid="uid://1aps6snaxwys" path="res://scenes/world1/level_chunks/multistorey.tscn" id="8_f37ld"]
+[ext_resource type="Script" path="res://scripts/components/scene_tree_links_component.gd" id="9_pv7cn"]
+[ext_resource type="Script" path="res://scripts/components/scene_tree_node.gd" id="10_4o46l"]
+[ext_resource type="PackedScene" uid="uid://dlcl4g8eeahy7" path="res://scenes/props/traffic_cone.tscn" id="11_qc1sv"]
+
+[sub_resource type="Resource" id="Resource_lfxpm"]
+script = ExtResource("7_y051k")
+max_obstacles_hit = 1
+
+[sub_resource type="Resource" id="Resource_3aega"]
+script = ExtResource("10_4o46l")
+this_scene = ""
+children = Array[String](["res://scenes/world1/level5.tscn"])
+child_index = 0
+
+[node name="level" type="Node3D"]
+
+[node name="world_environment" parent="." instance=ExtResource("1_w5lvt")]
+
+[node name="ui" type="CanvasLayer" parent="."]
+
+[node name="end_game_panel" parent="ui" node_paths=PackedStringArray("scene_tree_links", "level_logic") instance=ExtResource("2_6nv6c")]
+scene_tree_links = NodePath("../../scene_tree_links_component")
+level_logic = NodePath("../../level_logic")
+
+[node name="player_camera" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_hdnra")]
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -5, 0.5, 9)
+target = NodePath("../car")
+
+[node name="car" parent="." instance=ExtResource("4_d66sp")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -5, 0.5, 9)
+
+[node name="parking_area" parent="." instance=ExtResource("5_uo1nk")]
+transform = Transform3D(1.3, 0, 1.19209e-07, 0, 1.3, 0, 0, 0, 2.64, 5, 0.5, -10)
+
+[node name="level_logic" type="Node" parent="."]
+script = ExtResource("6_gv5v5")
+objective = SubResource("Resource_lfxpm")
+
+[node name="scene_tree_links_component" type="Node" parent="."]
+script = ExtResource("9_pv7cn")
+scene_tree_node = SubResource("Resource_3aega")
+
+[node name="multistorey" parent="." instance=ExtResource("8_f37ld")]
+
+[node name="obstacles" type="Node3D" parent="."]
+
+[node name="traffic_cone" parent="obstacles" node_paths=PackedStringArray("level_logic") instance=ExtResource("11_qc1sv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0.5, 9)
+level_logic = NodePath("../../level_logic")
+
+[node name="traffic_cone2" parent="obstacles" node_paths=PackedStringArray("level_logic") instance=ExtResource("11_qc1sv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0.5, 8)
+level_logic = NodePath("../../level_logic")
+
+[node name="traffic_cone3" parent="obstacles" node_paths=PackedStringArray("level_logic") instance=ExtResource("11_qc1sv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0.5, 7)
+level_logic = NodePath("../../level_logic")
+
+[node name="traffic_cone13" parent="obstacles" node_paths=PackedStringArray("level_logic") instance=ExtResource("11_qc1sv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0.5, 6)
+level_logic = NodePath("../../level_logic")
+
+[node name="traffic_cone4" parent="obstacles" node_paths=PackedStringArray("level_logic") instance=ExtResource("11_qc1sv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0.5, 9)
+level_logic = NodePath("../../level_logic")
+
+[node name="traffic_cone5" parent="obstacles" node_paths=PackedStringArray("level_logic") instance=ExtResource("11_qc1sv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0.5, 8)
+level_logic = NodePath("../../level_logic")
+
+[node name="traffic_cone6" parent="obstacles" node_paths=PackedStringArray("level_logic") instance=ExtResource("11_qc1sv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0.5, 7)
+level_logic = NodePath("../../level_logic")
+
+[node name="traffic_cone7" parent="obstacles" node_paths=PackedStringArray("level_logic") instance=ExtResource("11_qc1sv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0.5, 6)
+level_logic = NodePath("../../level_logic")
+
+[node name="traffic_cone8" parent="obstacles" node_paths=PackedStringArray("level_logic") instance=ExtResource("11_qc1sv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0.5, 10)
+level_logic = NodePath("../../level_logic")
+
+[node name="traffic_cone9" parent="obstacles" node_paths=PackedStringArray("level_logic") instance=ExtResource("11_qc1sv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0.5, 10)
+level_logic = NodePath("../../level_logic")
+
+[node name="traffic_cone10" parent="obstacles" node_paths=PackedStringArray("level_logic") instance=ExtResource("11_qc1sv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0.5, 11)
+level_logic = NodePath("../../level_logic")
+
+[node name="traffic_cone11" parent="obstacles" node_paths=PackedStringArray("level_logic") instance=ExtResource("11_qc1sv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0.5, 11)
+level_logic = NodePath("../../level_logic")
+
+[node name="traffic_cone25" parent="obstacles" node_paths=PackedStringArray("level_logic") instance=ExtResource("11_qc1sv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0.5, 11)
+level_logic = NodePath("../../level_logic")
+
+[node name="traffic_cone12" parent="obstacles" node_paths=PackedStringArray("level_logic") instance=ExtResource("11_qc1sv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0.5, 11)
+level_logic = NodePath("../../level_logic")
+
+[node name="traffic_cone14" parent="obstacles" node_paths=PackedStringArray("level_logic") instance=ExtResource("11_qc1sv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.666, 0.5, 3)
+level_logic = NodePath("../../level_logic")
+
+[node name="traffic_cone15" parent="obstacles" node_paths=PackedStringArray("level_logic") instance=ExtResource("11_qc1sv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.333, 0.5, 2)
+level_logic = NodePath("../../level_logic")
+
+[node name="traffic_cone16" parent="obstacles" node_paths=PackedStringArray("level_logic") instance=ExtResource("11_qc1sv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0.5, 1)
+level_logic = NodePath("../../level_logic")
+
+[node name="traffic_cone17" parent="obstacles" node_paths=PackedStringArray("level_logic") instance=ExtResource("11_qc1sv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0.5, 0)
+level_logic = NodePath("../../level_logic")
+
+[node name="traffic_cone18" parent="obstacles" node_paths=PackedStringArray("level_logic") instance=ExtResource("11_qc1sv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0.5, 4)
+level_logic = NodePath("../../level_logic")
+
+[node name="traffic_cone19" parent="obstacles" node_paths=PackedStringArray("level_logic") instance=ExtResource("11_qc1sv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0.5, 5)
+level_logic = NodePath("../../level_logic")
+
+[node name="traffic_cone20" parent="obstacles" node_paths=PackedStringArray("level_logic") instance=ExtResource("11_qc1sv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0.5, -2)
+level_logic = NodePath("../../level_logic")
+
+[node name="traffic_cone21" parent="obstacles" node_paths=PackedStringArray("level_logic") instance=ExtResource("11_qc1sv")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5, 0.5, -2)
+level_logic = NodePath("../../level_logic")
+
+[node name="traffic_cone22" parent="obstacles" node_paths=PackedStringArray("level_logic") instance=ExtResource("11_qc1sv")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4, 0.5, -2)
+level_logic = NodePath("../../level_logic")
+
+[node name="traffic_cone23" parent="obstacles" node_paths=PackedStringArray("level_logic") instance=ExtResource("11_qc1sv")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3, 0.5, -2)
+level_logic = NodePath("../../level_logic")
+
+[node name="traffic_cone26" parent="obstacles" node_paths=PackedStringArray("level_logic") instance=ExtResource("11_qc1sv")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2, 0.5, -2)
+level_logic = NodePath("../../level_logic")
+
+[node name="traffic_cone27" parent="obstacles" node_paths=PackedStringArray("level_logic") instance=ExtResource("11_qc1sv")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1, 0.5, -2)
+level_logic = NodePath("../../level_logic")
+
+[node name="traffic_cone28" parent="obstacles" node_paths=PackedStringArray("level_logic") instance=ExtResource("11_qc1sv")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.5, -2)
+level_logic = NodePath("../../level_logic")
+
+[node name="traffic_cone29" parent="obstacles" node_paths=PackedStringArray("level_logic") instance=ExtResource("11_qc1sv")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2, 0.5, 0)
+level_logic = NodePath("../../level_logic")
+
+[node name="traffic_cone33" parent="obstacles" node_paths=PackedStringArray("level_logic") instance=ExtResource("11_qc1sv")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3, 0.5, 1)
+level_logic = NodePath("../../level_logic")
+
+[node name="traffic_cone38" parent="obstacles" node_paths=PackedStringArray("level_logic") instance=ExtResource("11_qc1sv")]
+transform = Transform3D(-4.35852e-08, 0, -0.997113, 0, 0.997113, 0, 0.997113, 0, -4.35852e-08, -4, 0.5, 2)
+level_logic = NodePath("../../level_logic")
+
+[node name="traffic_cone35" parent="obstacles" node_paths=PackedStringArray("level_logic") instance=ExtResource("11_qc1sv")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4, 0.5, 3)
+level_logic = NodePath("../../level_logic")
+
+[node name="traffic_cone36" parent="obstacles" node_paths=PackedStringArray("level_logic") instance=ExtResource("11_qc1sv")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4, 0.5, 4)
+level_logic = NodePath("../../level_logic")
+
+[node name="traffic_cone37" parent="obstacles" node_paths=PackedStringArray("level_logic") instance=ExtResource("11_qc1sv")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4, 0.5, 5)
+level_logic = NodePath("../../level_logic")
+
+[node name="traffic_cone30" parent="obstacles" node_paths=PackedStringArray("level_logic") instance=ExtResource("11_qc1sv")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1, 0.5, 0)
+level_logic = NodePath("../../level_logic")
+
+[node name="traffic_cone31" parent="obstacles" node_paths=PackedStringArray("level_logic") instance=ExtResource("11_qc1sv")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.5, 0)
+level_logic = NodePath("../../level_logic")
+
+[node name="traffic_cone32" parent="obstacles" node_paths=PackedStringArray("level_logic") instance=ExtResource("11_qc1sv")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1, 0.5, -2)
+level_logic = NodePath("../../level_logic")
+
+[node name="traffic_cone34" parent="obstacles" node_paths=PackedStringArray("level_logic") instance=ExtResource("11_qc1sv")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2, 0.5, -2)
+level_logic = NodePath("../../level_logic")
+
+[node name="traffic_cone39" parent="obstacles" node_paths=PackedStringArray("level_logic") instance=ExtResource("11_qc1sv")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4, 0.5, -4)
+level_logic = NodePath("../../level_logic")
+
+[node name="traffic_cone41" parent="obstacles" node_paths=PackedStringArray("level_logic") instance=ExtResource("11_qc1sv")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4, 0.5, -5)
+level_logic = NodePath("../../level_logic")
+
+[node name="traffic_cone42" parent="obstacles" node_paths=PackedStringArray("level_logic") instance=ExtResource("11_qc1sv")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4, 0.5, -6)
+level_logic = NodePath("../../level_logic")
+
+[node name="traffic_cone43" parent="obstacles" node_paths=PackedStringArray("level_logic") instance=ExtResource("11_qc1sv")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4, 0.5, -7)
+level_logic = NodePath("../../level_logic")
+
+[node name="traffic_cone44" parent="obstacles" node_paths=PackedStringArray("level_logic") instance=ExtResource("11_qc1sv")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4, 0.5, -8)
+level_logic = NodePath("../../level_logic")
+
+[node name="traffic_cone45" parent="obstacles" node_paths=PackedStringArray("level_logic") instance=ExtResource("11_qc1sv")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4, 0.5, -9)
+level_logic = NodePath("../../level_logic")
+
+[node name="traffic_cone46" parent="obstacles" node_paths=PackedStringArray("level_logic") instance=ExtResource("11_qc1sv")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4, 0.5, -10)
+level_logic = NodePath("../../level_logic")
+
+[node name="traffic_cone47" parent="obstacles" node_paths=PackedStringArray("level_logic") instance=ExtResource("11_qc1sv")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4, 0.5, -11)
+level_logic = NodePath("../../level_logic")
+
+[node name="traffic_cone48" parent="obstacles" node_paths=PackedStringArray("level_logic") instance=ExtResource("11_qc1sv")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6, 0.5, -11)
+level_logic = NodePath("../../level_logic")
+
+[node name="traffic_cone49" parent="obstacles" node_paths=PackedStringArray("level_logic") instance=ExtResource("11_qc1sv")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6, 0.5, -10)
+level_logic = NodePath("../../level_logic")
+
+[node name="traffic_cone50" parent="obstacles" node_paths=PackedStringArray("level_logic") instance=ExtResource("11_qc1sv")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6, 0.5, -9)
+level_logic = NodePath("../../level_logic")
+
+[node name="traffic_cone51" parent="obstacles" node_paths=PackedStringArray("level_logic") instance=ExtResource("11_qc1sv")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6, 0.5, -8)
+level_logic = NodePath("../../level_logic")
+
+[node name="traffic_cone52" parent="obstacles" node_paths=PackedStringArray("level_logic") instance=ExtResource("11_qc1sv")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6, 0.5, -7)
+level_logic = NodePath("../../level_logic")
+
+[node name="traffic_cone53" parent="obstacles" node_paths=PackedStringArray("level_logic") instance=ExtResource("11_qc1sv")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6, 0.5, -6)
+level_logic = NodePath("../../level_logic")
+
+[node name="traffic_cone54" parent="obstacles" node_paths=PackedStringArray("level_logic") instance=ExtResource("11_qc1sv")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6, 0.5, -5)
+level_logic = NodePath("../../level_logic")
+
+[node name="traffic_cone55" parent="obstacles" node_paths=PackedStringArray("level_logic") instance=ExtResource("11_qc1sv")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6, 0.5, -4)
+level_logic = NodePath("../../level_logic")
+
+[node name="traffic_cone56" parent="obstacles" node_paths=PackedStringArray("level_logic") instance=ExtResource("11_qc1sv")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6, 0.5, -3)
+level_logic = NodePath("../../level_logic")
+
+[node name="traffic_cone57" parent="obstacles" node_paths=PackedStringArray("level_logic") instance=ExtResource("11_qc1sv")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6, 0.5, -2)
+level_logic = NodePath("../../level_logic")
+
+[node name="traffic_cone58" parent="obstacles" node_paths=PackedStringArray("level_logic") instance=ExtResource("11_qc1sv")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6, 0.5, -1)
+level_logic = NodePath("../../level_logic")
+
+[node name="traffic_cone66" parent="obstacles" node_paths=PackedStringArray("level_logic") instance=ExtResource("11_qc1sv")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6, 0.5, 0)
+level_logic = NodePath("../../level_logic")
+
+[node name="traffic_cone59" parent="obstacles" node_paths=PackedStringArray("level_logic") instance=ExtResource("11_qc1sv")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6, 0.5, 1)
+level_logic = NodePath("../../level_logic")
+
+[node name="traffic_cone60" parent="obstacles" node_paths=PackedStringArray("level_logic") instance=ExtResource("11_qc1sv")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5, 0.5, 1)
+level_logic = NodePath("../../level_logic")
+
+[node name="traffic_cone61" parent="obstacles" node_paths=PackedStringArray("level_logic") instance=ExtResource("11_qc1sv")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4, 0.5, 1)
+level_logic = NodePath("../../level_logic")
+
+[node name="traffic_cone62" parent="obstacles" node_paths=PackedStringArray("level_logic") instance=ExtResource("11_qc1sv")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3, 0.5, 1)
+level_logic = NodePath("../../level_logic")
+
+[node name="traffic_cone63" parent="obstacles" node_paths=PackedStringArray("level_logic") instance=ExtResource("11_qc1sv")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2, 0.5, 0.66)
+level_logic = NodePath("../../level_logic")
+
+[node name="traffic_cone64" parent="obstacles" node_paths=PackedStringArray("level_logic") instance=ExtResource("11_qc1sv")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1, 0.5, 0.33)
+level_logic = NodePath("../../level_logic")
+
+[node name="traffic_cone40" parent="obstacles" node_paths=PackedStringArray("level_logic") instance=ExtResource("11_qc1sv")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3, 0.5, -3)
+level_logic = NodePath("../../level_logic")
+
+[node name="traffic_cone24" parent="obstacles" node_paths=PackedStringArray("level_logic") instance=ExtResource("11_qc1sv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0.5, -1)
+level_logic = NodePath("../../level_logic")
+
+[connection signal="parked" from="parking_area" to="level_logic" method="on_parked"]

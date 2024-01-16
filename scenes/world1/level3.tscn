@@ -52,7 +52,7 @@ objective = SubResource("Resource_wrdc5")
 scene_tree_links = NodePath("../scene_tree_links_component")
 
 [node name="parking_area" parent="." instance=ExtResource("8_gwpxh")]
-transform = Transform3D(1.70474e-07, 0, 2.64, 0, 1.3, 0, -1.3, 0, 3.46194e-07, -1.75, 0.51, 1)
+transform = Transform3D(1.70474e-07, 0, 2.64, 0, 1.3, 0, -1.3, 0, 3.46194e-07, -1.75, 0.5, 1)
 
 [node name="obstacles" type="Node3D" parent="."]
 

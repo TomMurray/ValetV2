@@ -212,7 +212,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0.5, 9)
 level_logic = NodePath("../../level_logic")
 
 [node name="parking_area" parent="." instance=ExtResource("9_3huec")]
-transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 2.64, 5, 0.51, 7)
+transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 2.64, 5, 0.5, 7)
 
 [node name="level_restart" parent="." node_paths=PackedStringArray("scene_tree_links") instance=ExtResource("10_avfj7")]
 scene_tree_links = NodePath("../scene_tree_links_component")

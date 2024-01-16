@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://crlt4to4wcejw"]
+
+[ext_resource type="PackedScene" uid="uid://bg30bqbscr1ox" path="res://scenes/road_paint_cuboid.tscn" id="1_mw70m"]
+
+[node name="road_arrow_right" type="Node3D"]
+
+[node name="road_line37" parent="." instance=ExtResource("1_mw70m")]
+transform = Transform3D(-0.2, 0, 8.74228e-08, 0, 0.005, 0, -1.74846e-08, 0, -1, 0, 0, 0.4)
+skeleton = NodePath("../..")
+
+[node name="road_line39" parent="." instance=ExtResource("1_mw70m")]
+transform = Transform3D(-0.141421, 0, -0.353553, 0, 0.005, 0, 0.141421, 0, -0.353553, -0.1, 0, 0.8)
+skeleton = NodePath("../..")
+
+[node name="road_line40" parent="." instance=ExtResource("1_mw70m")]
+transform = Transform3D(-0.141421, 0, 0.353553, 0, 0.005, 0, -0.141421, 0, -0.353553, 0.1, 0, 0.8)
+skeleton = NodePath("../..")
+
+[node name="road_line38" parent="." instance=ExtResource("1_mw70m")]
+transform = Transform3D(2.62268e-08, 0, 0.8, 0, 0.005, 0, -0.2, 0, 1.04907e-07, -0.5, 0, 0)
+skeleton = NodePath("../..")
