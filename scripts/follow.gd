@@ -1,10 +1,26 @@
 @tool
 extends Node3D
-class_name Follow
+class_name PlayerFollowCamera
 
-@export var target : Node3D
-@export var offset := Vector3.ZERO
+@onready var camera : LookAtCamera = %camera
+
+@export var target : Node3D:
+	set(value):
+		target = value
+		if camera:
+			camera.target = target
+		update_configuration_warnings()
+
+func _get_configuration_warnings():
+	if not target:
+		return ["No target set for PlayerFollowCamera"]
+	return []
+
+func _ready():
+	if camera:
+		camera.target = target
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	position = target.position + offset
+	if target:
+		position = target.position

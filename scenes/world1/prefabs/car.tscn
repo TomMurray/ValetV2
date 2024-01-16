@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://10k7nln8wxq3"]
+
+[ext_resource type="PackedScene" uid="uid://ba6xyqiidsic4" path="res://scenes/picocar.tscn" id="1_funxw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gwvas"]
+resource_name = "Material.001"
+cull_mode = 2
+albedo_color = Color(1, 0.368627, 0.12549, 1)
+roughness = 0.38189
+
+[node name="car" instance=ExtResource("1_funxw")]
+colour = Color(1, 0.368627, 0.12549, 1)
+
+[node name="body" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_gwvas")

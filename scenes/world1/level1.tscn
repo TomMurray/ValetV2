@@ -1,34 +1,17 @@
-[gd_scene load_steps=16 format=3 uid="uid://c1ss72v31rhec"]
+[gd_scene load_steps=14 format=3 uid="uid://c1ss72v31rhec"]
 
 [ext_resource type="PackedScene" uid="uid://bfeebin6bl3v" path="res://scenes/ui/hud_obstacles_counter.tscn" id="1_1cl3b"]
+[ext_resource type="PackedScene" uid="uid://bv8snj5dy8q4c" path="res://scenes/world1/prefabs/foggy_rainy_world_environment.tscn" id="1_qexq8"]
 [ext_resource type="PackedScene" uid="uid://bdm7x5kots6yv" path="res://scenes/ui/end_game_panel.tscn" id="2_6dxkb"]
 [ext_resource type="Script" path="res://scripts/level/level_logic.gd" id="3_lukfl"]
 [ext_resource type="Script" path="res://scripts/level/level_objective.gd" id="4_t4ish"]
-[ext_resource type="PackedScene" uid="uid://dem0tl0qj4t03" path="res://scenes/components/player_camera.tscn" id="5_qo5kx"]
-[ext_resource type="PackedScene" uid="uid://ba6xyqiidsic4" path="res://scenes/picocar.tscn" id="6_qnv4d"]
+[ext_resource type="PackedScene" uid="uid://dem0tl0qj4t03" path="res://scenes/prefabs/player_camera.tscn" id="5_qo5kx"]
+[ext_resource type="PackedScene" uid="uid://10k7nln8wxq3" path="res://scenes/world1/prefabs/car.tscn" id="6_i67kl"]
 [ext_resource type="PackedScene" uid="uid://dlcl4g8eeahy7" path="res://scenes/props/traffic_cone.tscn" id="7_su7px"]
 [ext_resource type="PackedScene" uid="uid://btsndqkxonpfh" path="res://scenes/props/parking_area.tscn" id="8_ardjn"]
 [ext_resource type="PackedScene" uid="uid://bic24jaw72fqn" path="res://scenes/components/level_port.tscn" id="9_qgyyq"]
 [ext_resource type="PackedScene" uid="uid://dtflnmjrhol7k" path="res://scenes/components/level_restart.tscn" id="10_avfj7"]
 [ext_resource type="PackedScene" uid="uid://1aps6snaxwys" path="res://scenes/world1/level_chunks/multistorey.tscn" id="11_77f65"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_odfnc"]
-sky_curve = 0.252269
-ground_bottom_color = Color(0.466667, 0.576471, 0.866667, 1)
-ground_curve = 0.101965
-
-[sub_resource type="Sky" id="Sky_8jt38"]
-sky_material = SubResource("ProceduralSkyMaterial_odfnc")
-
-[sub_resource type="Environment" id="Environment_h20ge"]
-background_mode = 2
-sky = SubResource("Sky_8jt38")
-sdfgi_use_occlusion = true
-glow_enabled = true
-volumetric_fog_enabled = true
-volumetric_fog_density = 0.0338
-volumetric_fog_albedo = Color(0.890196, 0.890196, 0.890196, 1)
-volumetric_fog_emission = Color(0.494118, 0.619608, 0.819608, 1)
 
 [sub_resource type="Resource" id="Resource_hvpg7"]
 script = ExtResource("4_t4ish")
@@ -36,8 +19,7 @@ max_obstacles_hit = 1
 
 [node name="level" type="Node3D"]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_h20ge")
+[node name="WorldEnvironment" parent="." instance=ExtResource("1_qexq8")]
 
 [node name="ui" type="CanvasLayer" parent="."]
 
@@ -56,15 +38,10 @@ script = ExtResource("3_lukfl")
 objective = SubResource("Resource_hvpg7")
 
 [node name="player_camera" parent="." node_paths=PackedStringArray("target") instance=ExtResource("5_qo5kx")]
-target = NodePath("../picocar")
+target = NodePath("../car")
 
-[node name="Camera3D" parent="player_camera" index="0" node_paths=PackedStringArray("target")]
-transform = Transform3D(-1.47422e-06, 0.917332, -0.398124, 0, 0.398124, 0.917332, 1, 1.35235e-06, -5.86923e-07, -2.20013, 5.06941, -3.33786e-06)
-target = NodePath("../../picocar")
-
-[node name="picocar" parent="." instance=ExtResource("6_qnv4d")]
+[node name="car" parent="." instance=ExtResource("6_i67kl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.5, -7)
-colour = Color(1, 0.368627, 0.12549, 1)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.707107, 0.5, -0.5, 0, 0.707107, 0.707107, 0.707107, -0.5, 0.5, -7, 5.85145, 6.04361)
@@ -251,5 +228,4 @@ target_level = "res://scenes/levels/level1.tscn"
 [connection signal="parked" from="parking_area" to="level_logic" method="on_parked"]
 
 [editable path="ui/obstacles_counter_container"]
-[editable path="player_camera"]
 [editable path="level_restart"]
