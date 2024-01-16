@@ -8,7 +8,7 @@
 [sub_resource type="Resource" id="Resource_pcy16"]
 script = ExtResource("3_21n6l")
 this_scene = "res://scenes/ui/main_menu.tscn"
-children = Array[String](["res://scenes/world1/level1.tscn", "res://scenes/world1/level2.tscn", "res://scenes/world1/level3.tscn", "res://scenes/world1/level4.tscn"])
+children = Array[String](["res://scenes/world1/level1.tscn", "res://scenes/world1/level3.tscn", "res://scenes/world1/level2.tscn", "res://scenes/world1/level4.tscn", "res://scenes/world1/level5.tscn"])
 child_index = 0
 
 [node name="Control" type="Control"]
