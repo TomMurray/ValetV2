@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dwcirsvne3wr4"]
+[gd_scene load_steps=6 format=3 uid="uid://dwcirsvne3wr4"]
 
 [ext_resource type="Theme" uid="uid://dpqnmj3en2tdc" path="res://themes/in_game_overlay.tres" id="1_m8ha8"]
+[ext_resource type="Script" path="res://scripts/ui/play_button.gd" id="2_tnoln"]
 [ext_resource type="Script" path="res://scripts/components/scene_tree_navigator.gd" id="2_tqvoh"]
 [ext_resource type="Script" path="res://scripts/components/scene_tree_node.gd" id="3_21n6l"]
 
@@ -36,13 +37,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="continue_button" type="Button" parent="CenterContainer"]
+[node name="play_button" type="Button" parent="CenterContainer"]
 layout_mode = 2
 theme = ExtResource("1_m8ha8")
-text = "CONTINUE"
+text = "PLAY"
+script = ExtResource("2_tnoln")
 
 [node name="SceneTreeNavigator" type="Node" parent="."]
 script = ExtResource("2_tqvoh")
 scene_tree_node = SubResource("Resource_pcy16")
 
-[connection signal="pressed" from="CenterContainer/continue_button" to="SceneTreeNavigator" method="goto_curr_child"]
+[connection signal="pressed" from="CenterContainer/play_button" to="SceneTreeNavigator" method="goto_curr_child"]
