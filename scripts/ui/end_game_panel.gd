@@ -1,5 +1,5 @@
 @tool
-extends Panel
+extends Control
 class_name EndGamePanel
 
 @export var scene_tree_links : SceneTreeLinksComponent:

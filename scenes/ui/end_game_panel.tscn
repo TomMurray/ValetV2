@@ -13,38 +13,23 @@ func _on_level_logic_complete(success : bool):
 		show()
 "
 
-[node name="end_game_panel" type="Panel"]
+[node name="end_game_panel" type="CenterContainer"]
 visible = false
-custom_minimum_size = Vector2(600, 450)
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("1_xgatg")
-script = ExtResource("2_2bskh")
-
-[node name="CenterContainer" type="CenterContainer" parent="."]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_xgatg")
+script = ExtResource("2_2bskh")
 
-[node name="list" type="VBoxContainer" parent="CenterContainer"]
+[node name="list" type="VBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="outcome_container" type="CenterContainer" parent="CenterContainer/list"]
+[node name="outcome_container" type="CenterContainer" parent="list"]
 layout_mode = 2
 
-[node name="success_text" type="RichTextLabel" parent="CenterContainer/list/outcome_container"]
+[node name="success_text" type="RichTextLabel" parent="list/outcome_container"]
 unique_name_in_owner = true
 visible = false
 clip_contents = false
@@ -57,7 +42,7 @@ scroll_active = false
 autowrap_mode = 0
 script = SubResource("GDScript_gs6a6")
 
-[node name="failure_text" type="RichTextLabel" parent="CenterContainer/list/outcome_container"]
+[node name="failure_text" type="RichTextLabel" parent="list/outcome_container"]
 unique_name_in_owner = true
 visible = false
 clip_contents = false
@@ -70,10 +55,10 @@ scroll_active = false
 autowrap_mode = 0
 script = SubResource("GDScript_gs6a6")
 
-[node name="to_next_level_container" type="CenterContainer" parent="CenterContainer/list"]
+[node name="to_next_level_container" type="CenterContainer" parent="list"]
 layout_mode = 2
 
-[node name="next_level_button" type="Button" parent="CenterContainer/list/to_next_level_container"]
+[node name="next_level_button" type="Button" parent="list/to_next_level_container"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -83,7 +68,7 @@ text = "CONTINUE
 "
 script = ExtResource("3_ydlp1")
 
-[node name="retry_level_button" type="Button" parent="CenterContainer/list/to_next_level_container"]
+[node name="retry_level_button" type="Button" parent="list/to_next_level_container"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -92,5 +77,5 @@ disabled = true
 text = "RETRY"
 script = ExtResource("4_puvqx")
 
-[connection signal="pressed" from="CenterContainer/list/to_next_level_container/next_level_button" to="CenterContainer/list/to_next_level_container/next_level_button" method="_on_pressed"]
-[connection signal="pressed" from="CenterContainer/list/to_next_level_container/retry_level_button" to="CenterContainer/list/to_next_level_container/retry_level_button" method="_on_pressed"]
+[connection signal="pressed" from="list/to_next_level_container/next_level_button" to="list/to_next_level_container/next_level_button" method="_on_pressed"]
+[connection signal="pressed" from="list/to_next_level_container/retry_level_button" to="list/to_next_level_container/retry_level_button" method="_on_pressed"]
