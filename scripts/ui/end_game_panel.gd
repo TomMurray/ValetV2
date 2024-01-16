@@ -37,12 +37,13 @@ func _get_configuration_warnings():
 func _on_level_logic_complete(success):
 	# Configure some elements to show or not depending on the outcome
 	if success:
-		var to_show := [%success_text]
 		for c in [%success_text, %next_level_button]:
 			c.show()
+		%next_level_button.grab_focus()
 	else:
 		for c in [%failure_text, %retry_level_button]:
 			c.show()
+		%retry_level_button.grab_focus()
 	
 	# Show the panel
 	show()

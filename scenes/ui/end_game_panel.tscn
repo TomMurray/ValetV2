@@ -77,7 +77,7 @@ unique_name_in_owner = true
 visible = false
 layout_mode = 2
 theme = ExtResource("1_xgatg")
-text = "NEXT LEVEL
+text = "CONTINUE
 "
 script = ExtResource("3_j4vdx")
 
