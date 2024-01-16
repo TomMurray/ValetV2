@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bdm7x5kots6yv"]
+[gd_scene load_steps=5 format=3 uid="uid://bdm7x5kots6yv"]
 
 [ext_resource type="Theme" uid="uid://dpqnmj3en2tdc" path="res://themes/in_game_overlay.tres" id="1_xgatg"]
 [ext_resource type="Script" path="res://scripts/ui/end_game_panel.gd" id="2_2bskh"]
+[ext_resource type="Script" path="res://scripts/ui/level_port_button.gd" id="3_j4vdx"]
 
 [sub_resource type="GDScript" id="GDScript_gs6a6"]
 script/source = "extends RichTextLabel
@@ -78,6 +79,7 @@ layout_mode = 2
 theme = ExtResource("1_xgatg")
 text = "NEXT LEVEL
 "
+script = ExtResource("3_j4vdx")
 
 [node name="retry_level_button" type="Button" parent="CenterContainer/list/to_next_level_container"]
 unique_name_in_owner = true
@@ -85,3 +87,7 @@ visible = false
 layout_mode = 2
 theme = ExtResource("1_xgatg")
 text = "RETRY"
+script = ExtResource("3_j4vdx")
+
+[connection signal="pressed" from="CenterContainer/list/to_next_level_container/next_level_button" to="CenterContainer/list/to_next_level_container/next_level_button" method="_on_pressed"]
+[connection signal="pressed" from="CenterContainer/list/to_next_level_container/retry_level_button" to="CenterContainer/list/to_next_level_container/retry_level_button" method="_on_pressed"]

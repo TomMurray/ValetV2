@@ -46,7 +46,10 @@ environment = SubResource("Environment_h20ge")
 [node name="obstacles_counter" parent="ui/obstacles_counter_container" index="0" node_paths=PackedStringArray("level_logic")]
 level_logic = NodePath("../../../level_logic")
 
-[node name="end_game_panel" parent="ui" instance=ExtResource("1_hsysk")]
+[node name="end_game_panel" parent="ui" node_paths=PackedStringArray("level_logic", "next_level_port", "curr_level_port") instance=ExtResource("1_hsysk")]
+level_logic = NodePath("../../level_logic")
+next_level_port = NodePath("../../next_level_port")
+curr_level_port = NodePath("../../level_restart/level_port")
 
 [node name="level_logic" type="Node" parent="."]
 script = ExtResource("2_bm4p2")
@@ -245,13 +248,9 @@ target_level = "res://scenes/levels/world1/level1.tscn"
 
 [node name="level_base" parent="." instance=ExtResource("9_ndsb7")]
 
-[connection signal="pressed" from="ui/end_game_panel/CenterContainer/list/to_next_level_container/next_level_button" to="next_level_port" method="_on_next_level_button_pressed"]
-[connection signal="pressed" from="ui/end_game_panel/CenterContainer/list/to_next_level_container/next_level_button" to="next_level_port" method="go"]
-[connection signal="pressed" from="ui/end_game_panel/CenterContainer/list/to_next_level_container/retry_level_button" to="level_restart/level_port" method="go"]
 [connection signal="complete" from="level_logic" to="ui/end_game_panel" method="_on_level_logic_complete"]
 [connection signal="parked" from="parking_area" to="level_logic" method="on_parked"]
 
 [editable path="ui/obstacles_counter_container"]
-[editable path="ui/end_game_panel"]
 [editable path="player_camera"]
 [editable path="level_restart"]
