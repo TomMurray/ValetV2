@@ -7,6 +7,7 @@ var next_path := ""
 var load_requested := false
 var loaded := false
 var switch_requested := false
+var switch_callback = null
 
 func queue(path : String):
 	assert(next_path.is_empty(), "Trying to queue a new scene to load but one is still queued!")
@@ -19,10 +20,11 @@ func preload_queued():
 	loaded = false
 	assert(err == OK, "Load request failed with error '%s' for path '%s'" % [err, next_path])
 
-func switch():
+func switch(switch_callback_ = null):
 	if not load_requested:
 		preload_queued()
 	switch_requested = true
+	switch_callback = switch_callback_
 
 func _process(_delta):
 	if load_requested:
@@ -50,9 +52,12 @@ func _do_switch():
 	# and switching scenes.
 	var root = get_tree().root
 	var old_scene := root.get_child(root.get_child_count() - 1)
+	var new_scene := new_scene_res.instantiate()
+	if switch_callback != null:
+		switch_callback.call(new_scene)
 	root.remove_child(old_scene)
 	old_scene.free()
-	root.add_child(new_scene_res.instantiate())
+	root.add_child(new_scene)
 	
 	# Reset queued data
 	next_path = ""

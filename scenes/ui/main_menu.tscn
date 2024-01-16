@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://dwcirsvne3wr4"]
+
+[ext_resource type="Theme" uid="uid://dpqnmj3en2tdc" path="res://themes/in_game_overlay.tres" id="1_m8ha8"]
+[ext_resource type="Script" path="res://scripts/components/scene_tree_navigator.gd" id="2_tqvoh"]
+[ext_resource type="Script" path="res://scripts/components/scene_tree_node.gd" id="3_21n6l"]
+
+[sub_resource type="Resource" id="Resource_pcy16"]
+script = ExtResource("3_21n6l")
+this_scene = "res://scenes/ui/main_menu.tscn"
+children = Array[String](["res://scenes/world1/level1.tscn", "res://scenes/world1/level2.tscn", "res://scenes/world1/level3.tscn"])
+child_index = 0
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_m8ha8")
+color = Color(0, 0, 0, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="continue_button" type="Button" parent="CenterContainer"]
+layout_mode = 2
+theme = ExtResource("1_m8ha8")
+text = "CONTINUE"
+
+[node name="SceneTreeNavigator" type="Node" parent="."]
+script = ExtResource("2_tqvoh")
+scene_tree_node = SubResource("Resource_pcy16")
+
+[connection signal="pressed" from="CenterContainer/continue_button" to="SceneTreeNavigator" method="goto_curr_child"]

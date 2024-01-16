@@ -1,10 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dtflnmjrhol7k"]
+[gd_scene load_steps=2 format=3 uid="uid://dtflnmjrhol7k"]
 
 [ext_resource type="Script" path="res://scripts/components/level_restart_component.gd" id="1_53fh8"]
-[ext_resource type="PackedScene" uid="uid://bic24jaw72fqn" path="res://scenes/components/level_port.tscn" id="2_r8jb0"]
 
 [node name="level_restart" type="Node"]
 script = ExtResource("1_53fh8")
-
-[node name="level_port" parent="." instance=ExtResource("2_r8jb0")]
-unique_name_in_owner = true

@@ -9,7 +9,7 @@ static func dir(class_instance):
 				properties[prop.name] = class_instance.get(prop.name)
 	return properties
 
-static func get_child_of_type(n : Node3D, type) -> Node3D:
+static func get_child_of_type(n : Node, type) -> Node:
 	for child in n.get_children():
 		if is_instance_of(child, type):
 			return child

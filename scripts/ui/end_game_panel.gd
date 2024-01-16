@@ -2,6 +2,13 @@
 extends Panel
 class_name EndGamePanel
 
+@export var scene_tree_links : SceneTreeLinksComponent:
+	set(value):
+		scene_tree_links = value
+		%next_level_button.scene_tree_links = value
+		%retry_level_button.scene_tree_links = value
+		update_configuration_warnings()
+
 @export var level_logic : LevelLogic:
 	set(value):
 		if level_logic and level_logic.is_connected("complete", _on_level_logic_complete):
@@ -12,26 +19,12 @@ class_name EndGamePanel
 		
 		update_configuration_warnings()
 
-@export var next_level_port : LevelPortComponent:
-	get: return %next_level_button.level_port
-	set(value):
-		%next_level_button.level_port = value
-		update_configuration_warnings()
-		
-@export var curr_level_port : LevelPortComponent:
-	get: return %retry_level_button.level_port
-	set(value):
-		%retry_level_button.level_port = value
-		update_configuration_warnings()
-
 func _get_configuration_warnings():
 	var warnings : PackedStringArray
+	if not scene_tree_links:
+		warnings.append("No SceneTreeLinksComponent set for EndGamePanel")
 	if not level_logic:
 		warnings.append("No LevelLogic set for EndGamePanel")
-	if not next_level_port:
-		warnings.append("No LevelPortComponent for next level set on EndGamePanel")
-	if not curr_level_port:
-		warnings.append("No LevelPortComponent for current level set on EndGamePanel")
 	return warnings
 
 func _on_level_logic_complete(success):

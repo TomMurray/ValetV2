@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://nacqsluyb0ya"]
+[gd_scene load_steps=16 format=3 uid="uid://nacqsluyb0ya"]
 
 [ext_resource type="PackedScene" uid="uid://bv8snj5dy8q4c" path="res://scenes/world1/prefabs/foggy_rainy_world_environment.tscn" id="1_21tj4"]
 [ext_resource type="PackedScene" uid="uid://bfeebin6bl3v" path="res://scenes/ui/hud_obstacles_counter.tscn" id="1_gk1t2"]
@@ -11,11 +11,18 @@
 [ext_resource type="PackedScene" uid="uid://1aps6snaxwys" path="res://scenes/world1/level_chunks/multistorey.tscn" id="8_w2xjh"]
 [ext_resource type="PackedScene" uid="uid://dtflnmjrhol7k" path="res://scenes/components/level_restart.tscn" id="10_acace"]
 [ext_resource type="PackedScene" uid="uid://b4mgfyr48tc6j" path="res://scenes/world1/prefabs/parking_area.tscn" id="10_xtaqu"]
-[ext_resource type="PackedScene" uid="uid://bic24jaw72fqn" path="res://scenes/components/level_port.tscn" id="11_r2i3c"]
+[ext_resource type="Script" path="res://scripts/components/scene_tree_links_component.gd" id="13_6tvr7"]
+[ext_resource type="Script" path="res://scripts/components/scene_tree_node.gd" id="14_e0ra1"]
 
 [sub_resource type="Resource" id="Resource_yka7k"]
 script = ExtResource("4_6er1i")
 max_obstacles_hit = 1
+
+[sub_resource type="Resource" id="Resource_cqmb2"]
+script = ExtResource("14_e0ra1")
+this_scene = ""
+children = Array[String](["res://scenes/world1/level2.tscn"])
+child_index = 0
 
 [node name="level" type="Node3D"]
 
@@ -28,10 +35,9 @@ max_obstacles_hit = 1
 [node name="obstacles_counter" parent="ui/obstacles_counter_container" index="0" node_paths=PackedStringArray("level_logic")]
 level_logic = NodePath("../../../level_logic")
 
-[node name="end_game_panel" parent="ui" node_paths=PackedStringArray("level_logic", "next_level_port", "curr_level_port") instance=ExtResource("2_eumk5")]
+[node name="end_game_panel" parent="ui" node_paths=PackedStringArray("scene_tree_links", "level_logic") instance=ExtResource("2_eumk5")]
+scene_tree_links = NodePath("../../scene_tree_links_component")
 level_logic = NodePath("../../level_logic")
-next_level_port = NodePath("../../next_level_port")
-curr_level_port = NodePath("../../level_restart/level_port")
 
 [node name="level_logic" type="Node" parent="."]
 script = ExtResource("3_rr4sc")
@@ -209,13 +215,12 @@ shadow_blur = 0.6
 [node name="parking_area" parent="." instance=ExtResource("10_xtaqu")]
 transform = Transform3D(-5.68248e-08, 0, 2.64, 0, 1.3, 0, -1.3, 0, -1.15398e-07, 1.75, 0.51, 1)
 
-[node name="next_level_port" parent="." instance=ExtResource("11_r2i3c")]
-target_level = "res://scenes/world1/level3.tscn"
+[node name="level_restart" parent="." node_paths=PackedStringArray("scene_tree_links") instance=ExtResource("10_acace")]
+scene_tree_links = NodePath("../scene_tree_links_component")
 
-[node name="level_restart" parent="." instance=ExtResource("10_acace")]
-
-[node name="level_port" parent="level_restart" index="0"]
-target_level = "res://scenes/world1/level2.tscn"
+[node name="scene_tree_links_component" type="Node" parent="."]
+script = ExtResource("13_6tvr7")
+scene_tree_node = SubResource("Resource_cqmb2")
 
 [connection signal="parked" from="parking_area" to="level_logic" method="on_parked"]
 
