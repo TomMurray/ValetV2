@@ -2,7 +2,7 @@
 
 [ext_resource type="Material" uid="uid://dewqjyhx6l3lt" path="res://assets/materials/tarmac.tres" id="1_6exyl"]
 [ext_resource type="PackedScene" uid="uid://bg30bqbscr1ox" path="res://scenes/road_paint_cuboid.tscn" id="2_a0oj5"]
-[ext_resource type="PackedScene" uid="uid://dg3jtqd7g3yd3" path="res://scenes/props/world1/light_cover.tscn" id="3_hvo14"]
+[ext_resource type="PackedScene" uid="uid://dg3jtqd7g3yd3" path="res://scenes/world1/props/light_cover.tscn" id="3_hvo14"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_65fdj"]
 material = ExtResource("1_6exyl")

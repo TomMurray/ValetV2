@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ctt833e34g50t"]
 
-[ext_resource type="PackedScene" uid="uid://o8bbuwnr03eo" path="res://scenes/props/world1/multistorey_single_level.tscn" id="1_mejde"]
+[ext_resource type="PackedScene" uid="uid://o8bbuwnr03eo" path="res://scenes/world1/props/multistorey_single_level.tscn" id="1_mejde"]
 
 [node name="multistorey_single_level_with_pillars" type="Node3D"]
 
