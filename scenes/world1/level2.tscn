@@ -203,13 +203,6 @@ level_logic = NodePath("../../level_logic")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.5, 0)
 level_logic = NodePath("../../level_logic")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.707107, 0.5, -0.5, 0, 0.707107, 0.707107, 0.707107, -0.5, 0.5, -7, 5.85145, 6.04361)
-light_energy = 1.323
-light_angular_distance = 5.62
-shadow_enabled = true
-shadow_blur = 0.6
-
 [node name="level_base" parent="." instance=ExtResource("8_w2xjh")]
 
 [node name="parking_area" parent="." instance=ExtResource("10_xtaqu")]

@@ -20,3 +20,10 @@ volumetric_fog_emission = Color(0.494118, 0.619608, 0.819608, 1)
 
 [node name="world_environment" type="WorldEnvironment"]
 environment = SubResource("Environment_2y8ps")
+
+[node name="sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.707107, 0.5, -0.5, 0, 0.707107, 0.707107, 0.707107, -0.5, 0.5, -7, 5.85145, 6.04361)
+light_energy = 1.323
+light_angular_distance = 5.62
+shadow_enabled = true
+shadow_blur = 0.6

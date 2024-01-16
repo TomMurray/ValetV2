@@ -2,7 +2,7 @@
 extends Control
 class_name EndGamePanel
 
-@export var scene_tree_links : SceneTreeLinksComponent:
+@export var scene_tree_links : SceneTreeLinksComponent = null:
 	set(value):
 		scene_tree_links = value
 		update_configuration_warnings()
@@ -15,7 +15,10 @@ class_name EndGamePanel
 		level_logic = value
 		level_logic.connect("complete", _on_level_logic_complete)
 		
-		update_configuration_warnings()
+		update_configuration_warnings()#
+
+@onready var next_level_button : NextLevelButton = %next_level_button
+@onready var retry_level_button : RetryLevelButton = %retry_level_button
 
 func _get_configuration_warnings():
 	var warnings : PackedStringArray
@@ -26,19 +29,20 @@ func _get_configuration_warnings():
 	return warnings
 
 func _ready():
-	%next_level_button.scene_tree_links = scene_tree_links
-	%retry_level_button.scene_tree_links = scene_tree_links
+	if scene_tree_links:
+		next_level_button.scene_tree_links = scene_tree_links
+		retry_level_button.scene_tree_links = scene_tree_links
 
 func _on_level_logic_complete(success):
 	# Configure some elements to show or not depending on the outcome
 	if success:
-		for c in [%success_text, %next_level_button]:
+		for c in [%success_text, next_level_button]:
 			c.show()
-		%next_level_button.grab_focus()
+		next_level_button.grab_focus()
 	else:
-		for c in [%failure_text, %retry_level_button]:
+		for c in [%failure_text, retry_level_button]:
 			c.show()
-		%retry_level_button.grab_focus()
+		retry_level_button.grab_focus()
 	
 	# Show the panel
 	show()

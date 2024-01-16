@@ -1,13 +1,16 @@
 extends Button
 class_name RetryLevelButton
 
-var scene_tree_links : SceneTreeLinksComponent:
+@export var scene_tree_links : SceneTreeLinksComponent = null:
 	set(value):
 		scene_tree_links = value
-		disabled = scene_tree_links == null or not scene_tree_links.has_curr()
+		update_disabled_status()
+
+func update_disabled_status():
+	disabled = scene_tree_links == null or not scene_tree_links.has_curr()
 
 func _ready():
-	disabled = scene_tree_links == null or not scene_tree_links.has_curr()
+	update_disabled_status()
 
 func _on_pressed():
 	scene_tree_links.reload_current()
