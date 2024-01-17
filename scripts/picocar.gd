@@ -119,7 +119,11 @@ func _physics_process(delta):
 		
 		# Firstly, use a different accel/max speed for reversing the car
 		var accel_fwd := accel >= 0.0
-		var is_braking := !is_zero_approx(prev_forward_velocity) and (prev_forward_velocity >= 0.0) != accel_fwd
+		var is_braking := (
+			!is_zero_approx(accel) and
+			!is_zero_approx(prev_forward_velocity) and
+			(prev_forward_velocity >= 0.0) != accel_fwd
+		)
 		var accel_per_sec = accel_per_sec_fwd if accel_fwd else accel_per_sec_bwd
 		if is_braking:
 			# Scale brake deceleration by how close to 0 velocity we are to smooth it out
