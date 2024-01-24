@@ -24,39 +24,40 @@ class WaveGenerator:
 			phase_offset = fmod(curr_phase - zero_phase + 1.0, 1.0) / value
 			freq = value
 			
-	func _init(freq_ : float):
+	func _init(freq_ : float, phase_offset_ = 0.0):
 		freq = freq_
-	
+		phase_offset = phase_offset_
+		
 	func get_phase():
 		return fmod(time + phase_offset, 1/freq) * freq
 
 class SineWaveGenerator extends WaveGenerator:
-	func _init(freq_ : float):
-		super(freq_)
+	func _init(freq_ : float, phase_offset_ = 0.0):
+		super(freq_, phase_offset_)
 	
 	func sample(time_ : float):
 		time = time_
 		return sin(get_phase() * TAU)
 
 class SawWaveGenerator extends WaveGenerator:
-	func _init(freq_ : float):
-		super(freq_)
+	func _init(freq_ : float, phase_offset_ = 0.0):
+		super(freq_, phase_offset_)
 	
 	func sample(time_ : float):
 		time = time_
 		return lerpf(1.0, 0.0, get_phase())
 
 class SquareWaveGenerator extends WaveGenerator:
-	func _init(freq_ : float):
-		super(freq_)
+	func _init(freq_ : float, phase_offset_ = 0.0):
+		super(freq_, phase_offset_)
 	
 	func sample(time_ : float):
 		time = time_
 		return 1.0 if get_phase() < 0.5 else 0.0
 
 class SineWaveQuadStortGenerator extends WaveGenerator:
-	func _init(freq_ : float):
-		super(freq_)
+	func _init(freq_ : float, phase_offset_ = 0.0):
+		super(freq_, phase_offset_)
 	
 	func sample(time_ : float):
 		time = time_
@@ -69,15 +70,19 @@ var lfo3_gen = SawWaveGenerator.new(15.0)
 var harm1_gen = SineWaveGenerator.new(100.0)
 var harm2_gen = SineWaveGenerator.new(120.0)
 var harm3_gen = SineWaveQuadStortGenerator.new(600.0)
+var harm4_gen = SawWaveGenerator.new(400.0)
+var harm4_gen2 = SawWaveGenerator.new(400.0, 0.002)
 
 var accel : float = 0.0:
 	set(value):
 		accel = value
-		base_gen.freq = 50.0 * lerpf(1.0, 2.0, accel)
+		base_gen.freq = 50.0 * lerpf(1.0, 3.0, accel)
 		lfo1_gen.freq = 5.0 * lerpf(1.0, 1.5, accel)
 		lfo2_gen.freq = 20.0 * lerpf(1.0, 1.5, accel)
-		lfo3_gen.freq = 15.0 * lerpf(1.0, 4.0, accel)
+		lfo3_gen.freq = 15.0 * lerpf(1.0, 5.0, accel)
 		harm1_gen.freq = 100.0 * lerpf(1.0, 2.0, accel)
+		harm2_gen.freq = 120.0 * lerpf(1.0, 1.1, accel)
+		harm3_gen.freq = 600.0 * lerpf(1.0, 1.05, accel)
 
 func _fill_buffer():
 	var to_fill = playback.get_frames_available()
@@ -88,7 +93,7 @@ func _fill_buffer():
 		var base_freq : float = 50.0
 		
 		# Basic tone
-		sample += base_gen.sample(frame_time) * db_to_amp(-24.0)
+		sample += base_gen.sample(frame_time) * db_to_amp(lerpf(-28.0, -24.0, accel))
 		
 		# LFOs
 		var lfo1 = lfo1_gen.sample(frame_time)
@@ -96,16 +101,20 @@ func _fill_buffer():
 		var lfo3 = lfo3_gen.sample(frame_time)
 		
 		# Some harmonics
-		sample += harm1_gen.sample(frame_time) * db_to_amp(lerpf(-18.0, -12.0, accel))
+		sample += harm1_gen.sample(frame_time) * lfo3 * db_to_amp(lerpf(-24.0, -18.0, accel))
 		sample += harm2_gen.sample(frame_time) * db_to_amp(-24.0)
-		sample += harm3_gen.sample(frame_time) * lfo2 * db_to_amp(-42.0)
+		sample += harm3_gen.sample(frame_time) * lfo2 * db_to_amp(lerpf(-42.0, -36.0, accel))
+		
+		# Combine phase shifted harmonic
+		var harm4_sample = (harm4_gen.sample(frame_time) + harm4_gen2.sample(frame_time)) / 2
+		sample += harm4_sample * db_to_amp(lerpf(-64.0, -32.0, accel))
 		
 		# LFO one for modulation
 		sample *= lfo1
 		
 		# Add in some noise
 		var noise := noise_gen.get_noise_1d(frame_time)
-		sample += noise * lfo3 * db_to_amp(-20.0)
+		sample += noise * lfo3 * db_to_amp(lerpf(-24.0, -18.0, accel))
 		
 		if absf(sample) > 1.0:
 			print("Warning, sample exceeds 1.0 amplitude: %f" % sample)
@@ -120,6 +129,7 @@ func _ready():
 		generator.mix_rate = sample_hz
 	else:
 		sample_hz = generator.mix_rate
+	generator.buffer_length = 0.2
 	player.play()
 	playback = player.get_stream_playback() as AudioStreamGeneratorPlayback
 	_fill_buffer()
