@@ -4,16 +4,16 @@
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_rh5se"]
 noise_type = 0
-frequency = 1.0
-fractal_type = 0
-fractal_octaves = 3
+fractal_octaves = 9
+fractal_lacunarity = 9.545
+fractal_gain = 1.0
 domain_warp_amplitude = -0.17
 domain_warp_frequency = 0.67
 domain_warp_fractal_type = 2
 
 [sub_resource type="AudioStreamGenerator" id="AudioStreamGenerator_nroo6"]
 
-[node name="Node3D" type="Node3D"]
+[node name="engine_noise" type="Node3D"]
 script = ExtResource("1_77eby")
 noise_gen = SubResource("FastNoiseLite_rh5se")
 
@@ -21,6 +21,3 @@ noise_gen = SubResource("FastNoiseLite_rh5se")
 unique_name_in_owner = true
 stream = SubResource("AudioStreamGenerator_nroo6")
 max_db = 0.0
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0.586452)
