@@ -1,4 +1,5 @@
 extends Node3D
+class_name EngineNoise
 
 @onready var player : AudioStreamPlayer3D = %AudioStreamPlayer3D
 
@@ -7,8 +8,6 @@ var time : float = 0.0
 var playback : AudioStreamGeneratorPlayback = null
 
 @export var noise_gen : Noise
-
-var accel : float = 1.0
 
 func quad_ease(t : float) -> float:
 	var sqr := t * t
@@ -33,13 +32,15 @@ func sine_wave_quadstort(secs : float, offset : float, freq : float) -> float:
 	var phase := fmod(secs + offset, 1/freq) * freq
 	return sin(quad_ease(phase) * TAU)
 
+var accel : float = 0.0
+
 func _fill_buffer():
 	var to_fill = playback.get_frames_available()
 	for i in range(0, to_fill):
 		var frame_time : float = time + (i / sample_hz)
 		var sample = 0.0
 		
-		var base_freq : float = 50.0 * accel
+		var base_freq : float = 50.0
 		
 		# Basic tone
 		sample += saw_wave(frame_time, 0.1, base_freq) * db_to_amp(-24.0)

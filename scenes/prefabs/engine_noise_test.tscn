@@ -1,0 +1,63 @@
+[gd_scene load_steps=3 format=3 uid="uid://f3h8nwjq1sj7"]
+
+[ext_resource type="PackedScene" uid="uid://cvjhli7dx452m" path="res://scenes/prefabs/engine_noise.tscn" id="1_ijime"]
+
+[sub_resource type="GDScript" id="GDScript_i8go5"]
+script/source = "extends VSlider
+
+@export var engine_noise : EngineNoise
+
+
+func _ready():
+	value = engine_noise.accel
+
+func _on_value_changed(value):
+	engine_noise.accel = value
+"
+
+[node name="Node3D" type="Node3D"]
+
+[node name="engine_noise" parent="." instance=ExtResource("1_ijime")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+custom_minimum_size = Vector2(200, 400)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Panel/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="VSlider" type="VSlider" parent="CanvasLayer/Panel/MarginContainer/HBoxContainer" node_paths=PackedStringArray("engine_noise")]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+script = SubResource("GDScript_i8go5")
+engine_noise = NodePath("../../../../../engine_noise")
+
+[connection signal="value_changed" from="CanvasLayer/Panel/MarginContainer/HBoxContainer/VSlider" to="CanvasLayer/Panel/MarginContainer/HBoxContainer/VSlider" method="_on_value_changed"]
