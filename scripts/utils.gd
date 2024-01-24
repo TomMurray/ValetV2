@@ -14,3 +14,7 @@ static func get_child_of_type(n : Node, type) -> Node:
 		if is_instance_of(child, type):
 			return child
 	return null
+
+static func quad_ease(t : float) -> float:
+	var sqr := t * t
+	return sqr / (2.0 * (sqr - t) + 1.0)

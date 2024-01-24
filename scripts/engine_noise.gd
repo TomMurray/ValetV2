@@ -9,30 +9,75 @@ var playback : AudioStreamGeneratorPlayback = null
 
 @export var noise_gen : Noise
 
-func quad_ease(t : float) -> float:
-	var sqr := t * t
-	return sqr / (2.0 * (sqr - t) + 1.0)
-
 func db_to_amp(db : float) -> float:
 	return pow(10, db / 20.0)
 
-func sine_wave(secs : float, offset : float, freq : float) -> float:
-	var phase := fmod(secs + offset, 1/freq) * freq
-	return sin(phase * TAU)
-
-func square_wave(secs : float, offset : float, freq : float) -> float:
-	var phase := fmod(secs + offset, 1/freq) * freq
-	return 1.0 if phase < 0.5 else 0.0
-
-func saw_wave(secs : float, offset : float, freq : float) -> float:
-	var phase := fmod(secs + offset, 1/freq) * freq
-	return lerp(1.0, 0.0, phase)
+class WaveGenerator:
+	var time : float = 0.0
+	var phase_offset : float = 0.0
+	var freq : float = 1.0:
+		set(value):
+			# Adjust the offset so that time + offset results in
+			# the same phase offset into the new frequency
+			var curr_phase := fmod(time + phase_offset, 1/freq) * freq
+			var zero_phase := fmod(time, 1/value) * value
+			phase_offset = fmod(curr_phase - zero_phase + 1.0, 1.0) / value
+			freq = value
+			
+	func _init(freq_ : float):
+		freq = freq_
 	
-func sine_wave_quadstort(secs : float, offset : float, freq : float) -> float:
-	var phase := fmod(secs + offset, 1/freq) * freq
-	return sin(quad_ease(phase) * TAU)
+	func get_phase():
+		return fmod(time + phase_offset, 1/freq) * freq
 
-var accel : float = 0.0
+class SineWaveGenerator extends WaveGenerator:
+	func _init(freq_ : float):
+		super(freq_)
+	
+	func sample(time_ : float):
+		time = time_
+		return sin(get_phase() * TAU)
+
+class SawWaveGenerator extends WaveGenerator:
+	func _init(freq_ : float):
+		super(freq_)
+	
+	func sample(time_ : float):
+		time = time_
+		return lerpf(1.0, 0.0, get_phase())
+
+class SquareWaveGenerator extends WaveGenerator:
+	func _init(freq_ : float):
+		super(freq_)
+	
+	func sample(time_ : float):
+		time = time_
+		return 1.0 if get_phase() < 0.5 else 0.0
+
+class SineWaveQuadStortGenerator extends WaveGenerator:
+	func _init(freq_ : float):
+		super(freq_)
+	
+	func sample(time_ : float):
+		time = time_
+		return sin(Utils.quad_ease(get_phase()) * TAU)
+
+var base_gen = SawWaveGenerator.new(50.0)
+var lfo1_gen = SineWaveGenerator.new(5.0)
+var lfo2_gen = SquareWaveGenerator.new(20.0)
+var lfo3_gen = SawWaveGenerator.new(15.0)
+var harm1_gen = SineWaveGenerator.new(100.0)
+var harm2_gen = SineWaveGenerator.new(120.0)
+var harm3_gen = SineWaveQuadStortGenerator.new(600.0)
+
+var accel : float = 0.0:
+	set(value):
+		accel = value
+		base_gen.freq = 50.0 * lerpf(1.0, 2.0, accel)
+		lfo1_gen.freq = 5.0 * lerpf(1.0, 1.5, accel)
+		lfo2_gen.freq = 20.0 * lerpf(1.0, 1.5, accel)
+		lfo3_gen.freq = 15.0 * lerpf(1.0, 4.0, accel)
+		harm1_gen.freq = 100.0 * lerpf(1.0, 2.0, accel)
 
 func _fill_buffer():
 	var to_fill = playback.get_frames_available()
@@ -43,17 +88,17 @@ func _fill_buffer():
 		var base_freq : float = 50.0
 		
 		# Basic tone
-		sample += saw_wave(frame_time, 0.1, base_freq) * db_to_amp(-24.0)
+		sample += base_gen.sample(frame_time) * db_to_amp(-24.0)
 		
 		# LFOs
-		var lfo1 = sine_wave(frame_time, 0.5, 5.0)
-		var lfo2 = square_wave(frame_time, 0.0, 20.0)
-		var lfo3 = saw_wave(frame_time, 1.5, 15.0)
+		var lfo1 = lfo1_gen.sample(frame_time)
+		var lfo2 = lfo2_gen.sample(frame_time)
+		var lfo3 = lfo3_gen.sample(frame_time)
 		
 		# Some harmonics
-		sample += sine_wave(frame_time, 0.5, base_freq * 2.0) * db_to_amp(-18.0)
-		sample += sine_wave(frame_time, 0.5, base_freq * 2.0 + 20.0) * db_to_amp(-24.0)
-		sample += sine_wave_quadstort(frame_time, 20.0, base_freq * 12.0) * lfo2 * db_to_amp(-42.0)
+		sample += harm1_gen.sample(frame_time) * db_to_amp(lerpf(-18.0, -12.0, accel))
+		sample += harm2_gen.sample(frame_time) * db_to_amp(-24.0)
+		sample += harm3_gen.sample(frame_time) * lfo2 * db_to_amp(-42.0)
 		
 		# LFO one for modulation
 		sample *= lfo1
