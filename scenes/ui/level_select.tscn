@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://c423pop7dardp"]
+[gd_scene load_steps=12 format=3 uid="uid://c423pop7dardp"]
 
 [ext_resource type="Theme" uid="uid://dpqnmj3en2tdc" path="res://themes/in_game_overlay.tres" id="1_15hmw"]
 [ext_resource type="Script" path="res://scripts/resources/link.gd" id="2_hor8t"]
+[ext_resource type="Script" path="res://scripts/ui/level_select.gd" id="2_n51pb"]
 [ext_resource type="PackedScene" uid="uid://dcpqbah1so4vd" path="res://scenes/ui/follow_link_button.tscn" id="2_rjawy"]
 [ext_resource type="Script" path="res://scripts/components/link_tree_node.gd" id="2_yxn7f"]
 [ext_resource type="PackedScene" uid="uid://dfmosyv7gsyw7" path="res://scenes/ui/follow_return_button.tscn" id="4_gaxdp"]
@@ -26,7 +27,7 @@ path = "uid://beao3s7qdetp0"
 script = ExtResource("2_hor8t")
 path = "uid://7ccwl8uxxcc"
 
-[node name="level_select" type="Control"]
+[node name="level_select" type="Control" node_paths=PackedStringArray("initial_focus_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -34,6 +35,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_15hmw")
+script = ExtResource("2_n51pb")
+initial_focus_button = NodePath("MarginContainer/Panel/MarginContainer/CenterContainer/VBoxContainer/FlowContainer/level1/follow_link_button")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -84,6 +87,8 @@ theme_override_constants/margin_bottom = 10
 [node name="follow_link_button" parent="MarginContainer/Panel/MarginContainer/CenterContainer/VBoxContainer/FlowContainer/level1" node_paths=PackedStringArray("link_tree_node") instance=ExtResource("2_rjawy")]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+focus_neighbor_right = NodePath("../../level2/follow_link_button")
+focus_neighbor_bottom = NodePath("../../../follow_return_button")
 text = "1"
 link_tree_node = NodePath("../../../../../../../../link_tree_node")
 link = SubResource("Resource_6kiop")
@@ -98,6 +103,9 @@ theme_override_constants/margin_bottom = 10
 [node name="follow_link_button" parent="MarginContainer/Panel/MarginContainer/CenterContainer/VBoxContainer/FlowContainer/level2" node_paths=PackedStringArray("link_tree_node") instance=ExtResource("2_rjawy")]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+focus_neighbor_left = NodePath("../../level1/follow_link_button")
+focus_neighbor_right = NodePath("../../level3/follow_link_button")
+focus_neighbor_bottom = NodePath("../../../follow_return_button")
 text = "2"
 link_tree_node = NodePath("../../../../../../../../link_tree_node")
 link = SubResource("Resource_0u8lk")
@@ -112,6 +120,9 @@ theme_override_constants/margin_bottom = 10
 [node name="follow_link_button" parent="MarginContainer/Panel/MarginContainer/CenterContainer/VBoxContainer/FlowContainer/level3" node_paths=PackedStringArray("link_tree_node") instance=ExtResource("2_rjawy")]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+focus_neighbor_left = NodePath("../../level2/follow_link_button")
+focus_neighbor_right = NodePath("../../level4/follow_link_button")
+focus_neighbor_bottom = NodePath("../../../follow_return_button")
 text = "3"
 link_tree_node = NodePath("../../../../../../../../link_tree_node")
 link = SubResource("Resource_a5hba")
@@ -126,6 +137,9 @@ theme_override_constants/margin_bottom = 10
 [node name="follow_link_button" parent="MarginContainer/Panel/MarginContainer/CenterContainer/VBoxContainer/FlowContainer/level4" node_paths=PackedStringArray("link_tree_node") instance=ExtResource("2_rjawy")]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+focus_neighbor_left = NodePath("../../level3/follow_link_button")
+focus_neighbor_right = NodePath("../../level5/follow_link_button")
+focus_neighbor_bottom = NodePath("../../../follow_return_button")
 text = "4"
 link_tree_node = NodePath("../../../../../../../../link_tree_node")
 link = SubResource("Resource_yu20o")
@@ -140,12 +154,15 @@ theme_override_constants/margin_bottom = 10
 [node name="follow_link_button" parent="MarginContainer/Panel/MarginContainer/CenterContainer/VBoxContainer/FlowContainer/level5" node_paths=PackedStringArray("link_tree_node") instance=ExtResource("2_rjawy")]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+focus_neighbor_left = NodePath("../../level4/follow_link_button")
+focus_neighbor_bottom = NodePath("../../../follow_return_button")
 text = "5"
 link_tree_node = NodePath("../../../../../../../../link_tree_node")
 link = SubResource("Resource_flgu8")
 
 [node name="follow_return_button" parent="MarginContainer/Panel/MarginContainer/CenterContainer/VBoxContainer" node_paths=PackedStringArray("link_tree_node") instance=ExtResource("4_gaxdp")]
 layout_mode = 2
+focus_neighbor_top = NodePath("../FlowContainer/level1/follow_link_button")
 text = "BACK"
 link_tree_node = NodePath("../../../../../../link_tree_node")
 

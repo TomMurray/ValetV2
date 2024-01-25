@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://c1ss72v31rhec"]
+[gd_scene load_steps=15 format=3 uid="uid://c1ss72v31rhec"]
 
 [ext_resource type="PackedScene" uid="uid://bfeebin6bl3v" path="res://scenes/ui/hud_obstacles_counter.tscn" id="1_1cl3b"]
 [ext_resource type="PackedScene" uid="uid://bv8snj5dy8q4c" path="res://scenes/world1/prefabs/foggy_rainy_world_environment.tscn" id="1_qexq8"]
 [ext_resource type="PackedScene" uid="uid://bdm7x5kots6yv" path="res://scenes/ui/end_game_panel.tscn" id="2_6dxkb"]
+[ext_resource type="PackedScene" uid="uid://cyhx0tmmpnylm" path="res://scenes/ui/pause_screen.tscn" id="2_nkuqf"]
 [ext_resource type="Script" path="res://scripts/level/level_logic.gd" id="3_lukfl"]
 [ext_resource type="Script" path="res://scripts/level/level_objective.gd" id="4_t4ish"]
 [ext_resource type="PackedScene" uid="uid://dem0tl0qj4t03" path="res://scenes/prefabs/player_camera.tscn" id="5_qo5kx"]
@@ -22,6 +23,9 @@ max_obstacles_hit = 1
 [node name="world_environment" parent="." instance=ExtResource("1_qexq8")]
 
 [node name="ui" type="CanvasLayer" parent="."]
+
+[node name="pause_screen" parent="ui" node_paths=PackedStringArray("link_tree_node") instance=ExtResource("2_nkuqf")]
+link_tree_node = NodePath("../../link_tree_node")
 
 [node name="obstacles_counter_container" parent="ui" instance=ExtResource("1_1cl3b")]
 
