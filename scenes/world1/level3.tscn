@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ma2cfjmhstpc"]
+[gd_scene load_steps=13 format=3 uid="uid://ma2cfjmhstpc"]
 
 [ext_resource type="PackedScene" uid="uid://bdm7x5kots6yv" path="res://scenes/ui/end_game_panel.tscn" id="1_3e3kj"]
 [ext_resource type="PackedScene" uid="uid://bv8snj5dy8q4c" path="res://scenes/world1/prefabs/foggy_rainy_world_environment.tscn" id="1_ouymb"]
@@ -10,18 +10,11 @@
 [ext_resource type="PackedScene" uid="uid://1aps6snaxwys" path="res://scenes/world1/level_chunks/multistorey.tscn" id="5_huxc5"]
 [ext_resource type="PackedScene" uid="uid://b4mgfyr48tc6j" path="res://scenes/world1/prefabs/parking_area.tscn" id="8_gwpxh"]
 [ext_resource type="PackedScene" uid="uid://dlcl4g8eeahy7" path="res://scenes/props/traffic_cone.tscn" id="9_f472o"]
-[ext_resource type="Script" path="res://scripts/components/scene_tree_links_component.gd" id="11_2xnql"]
-[ext_resource type="Script" path="res://scripts/components/scene_tree_node.gd" id="12_4em58"]
+[ext_resource type="Script" path="res://scripts/components/link_tree_node.gd" id="13_ibu77"]
 
 [sub_resource type="Resource" id="Resource_wrdc5"]
 script = ExtResource("3_irjo4")
 max_obstacles_hit = 1
-
-[sub_resource type="Resource" id="Resource_37lli"]
-script = ExtResource("12_4em58")
-this_scene = ""
-children = Array[String](["res://scenes/world1/level3.tscn"])
-child_index = 0
 
 [node name="level" type="Node3D"]
 
@@ -29,12 +22,12 @@ child_index = 0
 
 [node name="ui" type="CanvasLayer" parent="."]
 
-[node name="end_game_panel" parent="ui" node_paths=PackedStringArray("scene_tree_links", "level_logic") instance=ExtResource("1_3e3kj")]
+[node name="end_game_panel" parent="ui" node_paths=PackedStringArray("link_tree_node", "level_logic") instance=ExtResource("1_3e3kj")]
 offset_left = -300.0
 offset_top = -225.0
 offset_right = 300.0
 offset_bottom = 225.0
-scene_tree_links = NodePath("../../scene_tree_links_component")
+link_tree_node = NodePath("../../LinkTreeNode")
 level_logic = NodePath("../../level_logic")
 
 [node name="player_camera" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_bgcim")]
@@ -48,8 +41,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0.5, 6)
 script = ExtResource("2_43xgr")
 objective = SubResource("Resource_wrdc5")
 
-[node name="level_restart" parent="." node_paths=PackedStringArray("scene_tree_links") instance=ExtResource("4_l7flp")]
-scene_tree_links = NodePath("../scene_tree_links_component")
+[node name="level_restart" parent="." node_paths=PackedStringArray("link_tree_node") instance=ExtResource("4_l7flp")]
+link_tree_node = NodePath("../LinkTreeNode")
 
 [node name="parking_area" parent="." instance=ExtResource("8_gwpxh")]
 transform = Transform3D(1.70474e-07, 0, 2.64, 0, 1.3, 0, -1.3, 0, 3.46194e-07, -1.75, 0.5, 1)
@@ -178,9 +171,9 @@ level_logic = NodePath("../../level_logic")
 
 [node name="level_base" parent="." instance=ExtResource("5_huxc5")]
 
-[node name="scene_tree_links_component" type="Node" parent="."]
-script = ExtResource("11_2xnql")
-scene_tree_node = SubResource("Resource_37lli")
+[node name="LinkTreeNode" type="Node" parent="." node_paths=PackedStringArray("scene_node_reference")]
+script = ExtResource("13_ibu77")
+scene_node_reference = NodePath("..")
 
 [connection signal="parked" from="parking_area" to="level_logic" method="on_parked"]
 

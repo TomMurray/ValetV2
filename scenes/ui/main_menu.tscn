@@ -1,15 +1,13 @@
 [gd_scene load_steps=6 format=3 uid="uid://dwcirsvne3wr4"]
 
 [ext_resource type="Theme" uid="uid://dpqnmj3en2tdc" path="res://themes/in_game_overlay.tres" id="1_m8ha8"]
-[ext_resource type="Script" path="res://scripts/ui/play_button.gd" id="2_tnoln"]
-[ext_resource type="Script" path="res://scripts/components/scene_tree_navigator.gd" id="2_tqvoh"]
-[ext_resource type="Script" path="res://scripts/components/scene_tree_node.gd" id="3_21n6l"]
+[ext_resource type="PackedScene" uid="uid://dcpqbah1so4vd" path="res://scenes/ui/follow_link_button.tscn" id="2_eyd24"]
+[ext_resource type="Script" path="res://scripts/resources/link.gd" id="3_xbjlo"]
+[ext_resource type="Script" path="res://scripts/components/link_tree_node.gd" id="5_mteg7"]
 
-[sub_resource type="Resource" id="Resource_pcy16"]
-script = ExtResource("3_21n6l")
-this_scene = "res://scenes/ui/main_menu.tscn"
-children = Array[String](["res://scenes/world1/level1.tscn", "res://scenes/world1/level3.tscn", "res://scenes/world1/level2.tscn", "res://scenes/world1/level4.tscn", "res://scenes/world1/level5.tscn"])
-child_index = 0
+[sub_resource type="Resource" id="Resource_6rr3b"]
+script = ExtResource("3_xbjlo")
+path = "uid://c423pop7dardp"
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -37,14 +35,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="play_button" type="Button" parent="CenterContainer"]
+[node name="follow_link_button" parent="CenterContainer" node_paths=PackedStringArray("link_tree_node") instance=ExtResource("2_eyd24")]
 layout_mode = 2
 theme = ExtResource("1_m8ha8")
-text = "PLAY"
-script = ExtResource("2_tnoln")
+text = "LEVEL SELECT"
+link_tree_node = NodePath("../../LinkTreeNode")
+link = SubResource("Resource_6rr3b")
 
-[node name="SceneTreeNavigator" type="Node" parent="."]
-script = ExtResource("2_tqvoh")
-scene_tree_node = SubResource("Resource_pcy16")
-
-[connection signal="pressed" from="CenterContainer/play_button" to="SceneTreeNavigator" method="goto_curr_child"]
+[node name="LinkTreeNode" type="Node" parent="." node_paths=PackedStringArray("scene_node_reference")]
+script = ExtResource("5_mteg7")
+scene_node_reference = NodePath("..")

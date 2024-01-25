@@ -16,8 +16,7 @@ func has_ancestor():
 	return scene_tree_node != null
 
 func _do_switch(path : String):
-	SceneManager.queue(path)
-	SceneManager.switch(func(next_scene):
+	SceneManager.switch(path, func(next_scene):
 		var links_component := Utils.get_child_of_type(next_scene, SceneTreeLinksComponent) as SceneTreeLinksComponent
 		if links_component:
 			links_component.scene_tree_node = scene_tree_node

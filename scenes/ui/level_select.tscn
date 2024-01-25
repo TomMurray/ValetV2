@@ -1,0 +1,154 @@
+[gd_scene load_steps=11 format=3 uid="uid://c423pop7dardp"]
+
+[ext_resource type="Theme" uid="uid://dpqnmj3en2tdc" path="res://themes/in_game_overlay.tres" id="1_15hmw"]
+[ext_resource type="Script" path="res://scripts/resources/link.gd" id="2_hor8t"]
+[ext_resource type="PackedScene" uid="uid://dcpqbah1so4vd" path="res://scenes/ui/follow_link_button.tscn" id="2_rjawy"]
+[ext_resource type="Script" path="res://scripts/components/link_tree_node.gd" id="2_yxn7f"]
+[ext_resource type="PackedScene" uid="uid://dfmosyv7gsyw7" path="res://scenes/ui/follow_return_button.tscn" id="4_gaxdp"]
+
+[sub_resource type="Resource" id="Resource_6kiop"]
+script = ExtResource("2_hor8t")
+path = "uid://c1ss72v31rhec"
+
+[sub_resource type="Resource" id="Resource_0u8lk"]
+script = ExtResource("2_hor8t")
+path = "uid://nacqsluyb0ya"
+
+[sub_resource type="Resource" id="Resource_a5hba"]
+script = ExtResource("2_hor8t")
+path = "uid://ma2cfjmhstpc"
+
+[sub_resource type="Resource" id="Resource_yu20o"]
+script = ExtResource("2_hor8t")
+path = "uid://beao3s7qdetp0"
+
+[sub_resource type="Resource" id="Resource_flgu8"]
+script = ExtResource("2_hor8t")
+path = "uid://7ccwl8uxxcc"
+
+[node name="level_select" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_15hmw")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="Panel" type="Panel" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer/CenterContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="FlowContainer" type="FlowContainer" parent="MarginContainer/Panel/MarginContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+vertical = true
+
+[node name="level1" type="MarginContainer" parent="MarginContainer/Panel/MarginContainer/CenterContainer/VBoxContainer/FlowContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="follow_link_button" parent="MarginContainer/Panel/MarginContainer/CenterContainer/VBoxContainer/FlowContainer/level1" node_paths=PackedStringArray("link_tree_node") instance=ExtResource("2_rjawy")]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "1"
+link_tree_node = NodePath("../../../../../../../../link_tree_node")
+link = SubResource("Resource_6kiop")
+
+[node name="level2" type="MarginContainer" parent="MarginContainer/Panel/MarginContainer/CenterContainer/VBoxContainer/FlowContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="follow_link_button" parent="MarginContainer/Panel/MarginContainer/CenterContainer/VBoxContainer/FlowContainer/level2" node_paths=PackedStringArray("link_tree_node") instance=ExtResource("2_rjawy")]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "2"
+link_tree_node = NodePath("../../../../../../../../link_tree_node")
+link = SubResource("Resource_0u8lk")
+
+[node name="level3" type="MarginContainer" parent="MarginContainer/Panel/MarginContainer/CenterContainer/VBoxContainer/FlowContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="follow_link_button" parent="MarginContainer/Panel/MarginContainer/CenterContainer/VBoxContainer/FlowContainer/level3" node_paths=PackedStringArray("link_tree_node") instance=ExtResource("2_rjawy")]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "3"
+link_tree_node = NodePath("../../../../../../../../link_tree_node")
+link = SubResource("Resource_a5hba")
+
+[node name="level4" type="MarginContainer" parent="MarginContainer/Panel/MarginContainer/CenterContainer/VBoxContainer/FlowContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="follow_link_button" parent="MarginContainer/Panel/MarginContainer/CenterContainer/VBoxContainer/FlowContainer/level4" node_paths=PackedStringArray("link_tree_node") instance=ExtResource("2_rjawy")]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "4"
+link_tree_node = NodePath("../../../../../../../../link_tree_node")
+link = SubResource("Resource_yu20o")
+
+[node name="level5" type="MarginContainer" parent="MarginContainer/Panel/MarginContainer/CenterContainer/VBoxContainer/FlowContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="follow_link_button" parent="MarginContainer/Panel/MarginContainer/CenterContainer/VBoxContainer/FlowContainer/level5" node_paths=PackedStringArray("link_tree_node") instance=ExtResource("2_rjawy")]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "5"
+link_tree_node = NodePath("../../../../../../../../link_tree_node")
+link = SubResource("Resource_flgu8")
+
+[node name="follow_return_button" parent="MarginContainer/Panel/MarginContainer/CenterContainer/VBoxContainer" node_paths=PackedStringArray("link_tree_node") instance=ExtResource("4_gaxdp")]
+layout_mode = 2
+text = "BACK"
+link_tree_node = NodePath("../../../../../../link_tree_node")
+
+[node name="link_tree_node" type="Node" parent="." node_paths=PackedStringArray("scene_node_reference")]
+script = ExtResource("2_yxn7f")
+scene_node_reference = NodePath("..")

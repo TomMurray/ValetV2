@@ -2,9 +2,9 @@
 extends Control
 class_name EndGamePanel
 
-@export var scene_tree_links : SceneTreeLinksComponent = null:
+@export var link_tree_node : LinkTreeNode = null:
 	set(value):
-		scene_tree_links = value
+		link_tree_node = value
 		update_configuration_warnings()
 
 @export var level_logic : LevelLogic:
@@ -22,26 +22,28 @@ class_name EndGamePanel
 
 func _get_configuration_warnings():
 	var warnings : PackedStringArray
-	if not scene_tree_links:
-		warnings.append("No SceneTreeLinksComponent set for EndGamePanel")
+	if not link_tree_node:
+		warnings.append("No LinkTreeNode set for EndGamePanel")
 	if not level_logic:
 		warnings.append("No LevelLogic set for EndGamePanel")
 	return warnings
 
 func _ready():
-	if scene_tree_links:
-		next_level_button.scene_tree_links = scene_tree_links
-		retry_level_button.scene_tree_links = scene_tree_links
+	if link_tree_node:
+		next_level_button.link_tree_node = link_tree_node
+		retry_level_button.link_tree_node = link_tree_node
 
 func _on_level_logic_complete(success):
 	# Configure some elements to show or not depending on the outcome
 	if success:
 		for c in [%success_text, next_level_button]:
 			c.show()
+		next_level_button.update_disabled_status()
 		next_level_button.grab_focus()
 	else:
 		for c in [%failure_text, retry_level_button]:
 			c.show()
+		retry_level_button.update_disabled_status()
 		retry_level_button.grab_focus()
 	
 	# Show the panel

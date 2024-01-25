@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dfmosyv7gsyw7"]
+
+[ext_resource type="Script" path="res://scripts/ui/follow_return_button.gd" id="1_eqbn2"]
+
+[node name="follow_return_button" type="Button"]
+script = ExtResource("1_eqbn2")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

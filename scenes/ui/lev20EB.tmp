@@ -1,0 +1,126 @@
+[gd_scene load_steps=3 format=3 uid="uid://c423pop7dardp"]
+
+[ext_resource type="Theme" uid="uid://dpqnmj3en2tdc" path="res://themes/in_game_overlay.tres" id="1_15hmw"]
+
+[sub_resource type="GDScript" id="GDScript_tcifl"]
+script/source = "extends Control
+
+@onready var link_stack := LinkStack.new(ResourceUID.id_to_text(ResourceLoader.get_resource_uid(scene_file_path)))
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	print(\"link_stack[0] = %s\", link_stack.links[0])
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[node name="level_select" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_tcifl")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="Panel" type="Panel" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="FlowContainer" type="FlowContainer" parent="MarginContainer/Panel/MarginContainer/CenterContainer"]
+layout_mode = 2
+alignment = 1
+vertical = true
+
+[node name="level1" type="MarginContainer" parent="MarginContainer/Panel/MarginContainer/CenterContainer/FlowContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Button" type="Button" parent="MarginContainer/Panel/MarginContainer/CenterContainer/FlowContainer/level1"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme = ExtResource("1_15hmw")
+text = "1"
+
+[node name="level2" type="MarginContainer" parent="MarginContainer/Panel/MarginContainer/CenterContainer/FlowContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Button" type="Button" parent="MarginContainer/Panel/MarginContainer/CenterContainer/FlowContainer/level2"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme = ExtResource("1_15hmw")
+text = "2"
+
+[node name="level3" type="MarginContainer" parent="MarginContainer/Panel/MarginContainer/CenterContainer/FlowContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Button" type="Button" parent="MarginContainer/Panel/MarginContainer/CenterContainer/FlowContainer/level3"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme = ExtResource("1_15hmw")
+text = "3"
+
+[node name="level4" type="MarginContainer" parent="MarginContainer/Panel/MarginContainer/CenterContainer/FlowContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Button" type="Button" parent="MarginContainer/Panel/MarginContainer/CenterContainer/FlowContainer/level4"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme = ExtResource("1_15hmw")
+text = "4"
+
+[node name="level5" type="MarginContainer" parent="MarginContainer/Panel/MarginContainer/CenterContainer/FlowContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Button" type="Button" parent="MarginContainer/Panel/MarginContainer/CenterContainer/FlowContainer/level5"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme = ExtResource("1_15hmw")
+text = "5"
