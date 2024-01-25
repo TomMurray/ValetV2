@@ -52,6 +52,8 @@ signal parked_status_changed(parked : bool)
 
 @onready var wheel_radius : float = wheels[0].scale.y
 
+@onready var engine_noise : EngineNoise = %engine_noise
+
 var prev_accel_dir : float = 0.0
 var change_dir_timer : SceneTreeTimer = null
 
@@ -146,6 +148,11 @@ func _physics_process(delta):
 				velocity_delta = 0.0
 			
 		var forward_velocity = prev_forward_velocity + velocity_delta
+		
+		if is_braking:
+			engine_noise.target_accel = 0.0
+		else:
+			engine_noise.target_accel = (abs(accel) + (abs(forward_velocity) / max_speed_per_sec_fwd)) / 2.0
 		
 		# If acceleration brings the car to a stop, and we're braking, introduce
 		# a little pause before starting to move in the other direction.

@@ -17,12 +17,13 @@ class WaveGenerator:
 	var phase_offset : float = 0.0
 	var freq : float = 1.0:
 		set(value):
-			# Adjust the offset so that time + offset results in
-			# the same phase offset into the new frequency
-			var curr_phase := fmod(time + phase_offset, 1/freq) * freq
-			var zero_phase := fmod(time, 1/value) * value
-			phase_offset = fmod(curr_phase - zero_phase + 1.0, 1.0) / value
-			freq = value
+			if value != freq:
+				# Adjust the offset so that time + offset results in
+				# the same phase offset into the new frequency
+				var curr_phase := fmod(time + phase_offset, 1/freq) * freq
+				var zero_phase := fmod(time, 1/value) * value
+				phase_offset = fmod(curr_phase - zero_phase + 1.0, 1.0) / value
+				freq = value
 			
 	func _init(freq_ : float, phase_offset_ = 0.0):
 		freq = freq_
@@ -73,16 +74,30 @@ var harm3_gen = SineWaveQuadStortGenerator.new(600.0)
 var harm4_gen = SawWaveGenerator.new(400.0)
 var harm4_gen2 = SawWaveGenerator.new(400.0, 0.002)
 
-var accel : float = 0.0:
+var accel : float = 0.0
+var target_accel : float = 0.0:
 	set(value):
-		accel = value
-		base_gen.freq = 50.0 * lerpf(1.0, 3.0, accel)
-		lfo1_gen.freq = 5.0 * lerpf(1.0, 1.5, accel)
-		lfo2_gen.freq = 20.0 * lerpf(1.0, 1.5, accel)
-		lfo3_gen.freq = 15.0 * lerpf(1.0, 5.0, accel)
-		harm1_gen.freq = 100.0 * lerpf(1.0, 2.0, accel)
-		harm2_gen.freq = 120.0 * lerpf(1.0, 1.1, accel)
-		harm3_gen.freq = 600.0 * lerpf(1.0, 1.05, accel)
+		# Clamp the target accel value to avoid clipping in the resulting audio
+		target_accel = clampf(value, 0.0, 1.0)
+
+func _update_accel(delta : float):
+	# Smoothly interpolate between current acceleration and target acceleration.
+	# Basically, choose a fraction of current difference between the current
+	# and target values which will be reached after 1 second and plug this into
+	# an exponential decay formula taking account of delta time.
+	const one_second_delta = 1.0/32.0
+	accel = lerpf(target_accel, accel, pow(one_second_delta, delta))
+	if abs(target_accel - accel) <= 0.05:
+		accel = target_accel
+	
+	base_gen.freq = 50.0 * lerpf(1.0, 3.0, accel)
+	lfo1_gen.freq = 5.0 * lerpf(1.0, 1.5, accel)
+	lfo2_gen.freq = 20.0 * lerpf(1.0, 1.5, accel)
+	lfo3_gen.freq = 15.0 * lerpf(1.0, 5.0, accel)
+	harm1_gen.freq = 100.0 * lerpf(1.0, 2.0, accel)
+	harm2_gen.freq = 120.0 * lerpf(1.0, 1.1, accel)
+	harm3_gen.freq = 600.0 * lerpf(1.0, 1.05, accel)
+	
 
 func _fill_buffer():
 	var to_fill = playback.get_frames_available()
@@ -129,11 +144,12 @@ func _ready():
 		generator.mix_rate = sample_hz
 	else:
 		sample_hz = generator.mix_rate
-	generator.buffer_length = 0.2
+	generator.buffer_length = 0.1
 	player.play()
 	playback = player.get_stream_playback() as AudioStreamGeneratorPlayback
 	_fill_buffer()
 
 func _process(delta):
+	_update_accel(delta)
 	_fill_buffer()
 	

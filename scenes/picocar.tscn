@@ -19,6 +19,7 @@ wheel_back_left = NodePath("wheel_bl")
 brake_lights = [NodePath("brakelight_r"), NodePath("brakelight_l")]
 
 [node name="engine_noise" parent="." index="0" instance=ExtResource("3_0gag3")]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.529911, 0.802172)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="6"]
