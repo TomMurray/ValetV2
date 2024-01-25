@@ -21,7 +21,6 @@ func _ready():
 		assert(scene_file_path != null)
 		var ruid := ResourceLoader.get_resource_uid(scene_file_path)
 		var ruid_text := ResourceUID.id_to_text(ruid)
-		print("_ready: %s, with ruid_text %s" % [scene_file_path, ruid_text])
 		link_stack.links.append(Link.new(ruid_text))
 
 func follow(link : Link):
