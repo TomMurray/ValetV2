@@ -22,7 +22,9 @@ max_obstacles_hit = 1
 
 [node name="ui" type="CanvasLayer" parent="."]
 
-[node name="hud" parent="ui" instance=ExtResource("2_1kp2g")]
+[node name="hud" parent="ui" node_paths=PackedStringArray("link_tree_node", "level_logic") instance=ExtResource("2_1kp2g")]
+link_tree_node = NodePath("../../LinkTreeNode")
+level_logic = NodePath("../../level_logic")
 
 [node name="player_camera" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_4wi15")]
 transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -8, 0.5, 9)

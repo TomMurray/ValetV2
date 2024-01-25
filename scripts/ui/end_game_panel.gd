@@ -16,7 +16,8 @@ class_name EndGamePanel
 			level_logic.disconnect("complete", _on_level_logic_complete)
 			
 		level_logic = value
-		level_logic.connect("complete", _on_level_logic_complete)
+		if level_logic:
+			level_logic.connect("complete", _on_level_logic_complete)
 		
 		update_configuration_warnings()
 
