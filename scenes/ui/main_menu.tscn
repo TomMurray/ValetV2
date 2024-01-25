@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://dwcirsvne3wr4"]
+[gd_scene load_steps=7 format=3 uid="uid://dwcirsvne3wr4"]
 
+[ext_resource type="Script" path="res://scripts/ui/main_menu.gd" id="1_8w4p6"]
 [ext_resource type="Theme" uid="uid://dpqnmj3en2tdc" path="res://themes/in_game_overlay.tres" id="1_m8ha8"]
 [ext_resource type="PackedScene" uid="uid://dcpqbah1so4vd" path="res://scenes/ui/follow_link_button.tscn" id="2_eyd24"]
 [ext_resource type="Script" path="res://scripts/resources/link.gd" id="3_xbjlo"]
@@ -9,13 +10,15 @@
 script = ExtResource("3_xbjlo")
 path = "uid://c423pop7dardp"
 
-[node name="Control" type="Control"]
+[node name="Control" type="Control" node_paths=PackedStringArray("control_to_focus")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_8w4p6")
+control_to_focus = NodePath("CenterContainer/follow_link_button")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -36,6 +39,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="follow_link_button" parent="CenterContainer" node_paths=PackedStringArray("link_tree_node") instance=ExtResource("2_eyd24")]
+unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("1_m8ha8")
 text = "LEVEL SELECT"

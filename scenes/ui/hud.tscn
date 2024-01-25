@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://de41fni8xhs33"]
+
+[ext_resource type="Script" path="res://scripts/ui/hud.gd" id="1_y6l54"]
+[ext_resource type="PackedScene" uid="uid://cyhx0tmmpnylm" path="res://scenes/ui/pause_screen.tscn" id="2_pi6wi"]
+[ext_resource type="PackedScene" uid="uid://bdm7x5kots6yv" path="res://scenes/ui/end_game_panel.tscn" id="3_lliym"]
+
+[node name="hud" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_y6l54")
+
+[node name="pause_screen" parent="." instance=ExtResource("2_pi6wi")]
+unique_name_in_owner = true
+layout_mode = 1
+
+[node name="end_game_panel" parent="." instance=ExtResource("3_lliym")]
+unique_name_in_owner = true
+layout_mode = 1

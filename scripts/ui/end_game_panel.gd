@@ -6,6 +6,9 @@ class_name EndGamePanel
 	set(value):
 		link_tree_node = value
 		update_configuration_warnings()
+		if link_tree_node:
+			next_level_button.link_tree_node = link_tree_node
+			retry_level_button.link_tree_node = link_tree_node
 
 @export var level_logic : LevelLogic:
 	set(value):
@@ -27,11 +30,6 @@ func _get_configuration_warnings():
 	if not level_logic:
 		warnings.append("No LevelLogic set for EndGamePanel")
 	return warnings
-
-func _ready():
-	if not Engine.is_editor_hint() and link_tree_node:
-		next_level_button.link_tree_node = link_tree_node
-		retry_level_button.link_tree_node = link_tree_node
 
 func _on_level_logic_complete(success):
 	# Configure some elements to show or not depending on the outcome

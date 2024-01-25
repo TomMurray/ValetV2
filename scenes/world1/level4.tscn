@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://beao3s7qdetp0"]
 
 [ext_resource type="PackedScene" uid="uid://bv8snj5dy8q4c" path="res://scenes/world1/prefabs/foggy_rainy_world_environment.tscn" id="1_7o8op"]
-[ext_resource type="PackedScene" uid="uid://bdm7x5kots6yv" path="res://scenes/ui/end_game_panel.tscn" id="2_kph4g"]
+[ext_resource type="PackedScene" uid="uid://de41fni8xhs33" path="res://scenes/ui/hud.tscn" id="2_1kp2g"]
 [ext_resource type="PackedScene" uid="uid://10k7nln8wxq3" path="res://scenes/world1/prefabs/car.tscn" id="2_q8vsq"]
 [ext_resource type="PackedScene" uid="uid://dlcl4g8eeahy7" path="res://scenes/props/traffic_cone.tscn" id="3_2niqq"]
 [ext_resource type="PackedScene" uid="uid://dem0tl0qj4t03" path="res://scenes/prefabs/player_camera.tscn" id="3_4wi15"]
@@ -22,9 +22,7 @@ max_obstacles_hit = 1
 
 [node name="ui" type="CanvasLayer" parent="."]
 
-[node name="end_game_panel" parent="ui" node_paths=PackedStringArray("link_tree_node", "level_logic") instance=ExtResource("2_kph4g")]
-link_tree_node = NodePath("../../LinkTreeNode")
-level_logic = NodePath("../../level_logic")
+[node name="hud" parent="ui" instance=ExtResource("2_1kp2g")]
 
 [node name="player_camera" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_4wi15")]
 transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -8, 0.5, 9)
