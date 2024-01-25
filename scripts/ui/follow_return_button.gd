@@ -17,9 +17,10 @@ func _update_disabled_status():
 	disabled = not link_tree_node or not link_tree_node.has_return()
 
 func _ready():
-	_update_disabled_status()
-	if link_tree_node:
-		link_tree_node.connect("ready", _on_link_tree_node_ready)
+	if not Engine.is_editor_hint():
+		_update_disabled_status()
+		if link_tree_node:
+			link_tree_node.connect("ready", _on_link_tree_node_ready)
 
 func _on_link_tree_node_ready():
 	_update_disabled_status()

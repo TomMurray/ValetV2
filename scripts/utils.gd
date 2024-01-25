@@ -18,3 +18,6 @@ static func get_child_of_type(n : Node, type) -> Node:
 static func quad_ease(t : float) -> float:
 	var sqr := t * t
 	return sqr / (2.0 * (sqr - t) + 1.0)
+
+static func is_valid_resource_path(path : String) -> bool:
+	return ResourceLoader.get_resource_uid(path) != -1

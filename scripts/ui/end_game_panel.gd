@@ -15,7 +15,7 @@ class_name EndGamePanel
 		level_logic = value
 		level_logic.connect("complete", _on_level_logic_complete)
 		
-		update_configuration_warnings()#
+		update_configuration_warnings()
 
 @onready var next_level_button : NextLevelButton = %next_level_button
 @onready var retry_level_button : RetryLevelButton = %retry_level_button
@@ -29,7 +29,7 @@ func _get_configuration_warnings():
 	return warnings
 
 func _ready():
-	if link_tree_node:
+	if not Engine.is_editor_hint() and link_tree_node:
 		next_level_button.link_tree_node = link_tree_node
 		retry_level_button.link_tree_node = link_tree_node
 
