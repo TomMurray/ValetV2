@@ -1,14 +1,16 @@
 [gd_scene load_steps=3 format=3 uid="uid://10k7nln8wxq3"]
 
-[ext_resource type="PackedScene" uid="uid://dwhjocicbhr6l" path="res://scenes/prefabs/picocar_driveable.tscn" id="1_txqok"]
+[ext_resource type="PackedScene" uid="uid://ky53a216i4hk" path="res://scenes/prefabs/picocar_driveable.tscn" id="1_h5y2g"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ce0nt"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3pua8"]
 resource_name = "Material.001"
 cull_mode = 2
 albedo_color = Color(1, 0.368627, 0.12549, 1)
 roughness = 0.38189
 
-[node name="picocar" instance=ExtResource("1_txqok")]
+[node name="car" instance=ExtResource("1_h5y2g")]
 
-[node name="body" parent="." index="0"]
-surface_material_override/0 = SubResource("StandardMaterial3D_ce0nt")
+[node name="body" parent="picocar" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_3pua8")
+
+[editable path="picocar"]

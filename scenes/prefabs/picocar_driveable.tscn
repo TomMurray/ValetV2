@@ -1,25 +1,36 @@
-[gd_scene load_steps=5 format=3 uid="uid://dwhjocicbhr6l"]
+[gd_scene load_steps=6 format=3 uid="uid://ky53a216i4hk"]
 
-[ext_resource type="PackedScene" uid="uid://dlhuxgpsfcpjv" path="res://scenes/prefabs/picocar.tscn" id="1_px8oc"]
+[ext_resource type="PackedScene" uid="uid://b3557nwoyqnxe" path="res://assets/models/picocar.glb" id="2_fenta"]
 [ext_resource type="Script" path="res://scripts/picocar.gd" id="2_tkctv"]
 [ext_resource type="PackedScene" uid="uid://cvjhli7dx452m" path="res://scenes/prefabs/engine_noise.tscn" id="3_isegw"]
 [ext_resource type="Script" path="res://scripts/components/parkable_component.gd" id="4_yqje7"]
 
-[node name="picocar" node_paths=PackedStringArray("wheel_front_right", "wheel_front_left", "wheel_back_right", "wheel_back_left") instance=ExtResource("1_px8oc")]
-script = ExtResource("2_tkctv")
-wheel_front_right = NodePath("wheel_fr")
-wheel_front_left = NodePath("wheel_fl")
-wheel_back_right = NodePath("wheel_br")
-wheel_back_left = NodePath("wheel_bl")
+[sub_resource type="BoxShape3D" id="BoxShape3D_ml6xl"]
+size = Vector3(1, 1.194, 2.356)
 
-[node name="engine_noise" parent="." index="6" instance=ExtResource("3_isegw")]
+[node name="picocar_driveable" type="CharacterBody3D" node_paths=PackedStringArray("wheel_front_right", "wheel_front_left", "wheel_back_right", "wheel_back_left")]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("2_tkctv")
+wheel_front_right = NodePath("picocar/wheel_fr")
+wheel_front_left = NodePath("picocar/wheel_fl")
+wheel_back_right = NodePath("picocar/wheel_br")
+wheel_back_left = NodePath("picocar/wheel_bl")
+
+[node name="picocar" parent="." instance=ExtResource("2_fenta")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.670243, 0)
+shape = SubResource("BoxShape3D_ml6xl")
+
+[node name="engine_noise" parent="." instance=ExtResource("3_isegw")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.529911, 0.802172)
 
-[node name="ParkableComponent" type="Node3D" parent="." index="7"]
+[node name="ParkableComponent" type="Node3D" parent="."]
 script = ExtResource("4_yqje7")
 
-[node name="headlight_l" type="SpotLight3D" parent="." index="8"]
+[node name="headlight_l" type="SpotLight3D" parent="."]
 transform = Transform3D(-1, 0, 8.9407e-08, 0, 1, 0, -8.9407e-08, 0, -1, 0.456, 0.64, 1.178)
 light_color = Color(0.913725, 0.713726, 0.266667, 1)
 light_energy = 5.0
@@ -28,7 +39,7 @@ shadow_enabled = true
 shadow_bias = 0.535
 distance_fade_enabled = true
 
-[node name="headlight_r" type="SpotLight3D" parent="." index="9"]
+[node name="headlight_r" type="SpotLight3D" parent="."]
 transform = Transform3D(-1, 0, 8.9407e-08, 0, 1, 0, -8.9407e-08, 0, -1, -0.456, 0.64, 1.178)
 light_color = Color(0.913725, 0.713726, 0.266667, 1)
 light_energy = 5.0
@@ -37,16 +48,18 @@ shadow_enabled = true
 shadow_bias = 0.535
 distance_fade_enabled = true
 
-[node name="brakelight_r" type="OmniLight3D" parent="." index="10"]
+[node name="brakelight_r" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.427378, 0.573413, -1.30698)
 light_color = Color(1, 0, 0, 1)
 light_energy = 0.1
 shadow_enabled = true
 
-[node name="brakelight_l" type="OmniLight3D" parent="." index="11"]
+[node name="brakelight_l" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.427, 0.573458, -1.30678)
 light_color = Color(1, 0, 0, 1)
 light_energy = 0.1
 shadow_enabled = true
 
 [connection signal="parked_status_changed" from="." to="ParkableComponent" method="set_is_parked"]
+
+[editable path="picocar"]
