@@ -111,7 +111,9 @@ points = PackedVector3Array(-0.774544, 0, -0.706613, -0.774544, 0, 0.706438, -0.
 [node name="traffic_cone" type="RigidBody3D"]
 collision_layer = 4
 collision_mask = 7
+mass = 5.0
 script = ExtResource("1_g3svk")
+impulse_mass_factor = 1.5
 
 [node name="ObstacleComponent" type="Node3D" parent="."]
 unique_name_in_owner = true
@@ -125,3 +127,5 @@ skeleton = NodePath("")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.29915, 0, 0, 0, 0.29915, 0, 0, 0, 0.29915, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_5w024")
+
+[connection signal="was_hit" from="ObstacleComponent" to="." method="_on_obstacle_component_was_hit"]

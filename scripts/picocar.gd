@@ -266,7 +266,7 @@ func _physics_process(delta):
 			# Check if the node we're colliding with has an ObstacleComponent and notify it if so
 			var oc := Utils.get_child_of_type(c, ObstacleComponent) as ObstacleComponent
 			if oc:
-				oc.hit(Hit.new(self, result.get_normal(0), result.get_depth()))
+				oc.hit(Hit.new(self, result.get_position(0), result.get_normal(0), result.get_depth()))
 			
 			prev_pos = position
 			result = move_and_collide(motion, test_only, margin, recovery_as_collision, 6)
