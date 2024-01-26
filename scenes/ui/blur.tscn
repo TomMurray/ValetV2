@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dp7176mqf5mco"]
+
+[ext_resource type="Shader" path="res://shaders/blur.gdshader" id="1_4s1s3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bmvc7"]
+shader = ExtResource("1_4s1s3")
+shader_parameter/lod = 2.976
+
+[node name="blur" type="ColorRect"]
+material = SubResource("ShaderMaterial_bmvc7")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

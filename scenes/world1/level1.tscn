@@ -18,13 +18,13 @@ max_obstacles_hit = 1
 
 [node name="level" type="Node3D"]
 
-[node name="world_environment" parent="." instance=ExtResource("1_qexq8")]
-
 [node name="ui" type="CanvasLayer" parent="."]
 
 [node name="hud" parent="ui" node_paths=PackedStringArray("link_tree_node", "level_logic") instance=ExtResource("2_n5kg3")]
 link_tree_node = NodePath("../../link_tree_node")
 level_logic = NodePath("../../level_logic")
+
+[node name="world_environment" parent="." instance=ExtResource("1_qexq8")]
 
 [node name="level_logic" type="Node" parent="."]
 script = ExtResource("3_lukfl")

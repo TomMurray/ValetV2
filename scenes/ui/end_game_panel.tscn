@@ -1,17 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bdm7x5kots6yv"]
+[gd_scene load_steps=5 format=3 uid="uid://bdm7x5kots6yv"]
 
 [ext_resource type="Theme" uid="uid://dpqnmj3en2tdc" path="res://themes/in_game_overlay.tres" id="1_xgatg"]
 [ext_resource type="Script" path="res://scripts/ui/end_game_panel.gd" id="2_2bskh"]
 [ext_resource type="Script" path="res://scripts/ui/next_level_button.gd" id="3_ydlp1"]
 [ext_resource type="Script" path="res://scripts/ui/retry_level_button.gd" id="4_puvqx"]
-
-[sub_resource type="GDScript" id="GDScript_gs6a6"]
-script/source = "extends RichTextLabel
-
-func _on_level_logic_complete(success : bool):
-	if success:
-		show()
-"
 
 [node name="end_game_panel" type="CenterContainer"]
 visible = false
@@ -25,35 +17,6 @@ script = ExtResource("2_2bskh")
 
 [node name="list" type="VBoxContainer" parent="."]
 layout_mode = 2
-
-[node name="outcome_container" type="CenterContainer" parent="list"]
-layout_mode = 2
-
-[node name="success_text" type="RichTextLabel" parent="list/outcome_container"]
-unique_name_in_owner = true
-visible = false
-clip_contents = false
-layout_mode = 2
-theme = ExtResource("1_xgatg")
-bbcode_enabled = true
-text = "[rainbow sat=0.4][tornado radius=2.0 freq=15 connected=1]GENIUS[/tornado][/rainbow]"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-script = SubResource("GDScript_gs6a6")
-
-[node name="failure_text" type="RichTextLabel" parent="list/outcome_container"]
-unique_name_in_owner = true
-visible = false
-clip_contents = false
-layout_mode = 2
-theme = ExtResource("1_xgatg")
-bbcode_enabled = true
-text = "[rainbow sat=0.4][tornado radius=2.0 freq=15 connected=1]FAILED[/tornado][/rainbow]"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-script = SubResource("GDScript_gs6a6")
 
 [node name="to_next_level_container" type="CenterContainer" parent="list"]
 layout_mode = 2

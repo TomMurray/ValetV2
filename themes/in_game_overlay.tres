@@ -1,4 +1,6 @@
-[gd_resource type="Theme" load_steps=7 format=3 uid="uid://dpqnmj3en2tdc"]
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://dpqnmj3en2tdc"]
+
+[ext_resource type="FontFile" uid="uid://c2ygcp28w81te" path="res://assets/fonts/YoungSerif-Regular.otf" id="1_40iyw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_apjw1"]
 content_margin_left = 10.0
@@ -35,55 +37,63 @@ shadow_offset = Vector2(1.94, 0)
 content_margin_left = 10.0
 content_margin_top = 10.0
 content_margin_right = 10.0
-content_margin_bottom = 20.0
+content_margin_bottom = 10.0
 bg_color = Color(0.360784, 0.454902, 0.505882, 1)
-border_width_bottom = 10
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
-shadow_offset = Vector2(1.94, 0)
+shadow_color = Color(0, 0, 0, 1)
+shadow_size = 1
+shadow_offset = Vector2(10, 10)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2xyc2"]
 content_margin_left = 10.0
 content_margin_top = 10.0
 content_margin_right = 10.0
-content_margin_bottom = 20.0
+content_margin_bottom = 10.0
 bg_color = Color(0.180392, 0.239216, 0.270588, 1)
-border_width_bottom = 10
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
-shadow_offset = Vector2(1.94, 0)
+shadow_color = Color(0, 0, 0, 1)
+shadow_size = 1
+shadow_offset = Vector2(10, 10)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ksqs"]
 content_margin_left = 10.0
 content_margin_top = 10.0
 content_margin_right = 10.0
-content_margin_bottom = 15.0
+content_margin_bottom = 10.0
 bg_color = Color(0.72549, 0.796078, 0.839216, 1)
-border_width_bottom = 5
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color(0, 0, 0, 1)
+shadow_size = 1
+shadow_offset = Vector2(10, 10)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aq43m"]
+bg_color = Color(0.658824, 0.658824, 0.658824, 0.407843)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yf08a"]
-bg_color = Color(0.380392, 0.760784, 0.988235, 0.4)
-corner_radius_top_left = 20
-corner_radius_bottom_right = 20
-
 [resource]
 Button/font_sizes/font_size = 60
+Button/fonts/font = ExtResource("1_40iyw")
 Button/styles/disabled = SubResource("StyleBoxFlat_apjw1")
 Button/styles/focus = SubResource("StyleBoxFlat_n1lbv")
 Button/styles/hover = SubResource("StyleBoxFlat_dl1dp")
 Button/styles/normal = SubResource("StyleBoxFlat_2xyc2")
 Button/styles/pressed = SubResource("StyleBoxFlat_4ksqs")
-Panel/styles/panel = SubResource("StyleBoxFlat_yf08a")
+Panel/styles/panel = SubResource("StyleBoxFlat_aq43m")
 RichTextLabel/colors/font_shadow_color = Color(0, 0, 0, 1)
 RichTextLabel/constants/shadow_offset_x = 8
 RichTextLabel/constants/shadow_offset_y = 10
 RichTextLabel/constants/shadow_outline_size = 10
 RichTextLabel/font_sizes/normal_font_size = 100
+RichTextLabel/fonts/normal_font = ExtResource("1_40iyw")

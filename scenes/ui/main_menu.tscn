@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://dwcirsvne3wr4"]
+[gd_scene load_steps=9 format=3 uid="uid://dwcirsvne3wr4"]
 
 [ext_resource type="Script" path="res://scripts/ui/main_menu.gd" id="1_8w4p6"]
 [ext_resource type="Theme" uid="uid://dpqnmj3en2tdc" path="res://themes/in_game_overlay.tres" id="1_m8ha8"]
 [ext_resource type="PackedScene" uid="uid://dcpqbah1so4vd" path="res://scenes/ui/follow_link_button.tscn" id="2_eyd24"]
 [ext_resource type="Script" path="res://scripts/resources/link.gd" id="3_xbjlo"]
 [ext_resource type="Script" path="res://scripts/components/link_tree_node.gd" id="5_mteg7"]
+[ext_resource type="Theme" uid="uid://2rgbq1dhak2" path="res://themes/main_title.tres" id="6_20bvr"]
 
 [sub_resource type="Resource" id="Resource_6rr3b"]
 script = ExtResource("3_xbjlo")
@@ -26,7 +27,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_m8ha8")
 script = ExtResource("1_8w4p6")
-control_to_focus = NodePath("CenterContainer/VBoxContainer/follow_link_button")
+control_to_focus = NodePath("CenterContainer/HBoxContainer/follow_link_button")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -36,7 +37,34 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_m8ha8")
-color = Color(0, 0, 0, 1)
+color = Color(0.337255, 0.337255, 0.337255, 1)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("6_20bvr")
+bbcode_enabled = true
+text = "Ultimate Parking Simulator"
+fit_content = true
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
@@ -46,18 +74,19 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer"]
 layout_mode = 2
+theme_override_constants/separation = 50
 alignment = 1
 
-[node name="follow_link_button" parent="CenterContainer/VBoxContainer" node_paths=PackedStringArray("link_tree_node") instance=ExtResource("2_eyd24")]
+[node name="follow_link_button" parent="CenterContainer/HBoxContainer" node_paths=PackedStringArray("link_tree_node") instance=ExtResource("2_eyd24")]
 unique_name_in_owner = true
 layout_mode = 2
-text = "LEVEL SELECT"
+text = "PLAY"
 link_tree_node = NodePath("../../../LinkTreeNode")
 link = SubResource("Resource_6rr3b")
 
-[node name="exit_button" type="Button" parent="CenterContainer/VBoxContainer"]
+[node name="exit_button" type="Button" parent="CenterContainer/HBoxContainer"]
 layout_mode = 2
 text = "EXIT"
 script = SubResource("GDScript_lnjog")
@@ -66,4 +95,4 @@ script = SubResource("GDScript_lnjog")
 script = ExtResource("5_mteg7")
 scene_node_reference = NodePath("..")
 
-[connection signal="pressed" from="CenterContainer/VBoxContainer/exit_button" to="CenterContainer/VBoxContainer/exit_button" method="quit"]
+[connection signal="pressed" from="CenterContainer/HBoxContainer/exit_button" to="CenterContainer/HBoxContainer/exit_button" method="quit"]

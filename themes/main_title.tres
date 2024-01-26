@@ -1,0 +1,8 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://2rgbq1dhak2"]
+
+[ext_resource type="FontFile" uid="uid://c2ygcp28w81te" path="res://assets/fonts/YoungSerif-Regular.otf" id="1_qb3iw"]
+
+[resource]
+RichTextLabel/colors/default_color = Color(0.952941, 0.745098, 0.647059, 1)
+RichTextLabel/font_sizes/normal_font_size = 96
+RichTextLabel/fonts/normal_font = ExtResource("1_qb3iw")
