@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://cyyhprxsuvock"]
+
+[ext_resource type="PackedScene" uid="uid://b3557nwoyqnxe" path="res://assets/models/picocar.glb" id="1_2ud1x"]
+[ext_resource type="Script" path="res://scripts/car_obstacle.gd" id="1_qjkly"]
+[ext_resource type="Script" path="res://scripts/components/obstacle_component.gd" id="3_mgqht"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_n3grc"]
+size = Vector3(1, 1.194, 2.356)
+
+[node name="picocar_obstacle" type="StaticBody3D"]
+script = ExtResource("1_qjkly")
+
+[node name="picocar" parent="." instance=ExtResource("1_2ud1x")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.670243, 0)
+shape = SubResource("BoxShape3D_n3grc")
+
+[node name="ObstacleComponent" type="Node3D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_mgqht")
+
+[connection signal="was_hit" from="ObstacleComponent" to="." method="_on_obstacle_component_was_hit"]
