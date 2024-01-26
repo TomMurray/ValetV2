@@ -28,7 +28,6 @@ func _on_area_body_entered(body):
 func _on_area_body_exited(body):
 	var parkable_component := Utils.get_child_of_type(body, ParkableComponent)
 	if parkable_component:
-		
 		var s : Signal = parkable_component.parked_status_changed
 		if s.is_connected(handle_parked_status_changed):
 			s.disconnect(handle_parked_status_changed)
