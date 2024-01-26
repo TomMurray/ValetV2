@@ -1,5 +1,5 @@
 @tool
-extends Control
+extends ColorRect
 class_name PauseScreen
 
 @export var link_tree_node : LinkTreeNode = null:
