@@ -1,15 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://10k7nln8wxq3"]
+[gd_scene load_steps=4 format=3 uid="uid://10k7nln8wxq3"]
 
 [ext_resource type="PackedScene" uid="uid://ba6xyqiidsic4" path="res://scenes/picocar.tscn" id="1_funxw"]
+[ext_resource type="Script" path="res://scripts/components/colour_override_component.gd" id="2_qi3r0"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gwvas"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yja2a"]
 resource_name = "Material.001"
 cull_mode = 2
 albedo_color = Color(1, 0.368627, 0.12549, 1)
 roughness = 0.38189
 
 [node name="car" instance=ExtResource("1_funxw")]
-colour = Color(1, 0.368627, 0.12549, 1)
 
-[node name="body" parent="." index="0"]
-surface_material_override/0 = SubResource("StandardMaterial3D_gwvas")
+[node name="body" parent="." index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_yja2a")
+
+[node name="body_colour_override" type="Node" parent="." index="12" node_paths=PackedStringArray("target_mesh")]
+script = ExtResource("2_qi3r0")
+target_mesh = NodePath("../body")
+target_colour = Color(1, 0.368627, 0.12549, 1)

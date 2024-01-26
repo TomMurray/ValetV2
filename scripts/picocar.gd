@@ -2,17 +2,6 @@
 extends CharacterBody3D
 class_name PicoCar
 
-@export var colour := Color.WHITE:
-	set(value):
-		colour = value
-		# Also change the visual appearance in the editor
-		var body := $body as MeshInstance3D
-		# Reset to base material
-		body.set_surface_override_material(0, null)
-		var new_mtl := body.get_active_material(0).duplicate() as BaseMaterial3D
-		new_mtl.albedo_color = colour
-		body.set_surface_override_material(0, new_mtl)
-
 @export_category("wheels")
 @export var wheel_front_right : Node3D
 @export var wheel_front_left : Node3D
