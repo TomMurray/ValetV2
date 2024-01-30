@@ -27,8 +27,7 @@ visible = false
 layout_mode = 2
 theme = ExtResource("1_xgatg")
 disabled = true
-text = "CONTINUE
-"
+text = "Continue"
 script = ExtResource("3_ydlp1")
 
 [node name="retry_level_button" type="Button" parent="list/to_next_level_container"]
@@ -37,7 +36,7 @@ visible = false
 layout_mode = 2
 theme = ExtResource("1_xgatg")
 disabled = true
-text = "RETRY"
+text = "Retry"
 script = ExtResource("4_puvqx")
 
 [connection signal="pressed" from="list/to_next_level_container/next_level_button" to="list/to_next_level_container/next_level_button" method="_on_pressed"]

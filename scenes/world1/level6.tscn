@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bml2augayak3q"]
+[gd_scene load_steps=12 format=3 uid="uid://bml2augayak3q"]
 
 [ext_resource type="PackedScene" uid="uid://de41fni8xhs33" path="res://scenes/ui/hud.tscn" id="1_3d7mt"]
 [ext_resource type="PackedScene" uid="uid://bv8snj5dy8q4c" path="res://scenes/world1/prefabs/foggy_rainy_world_environment.tscn" id="1_lx4ir"]
@@ -9,6 +9,12 @@
 [ext_resource type="Script" path="res://scripts/level/level_logic.gd" id="6_k2beb"]
 [ext_resource type="Script" path="res://scripts/level/level_objective.gd" id="7_gxc17"]
 [ext_resource type="Script" path="res://scripts/components/link_tree_node.gd" id="9_5ts38"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1c0ot"]
+resource_name = "Material.001"
+cull_mode = 2
+albedo_color = Color(0.509804, 1, 0.894118, 1)
+roughness = 0.38189
 
 [sub_resource type="Resource" id="Resource_aj1cy"]
 script = ExtResource("7_gxc17")
@@ -37,6 +43,9 @@ target = NodePath("../car")
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.75, 0.5, 5)
 level_logic = NodePath("../LevelLogic")
 
+[node name="body" parent="picocar_obstacle/picocar" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_1c0ot")
+
 [node name="LevelLogic" type="Node" parent="."]
 script = ExtResource("6_k2beb")
 objective = SubResource("Resource_aj1cy")
@@ -44,3 +53,6 @@ objective = SubResource("Resource_aj1cy")
 [node name="LinkTreeNode" type="Node" parent="." node_paths=PackedStringArray("scene_node_reference")]
 script = ExtResource("9_5ts38")
 scene_node_reference = NodePath("..")
+
+[editable path="picocar_obstacle"]
+[editable path="picocar_obstacle/picocar"]

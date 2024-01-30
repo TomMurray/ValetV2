@@ -1,8 +1,15 @@
-[gd_scene load_steps=10 format=3 uid="uid://fbf1wxhnn11n"]
+[gd_scene load_steps=14 format=3 uid="uid://fbf1wxhnn11n"]
+
+[sub_resource type="Curve" id="Curve_q5i3q"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.38764, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_1yhph"]
+curve = SubResource("Curve_q5i3q")
 
 [sub_resource type="Gradient" id="Gradient_sqfoa"]
-offsets = PackedFloat32Array(0, 0.191111, 3)
-colors = PackedColorArray(0, 0, 0, 1, 0.0430391, 0.0430392, 0.0430391, 1, 0.67069, 0.67069, 0.67069, 1)
+offsets = PackedFloat32Array(0, 0.191111, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.0430391, 0.0430392, 0.0430391, 1, 0.666667, 0.666667, 0.666667, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_fioa3"]
 gradient = SubResource("Gradient_sqfoa")
@@ -22,44 +29,49 @@ point_count = 3
 [sub_resource type="CurveTexture" id="CurveTexture_soqqx"]
 curve = SubResource("Curve_nv5id")
 
+[sub_resource type="Curve" id="Curve_humet"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_hrsdq"]
+curve = SubResource("Curve_humet")
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_w8l2t"]
 emission_shape = 1
-emission_sphere_radius = 0.5
+emission_sphere_radius = 0.25
 direction = Vector3(0, 1, 0)
-spread = 20.0
-initial_velocity_max = 5.0
+spread = 10.0
+initial_velocity_max = 2.5
 orbit_velocity_max = 1.0
-gravity = Vector3(0, 4, 0)
+gravity = Vector3(0, 2, 0)
 linear_accel_curve = SubResource("CurveTexture_j0m25")
-scale_min = 0.25
+scale_min = 0.0
 scale_max = 0.75
 scale_curve = SubResource("CurveTexture_soqqx")
 color_ramp = SubResource("GradientTexture1D_fioa3")
-turbulence_noise_strength = 3.34
+alpha_curve = SubResource("CurveTexture_1yhph")
+turbulence_noise_strength = 11.95
+turbulence_noise_scale = 2.9
+turbulence_noise_speed = Vector3(0, 5, 0)
+turbulence_influence_over_life = SubResource("CurveTexture_hrsdq")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eq4to"]
+transparency = 1
+shading_mode = 0
 diffuse_mode = 3
-specular_mode = 2
+specular_mode = 1
 vertex_color_use_as_albedo = true
-metallic_specular = 0.0
-roughness = 0.0
-emission = Color(0.227451, 0.25098, 0.478431, 1)
-subsurf_scatter_enabled = true
-subsurf_scatter_strength = 0.33
-backlight_enabled = true
-backlight = Color(1, 1, 1, 1)
 disable_receive_shadows = true
 
 [sub_resource type="SphereMesh" id="SphereMesh_f76lh"]
 material = SubResource("StandardMaterial3D_eq4to")
 radial_segments = 32
 
-[node name="smoke" type="Node3D"]
-
-[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
-amount = 100
+[node name="smoke" type="GPUParticles3D"]
+amount = 160
 lifetime = 2.0
 randomness = 1.0
-visibility_aabb = AABB(-4, 0, -4, 8, 8, 8)
+fixed_fps = 60
+draw_order = 3
 process_material = SubResource("ParticleProcessMaterial_w8l2t")
 draw_pass_1 = SubResource("SphereMesh_f76lh")

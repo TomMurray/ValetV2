@@ -5,6 +5,7 @@ class_name CarObstacle
 @onready var obstacle_component : ObstacleComponent = %ObstacleComponent
 
 @export var explosion_scene : PackedScene
+@export var explosion_origin : Node3D
 
 @export var level_logic : LevelLogic = null:
 	set(value):
@@ -25,6 +26,7 @@ func _on_obstacle_component_was_hit(hit):
 	if not was_hit_once:
 		# Spawn explosion scene where the obstacle is
 		var explosion = explosion_scene.instantiate() as Node3D
+		explosion_origin.add_child(explosion)
 		add_child(explosion)
 	was_hit_once = true
 	

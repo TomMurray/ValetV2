@@ -125,7 +125,7 @@ link = SubResource("Resource_flgu8")
 [node name="follow_return_button" parent="MarginContainer/CenterContainer/VBoxContainer" node_paths=PackedStringArray("link_tree_node") instance=ExtResource("4_gaxdp")]
 layout_mode = 2
 focus_neighbor_top = NodePath("../FlowContainer/follow_link_button")
-text = "BACK"
+text = "Back"
 link_tree_node = NodePath("../../../../link_tree_node")
 
 [node name="link_tree_node" type="Node" parent="." node_paths=PackedStringArray("scene_node_reference")]
